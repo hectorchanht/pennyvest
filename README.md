@@ -18,7 +18,7 @@
 
 ---
 
-Pennyvest is a bilingual investment education platform that provides asset allocation suggestions across risk levels. Browse four thematic strategies, read AI-analyzed news with impact scoring, and understand how global events affect your portfolio — all in English and Traditional Chinese.
+Pennyvest is a bilingual investment education platform that provides asset allocation suggestions across risk levels. Browse four thematic strategies, read AI-analyzed news with impact scoring, and understand how global events affect your portfolio — all in English and Traditional Chinese (more to come).
 
 ## Strategies
 
