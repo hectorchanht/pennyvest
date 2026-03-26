@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Phase 3 context gathered
-last_updated: "2026-03-26T12:28:08.090Z"
+stopped_at: Completed 02.1-01-PLAN.md
+last_updated: "2026-03-26T13:34:37.989Z"
 last_activity: 2026-03-26
 progress:
-  total_phases: 4
+  total_phases: 5
   completed_phases: 2
-  total_plans: 5
-  completed_plans: 5
+  total_plans: 12
+  completed_plans: 6
   percent: 15
 ---
 
@@ -57,8 +57,13 @@ Progress: [██░░░░░░░░] 15%
 | Phase 02-static-pages P01 | 15 min | 2 tasks | 16 files |
 | Phase 02-static-pages P02 | 10 | 2 tasks | 4 files |
 | Phase 02-static-pages P03 | 18 | 2 tasks | 7 files |
+| Phase 02.1-align-landing-page-to-prototype P01 | 2 | 2 tasks | 5 files |
 
 ## Accumulated Context
+
+### Roadmap Evolution
+
+- Phase 02.1 inserted after Phase 2: Align landing page to prototype — reactive layout, mixed strategy center, prototype styling (URGENT)
 
 ### Decisions
 
@@ -84,6 +89,8 @@ Recent decisions affecting current work:
 - [Phase 02-02]: ProfileSelector defaults to balanced profile — deterministic initial state, no hydration mismatch risk
 - [Phase 02-static-pages]: generateStaticParams on fund/[slug]/page.tsx returns only {slug} — locale inherited from parent layout
 - [Phase 02-static-pages]: SVG gauge uses polar-to-cartesian math; inactive segments at 0.4 opacity; needle angles: low=30°, medium=90°, high=150°
+- [Phase 02.1-01]: Mock data uses i18n key references (headlineKey, summaryKey) rather than hardcoded strings — data layer stays locale-agnostic
+- [Phase 02.1-01]: StrategyCard dailyChangePct and topHoldings are optional props — backward compatible with existing fund page usage
 
 ### Pending Todos
 
@@ -97,6 +104,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-26T12:28:08.086Z
-Stopped at: Phase 3 context gathered
-Resume file: .planning/phases/03-live-data-charts-and-ai/03-CONTEXT.md
+Last session: 2026-03-26T13:34:37.985Z
+Stopped at: Completed 02.1-01-PLAN.md
+Resume file: None
