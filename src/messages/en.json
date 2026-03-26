@@ -2,38 +2,85 @@
   "navigation": {
     "funds": "Funds",
     "profiles": "Profiles",
-    "switchLanguage": "中文"
+    "switchLanguage": "中文",
+    "futureTech": "Future Tech",
+    "traditional": "Traditional",
+    "commodities": "Commodities",
+    "crypto": "Crypto"
+  },
+  "landing": {
+    "hero": {
+      "tagline": "Invest with clarity.",
+      "subtagline": "Four strategies. Plain language. Both languages.",
+      "cta": "Explore Strategies"
+    },
+    "profileSelector": {
+      "label": "Pick your investor profile",
+      "weightLabel": "{weight}% allocation"
+    }
   },
   "strategies": {
     "futureTech": {
       "name": "Future Tech",
       "tagline": "Bet on tomorrow's technology leaders",
-      "rationale": "Placeholder — Phase 2 content"
+      "rationale": "Concentrated bet on companies shaping the next decade of computing — AI chips, EVs, genomics, and disruptive ETFs. Suitable for investors with 10+ year horizons who can stomach 30-50% drawdowns. The thesis: technological discontinuity creates outsized winners."
     },
     "traditional": {
       "name": "Traditional Industries",
       "tagline": "Time-tested sectors with steady dividends",
-      "rationale": "Placeholder — Phase 2 content"
+      "rationale": "Blue-chip companies with decades of dividend history across consumer staples, healthcare, finance, and real estate. Designed for capital preservation with inflation-beating income. These companies have survived multiple recessions and continue to compound quietly."
     },
     "commodities": {
       "name": "Commodities",
       "tagline": "Real assets as a hedge against inflation",
-      "rationale": "Placeholder — Phase 2 content"
+      "rationale": "Physical assets that tend to hold value when paper assets don't — gold, oil, agricultural commodities, and diversified commodity ETFs. Acts as a portfolio hedge against inflation and currency debasement. Best used as a stabilizing allocation rather than a growth engine."
     },
     "crypto": {
       "name": "Crypto",
       "tagline": "High-risk, high-reward digital assets",
-      "rationale": "Placeholder — Phase 2 content"
+      "rationale": "Pure-play exposure to decentralized digital assets led by Bitcoin and Ethereum, with selective allocation to high-conviction Layer 1 protocols. Extremely volatile — 80%+ drawdowns are historical precedent. Sized for investors treating this as a high-risk/high-reward satellite position."
+    }
+  },
+  "strategy": {
+    "holdingsTable": {
+      "ticker": "Ticker",
+      "name": "Name",
+      "weight": "Weight"
+    },
+    "sidebar": {
+      "allocationTitle": "Allocation",
+      "profilesLink": "View Investor Profiles"
+    },
+    "comingSoon": {
+      "charts": "Performance Chart",
+      "prices": "Live Prices",
+      "news": "AI News Analysis",
+      "label": "Coming in Phase 3"
     }
   },
   "profiles": {
-    "conservative": { "name": "Conservative" },
-    "balanced": { "name": "Balanced" },
-    "aggressive": { "name": "Aggressive" }
+    "title": "Investor Profiles",
+    "subtitle": "Choose the profile that matches your risk tolerance",
+    "conservative": {
+      "name": "Conservative",
+      "description": "Prioritises capital preservation with steady income. Favours blue-chip dividends and real assets over growth bets."
+    },
+    "balanced": {
+      "name": "Balanced",
+      "description": "A roughly even spread across all four strategies with a mild growth tilt. Suitable for most investors seeking diversification."
+    },
+    "aggressive": {
+      "name": "Aggressive",
+      "description": "Heavy allocation to high-growth technology and crypto. Expects significant volatility in pursuit of outsized long-term returns."
+    }
   },
   "riskLevel": {
     "low": "Low Risk",
     "medium": "Medium Risk",
     "high": "High Risk"
+  },
+  "footer": {
+    "tagline": "Investment education, not financial advice.",
+    "copyright": "Pennyvest {year}"
   }
 }

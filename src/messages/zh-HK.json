@@ -2,38 +2,85 @@
   "navigation": {
     "funds": "基金",
     "profiles": "投資組合",
-    "switchLanguage": "English"
+    "switchLanguage": "English",
+    "futureTech": "未來科技",
+    "traditional": "傳統行業",
+    "commodities": "大宗商品",
+    "crypto": "加密貨幣"
+  },
+  "landing": {
+    "hero": {
+      "tagline": "睇得清，投得穩。",
+      "subtagline": "四大策略，簡明易懂，中英雙語。",
+      "cta": "探索策略"
+    },
+    "profileSelector": {
+      "label": "揀選你的投資風格",
+      "weightLabel": "{weight}% 配置"
+    }
   },
   "strategies": {
     "futureTech": {
       "name": "未來科技",
       "tagline": "投資明日科技巨頭",
-      "rationale": "佔位符 — 第二階段內容"
+      "rationale": "集中押注引領下一個十年計算革命的企業——人工智能芯片、電動車、基因組學及顛覆性ETF。適合能承受30-50%回撤、投資期限超過十年的進取型投資者。核心理念：技術斷層創造超額回報。"
     },
     "traditional": {
       "name": "傳統行業",
       "tagline": "歷久不衰的穩健板塊",
-      "rationale": "佔位符 — 第二階段內容"
+      "rationale": "涵蓋消費必需品、醫療保健、金融及房地產的藍籌企業，具備數十年派息記錄。旨在保本的同時提供跑贏通脹的收入來源。這些企業歷經多次經濟衰退，仍能持續穩健增長。"
     },
     "commodities": {
       "name": "大宗商品",
       "tagline": "實物資產對抗通脹",
-      "rationale": "佔位符 — 第二階段內容"
+      "rationale": "當紙質資產失效時往往能保值的實物資產——黃金、石油、農業商品及多元化商品ETF。可對沖通脹及貨幣貶值風險，是平衡組合的穩定器，而非增長引擎。"
     },
     "crypto": {
       "name": "加密貨幣",
       "tagline": "高風險高回報數字資產",
-      "rationale": "佔位符 — 第二階段內容"
+      "rationale": "專注於比特幣和以太坊等去中心化數字資產，並選擇性配置高確信度的Layer 1協議。波動性極高，歷史上曾出現逾80%的最大回撤。適合將其視為高風險高回報衛星倉位的投資者。"
+    }
+  },
+  "strategy": {
+    "holdingsTable": {
+      "ticker": "代號",
+      "name": "名稱",
+      "weight": "比重"
+    },
+    "sidebar": {
+      "allocationTitle": "配置",
+      "profilesLink": "查看投資組合"
+    },
+    "comingSoon": {
+      "charts": "表現圖表",
+      "prices": "即時報價",
+      "news": "AI 新聞分析",
+      "label": "第三階段推出"
     }
   },
   "profiles": {
-    "conservative": { "name": "保守型" },
-    "balanced": { "name": "平衡型" },
-    "aggressive": { "name": "進取型" }
+    "title": "投資組合",
+    "subtitle": "選擇適合你風險承受能力的組合",
+    "conservative": {
+      "name": "保守型",
+      "description": "以保本為先，重視穩定收入。偏好藍籌派息股及實物資產，減少高增長押注。"
+    },
+    "balanced": {
+      "name": "平衡型",
+      "description": "四大策略大致均衡配置，略偏增長。適合追求多元化的大多數投資者。"
+    },
+    "aggressive": {
+      "name": "進取型",
+      "description": "重倉高增長科技及加密貨幣。預期波動較大，追求長線超額回報。"
+    }
   },
   "riskLevel": {
     "low": "低風險",
     "medium": "中等風險",
     "high": "高風險"
+  },
+  "footer": {
+    "tagline": "投資教育，非理財建議。",
+    "copyright": "Pennyvest {year}"
   }
 }
