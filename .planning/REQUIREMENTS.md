@@ -26,23 +26,23 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### News & AI Analysis
 
-- [ ] **NEWS-01**: User can see aggregated relevant news headlines per strategy
-- [ ] **NEWS-02**: User can read AI-generated summaries of each news article relevant to a strategy
-- [ ] **NEWS-03**: User can read AI-generated impact analysis explaining how each news item affects the strategy's allocation and risk
+- [x] **NEWS-01**: User can see aggregated relevant news headlines per strategy
+- [x] **NEWS-02**: User can read AI-generated summaries of each news article relevant to a strategy
+- [x] **NEWS-03**: User can read AI-generated impact analysis explaining how each news item affects the strategy's allocation and risk
 - [x] **NEWS-04**: News content refreshes at least every 30 minutes
 
 ### Bilingual (i18n)
 
 - [x] **I18N-01**: User can switch between English and Traditional Chinese for all UI elements
 - [x] **I18N-02**: Strategy rationale content is available in both languages
-- [ ] **I18N-03**: AI news analysis output supports both languages
+- [x] **I18N-03**: AI news analysis output supports both languages
 - [x] **I18N-04**: URL routing reflects selected language (e.g., /en/strategy/... and /zh/strategy/...)
 
 ### Data Integration
 
-- [ ] **DATA-01**: Asset prices are fetched from free APIs (Yahoo Finance for stocks/commodities, CoinGecko for crypto)
+- [x] **DATA-01**: Asset prices are fetched from free APIs (Yahoo Finance for stocks/commodities, CoinGecko for crypto)
 - [x] **DATA-02**: Price data is cached server-side to stay within free-tier API limits
-- [ ] **DATA-03**: News articles are fetched from free news APIs (NewsAPI or equivalent)
+- [x] **DATA-03**: News articles are fetched from free news APIs (NewsAPI or equivalent)
 - [x] **DATA-04**: All API keys and credentials are server-side only, never exposed to client
 
 ### Compliance & Trust
@@ -120,14 +120,14 @@ Which phases cover which requirements. Updated during roadmap creation.
 | STRT-04 | Phase 3 | Pending |
 | STRT-05 | Phase 3 | Pending |
 | STRT-06 | Phase 3 | Complete |
-| NEWS-01 | Phase 3 | Pending |
-| NEWS-02 | Phase 3 | Pending |
-| NEWS-03 | Phase 3 | Pending |
+| NEWS-01 | Phase 3 | Complete |
+| NEWS-02 | Phase 3 | Complete |
+| NEWS-03 | Phase 3 | Complete |
 | NEWS-04 | Phase 3 | Complete |
-| I18N-03 | Phase 3 | Pending |
-| DATA-01 | Phase 3 | Pending |
+| I18N-03 | Phase 3 | Complete |
+| DATA-01 | Phase 3 | Complete |
 | DATA-02 | Phase 3 | Complete |
-| DATA-03 | Phase 3 | Pending |
+| DATA-03 | Phase 3 | Complete |
 | COMP-04 | Phase 3 | Complete |
 | COMP-01 | Phase 4 | Pending |
 | COMP-02 | Phase 4 | Pending |

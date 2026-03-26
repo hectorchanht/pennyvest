@@ -70,10 +70,10 @@ Plans:
   3. Each strategy page shows aggregated news headlines with AI-generated summaries and an impact analysis explaining how each news item affects the strategy — available in both English and Traditional Chinese
   4. News content has refreshed within the last 30 minutes (verified by the "last updated" timestamp)
   5. Chart and news components display a loading skeleton while data fetches and a graceful error state if the fetch fails
-**Plans:** 2/5 plans executed
+**Plans:** 3/5 plans executed
 Plans:
 - [x] 03-01-PLAN.md — Install Phase 3 deps, shared types (prices/news), Upstash Redis cache wrapper, env config
-- [ ] 03-02-PLAN.md — Data adapters (Yahoo Finance, CoinGecko, Marketaux news) and AI analysis service
+- [x] 03-02-PLAN.md — Data adapters (Yahoo Finance, CoinGecko, Marketaux news) and AI analysis service
 - [x] 03-03-PLAN.md — Chart components (allocation donut, equity curve) and Phase 3 i18n keys
 - [ ] 03-04-PLAN.md — Route Handlers for prices, equity curve, and news with AI analysis
 - [ ] 03-05-PLAN.md — Wire into fund page: replace ComingSoonCard placeholders with live data components
@@ -99,5 +99,5 @@ Phases execute in numeric order: 1 → 2 → 2.1 → 3 → 4
 | 1. Foundation | 2/2 | Complete   | 2026-03-26 |
 | 2. Static Pages | 3/3 | Complete   | 2026-03-26 |
 | 2.1 Align Landing Page | 0/2 | Planned | - |
-| 3. Live Data, Charts, and AI | 2/5 | In Progress|  |
+| 3. Live Data, Charts, and AI | 3/5 | In Progress|  |
 | 4. Compliance, Polish, and Performance | 0/TBD | Not started | - |

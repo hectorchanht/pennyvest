@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 03-03-PLAN.md
-last_updated: "2026-03-26T17:18:34.525Z"
+stopped_at: Completed 03-02-PLAN.md
+last_updated: "2026-03-26T17:20:59.956Z"
 last_activity: 2026-03-26
 progress:
   total_phases: 5
   completed_phases: 3
   total_plans: 12
-  completed_plans: 9
+  completed_plans: 10
   percent: 15
 ---
 
@@ -61,6 +61,7 @@ Progress: [██░░░░░░░░] 15%
 | Phase 02.1-align-landing-page-to-prototype P02 | 5 | 2 tasks | 4 files |
 | Phase 03-live-data-charts-and-ai P01 | 1 | 2 tasks | 6 files |
 | Phase 03-live-data-charts-and-ai P03 | 2 | 2 tasks | 4 files |
+| Phase 03 P02 | 8 | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -102,6 +103,10 @@ Recent decisions affecting current work:
 - [Phase 03-live-data-charts-and-ai]: TTL values match D-12: prices=300s (5m), news=1800s (30m), aiAnalysis=3600s (1h), equity=86400s (24h)
 - [Phase 03-live-data-charts-and-ai]: recharts 3.x Tooltip formatter requires ValueType | undefined guard — not direct number cast
 - [Phase 03-live-data-charts-and-ai]: Chart components are pure props-driven with no internal data fetching — ready to receive data from route handlers in 03-04
+- [Phase 03]: yahoo-finance2 v3 is instance-based: const yf = new YahooFinance() — static methods are deprecated and throw
+- [Phase 03]: AI SDK v6 uses generateText + Output.object({ schema }) — generateObject is deprecated per research
+- [Phase 03]: analyzeNewsItem returns null on AI failure (graceful degradation) per D-16
+- [Phase 03]: AI cache key includes locale: ai:{uuid}:{locale} — en and zh-HK analyses cached separately per D-08
 
 ### Pending Todos
 
@@ -115,6 +120,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-26T17:18:34.522Z
-Stopped at: Completed 03-03-PLAN.md
+Last session: 2026-03-26T17:20:59.952Z
+Stopped at: Completed 03-02-PLAN.md
 Resume file: None
