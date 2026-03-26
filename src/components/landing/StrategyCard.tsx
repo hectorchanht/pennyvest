@@ -1,5 +1,5 @@
 import { Link } from '@/i18n/navigation';
-import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import type { RiskLevel } from '@/lib/strategies/types';
 
@@ -11,6 +11,9 @@ interface StrategyCardProps {
   riskLabel: string;
   weight?: number;
   weightLabel?: string;
+  dailyChangePct?: number;    // e.g. 2.25 or -1.5
+  topHoldings?: Array<{ ticker: string; weight: number }>;
+  dailyChangeLabel?: string;  // translated "Daily" label
 }
 
 const riskColors: Record<RiskLevel, string> = {
@@ -27,10 +30,27 @@ export default function StrategyCard({
   riskLabel,
   weight,
   weightLabel,
+  dailyChangePct,
+  topHoldings,
+  dailyChangeLabel,
 }: StrategyCardProps) {
+  const isPositive = dailyChangePct !== undefined && dailyChangePct >= 0;
+  const changeColor = isPositive ? 'text-green-400' : 'text-red-400';
+  const formattedChange =
+    dailyChangePct !== undefined
+      ? `${isPositive ? '+' : ''}${dailyChangePct.toFixed(2)}%`
+      : null;
+
+  const holdingsLine =
+    topHoldings && topHoldings.length > 0
+      ? topHoldings
+          .map((h) => `${h.ticker} ${Math.round(h.weight * 100)}%`)
+          .join(' · ')
+      : null;
+
   return (
     <Link href={`/fund/${slug}`} className="block">
-      <Card className="relative h-full cursor-pointer transition-all duration-200 hover:bg-surface-hover hover:scale-[1.02] hover:shadow-lg">
+      <Card className="relative h-full cursor-pointer transition-all duration-200 hover:bg-surface-hover hover:scale-[1.02] hover:shadow-lg p-5">
         <div className="absolute right-3 top-3 flex flex-col gap-1 items-end">
           <Badge className={riskColors[riskLevel]}>{riskLabel}</Badge>
           {weight !== undefined && weightLabel && (
@@ -39,10 +59,25 @@ export default function StrategyCard({
             </Badge>
           )}
         </div>
-        <CardHeader className="pr-20">
+        <CardHeader className="p-0">
           <CardTitle>{name}</CardTitle>
           <CardDescription>{tagline}</CardDescription>
         </CardHeader>
+        {dailyChangePct !== undefined && (
+          <CardContent className="p-0 pt-3 flex flex-col gap-1">
+            <div className="flex items-baseline gap-1.5">
+              {dailyChangeLabel && (
+                <span className="text-xs text-text-secondary">{dailyChangeLabel}</span>
+              )}
+              <span className={`text-lg font-semibold ${changeColor}`}>
+                {formattedChange}
+              </span>
+            </div>
+            {holdingsLine && (
+              <p className="text-xs text-text-secondary">{holdingsLine}</p>
+            )}
+          </CardContent>
+        )}
       </Card>
     </Link>
   );
