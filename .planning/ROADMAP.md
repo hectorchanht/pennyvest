@@ -75,7 +75,7 @@ Plans:
 - [x] 03-01-PLAN.md — Install Phase 3 deps, shared types (prices/news), Upstash Redis cache wrapper, env config
 - [x] 03-02-PLAN.md — Data adapters (Yahoo Finance, CoinGecko, Marketaux news) and AI analysis service
 - [x] 03-03-PLAN.md — Chart components (allocation donut, equity curve) and Phase 3 i18n keys
-- [ ] 03-04-PLAN.md — Route Handlers for prices, equity curve, and news with AI analysis
+- [x] 03-04-PLAN.md — Route Handlers for prices, equity curve, and news with AI analysis
 - [ ] 03-05-PLAN.md — Wire into fund page: replace ComingSoonCard placeholders with live data components
 
 ### Phase 4: Compliance, Polish, and Performance

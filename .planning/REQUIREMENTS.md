@@ -19,8 +19,8 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **STRT-01**: User can view a dedicated page for each of the 4 strategies (Future Tech, Traditional Industries, Commodities, Crypto)
 - [x] **STRT-02**: User can see asset allocation breakdown as a visual chart (pie or bar)
 - [x] **STRT-03**: User can see strategy rationale explaining why the allocation is structured this way
-- [ ] **STRT-04**: User can see the constituent list (ticker, name, weight, asset class) for each strategy
-- [ ] **STRT-05**: User can see current market prices for each constituent with "last updated" timestamp
+- [x] **STRT-04**: User can see the constituent list (ticker, name, weight, asset class) for each strategy
+- [x] **STRT-05**: User can see current market prices for each constituent with "last updated" timestamp
 - [x] **STRT-06**: User can see a simulated performance chart (equity curve) for each strategy
 - [x] **STRT-07**: User can see a risk level indicator (High / Medium / Low) for each strategy
 
@@ -117,8 +117,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | I18N-01 | Phase 2 | Complete |
 | I18N-02 | Phase 2 | Complete |
 | STRT-02 | Phase 3 | Complete |
-| STRT-04 | Phase 3 | Pending |
-| STRT-05 | Phase 3 | Pending |
+| STRT-04 | Phase 3 | Complete |
+| STRT-05 | Phase 3 | Complete |
 | STRT-06 | Phase 3 | Complete |
 | NEWS-01 | Phase 3 | Complete |
 | NEWS-02 | Phase 3 | Complete |
