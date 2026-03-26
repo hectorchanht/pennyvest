@@ -3,6 +3,10 @@ import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 import { Inter, Noto_Sans_TC } from 'next/font/google';
 import { routing } from '@/i18n/routing';
+import Header from '@/components/layout/Header';
+import MobileTabBar from '@/components/layout/MobileTabBar';
+import Footer from '@/components/layout/Footer';
+import '@/app/globals.css';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -38,7 +42,12 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html lang={locale} className={`${inter.variable} ${notoSansTC.variable}`}>
       <body>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <Header />
+          <main className="min-h-screen pt-16">{children}</main>
+          <Footer />
+          <MobileTabBar />
+        </NextIntlClientProvider>
       </body>
     </html>
   );
