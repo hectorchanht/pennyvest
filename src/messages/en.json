@@ -1,0 +1,39 @@
+{
+  "navigation": {
+    "funds": "Funds",
+    "profiles": "Profiles",
+    "switchLanguage": "中文"
+  },
+  "strategies": {
+    "futureTech": {
+      "name": "Future Tech",
+      "tagline": "Bet on tomorrow's technology leaders",
+      "rationale": "Placeholder — Phase 2 content"
+    },
+    "traditional": {
+      "name": "Traditional Industries",
+      "tagline": "Time-tested sectors with steady dividends",
+      "rationale": "Placeholder — Phase 2 content"
+    },
+    "commodities": {
+      "name": "Commodities",
+      "tagline": "Real assets as a hedge against inflation",
+      "rationale": "Placeholder — Phase 2 content"
+    },
+    "crypto": {
+      "name": "Crypto",
+      "tagline": "High-risk, high-reward digital assets",
+      "rationale": "Placeholder — Phase 2 content"
+    }
+  },
+  "profiles": {
+    "conservative": { "name": "Conservative" },
+    "balanced": { "name": "Balanced" },
+    "aggressive": { "name": "Aggressive" }
+  },
+  "riskLevel": {
+    "low": "Low Risk",
+    "medium": "Medium Risk",
+    "high": "High Risk"
+  }
+}

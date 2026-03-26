@@ -1,0 +1,39 @@
+{
+  "navigation": {
+    "funds": "基金",
+    "profiles": "投資組合",
+    "switchLanguage": "English"
+  },
+  "strategies": {
+    "futureTech": {
+      "name": "未來科技",
+      "tagline": "投資明日科技巨頭",
+      "rationale": "佔位符 — 第二階段內容"
+    },
+    "traditional": {
+      "name": "傳統行業",
+      "tagline": "歷久不衰的穩健板塊",
+      "rationale": "佔位符 — 第二階段內容"
+    },
+    "commodities": {
+      "name": "大宗商品",
+      "tagline": "實物資產對抗通脹",
+      "rationale": "佔位符 — 第二階段內容"
+    },
+    "crypto": {
+      "name": "加密貨幣",
+      "tagline": "高風險高回報數字資產",
+      "rationale": "佔位符 — 第二階段內容"
+    }
+  },
+  "profiles": {
+    "conservative": { "name": "保守型" },
+    "balanced": { "name": "平衡型" },
+    "aggressive": { "name": "進取型" }
+  },
+  "riskLevel": {
+    "low": "低風險",
+    "medium": "中等風險",
+    "high": "高風險"
+  }
+}
