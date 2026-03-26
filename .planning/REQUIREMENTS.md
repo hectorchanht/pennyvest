@@ -9,10 +9,10 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Landing & Navigation
 
-- [ ] **LAND-01**: User can view a landing page that explains Pennyvest's value proposition
-- [ ] **LAND-02**: User can navigate from landing page to any of the 4 strategy pages
-- [ ] **LAND-03**: User can see risk level summary for each strategy on landing page
-- [ ] **LAND-04**: Landing page renders responsively on mobile and desktop
+- [x] **LAND-01**: User can view a landing page that explains Pennyvest's value proposition
+- [x] **LAND-02**: User can navigate from landing page to any of the 4 strategy pages
+- [x] **LAND-03**: User can see risk level summary for each strategy on landing page
+- [x] **LAND-04**: Landing page renders responsively on mobile and desktop
 
 ### Strategy Pages
 
@@ -107,10 +107,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 |-------------|-------|--------|
 | I18N-04 | Phase 1 | Complete |
 | DATA-04 | Phase 1 | Complete |
-| LAND-01 | Phase 2 | Pending |
-| LAND-02 | Phase 2 | Pending |
-| LAND-03 | Phase 2 | Pending |
-| LAND-04 | Phase 2 | Pending |
+| LAND-01 | Phase 2 | Complete |
+| LAND-02 | Phase 2 | Complete |
+| LAND-03 | Phase 2 | Complete |
+| LAND-04 | Phase 2 | Complete |
 | STRT-01 | Phase 2 | Pending |
 | STRT-03 | Phase 2 | Pending |
 | STRT-07 | Phase 2 | Pending |

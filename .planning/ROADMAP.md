@@ -43,10 +43,10 @@ Plans:
   3. The language switcher on any page changes all visible text — navigation, headings, rationale, labels — to the selected language
   4. Every page renders correctly on a 375px mobile viewport and a 1280px desktop viewport
   5. Strategy rationale content is present and readable in both English and Traditional Chinese
-**Plans:** 1/3 plans executed
+**Plans:** 2/3 plans executed
 Plans:
 - [x] 02-01-PLAN.md — Install shadcn/ui + deps, fill bilingual content, build shared layout shell (Header, MobileTabBar, Footer, LanguageSwitcher)
-- [ ] 02-02-PLAN.md — Landing page with hero section, profile selector tabs, and strategy card grid
+- [x] 02-02-PLAN.md — Landing page with hero section, profile selector tabs, and strategy card grid
 - [ ] 02-03-PLAN.md — Strategy fund pages (4), risk gauge, holdings table, placeholders, swipe nav, and profiles page
 
 ### Phase 3: Live Data, Charts, and AI
@@ -80,6 +80,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete   | 2026-03-26 |
-| 2. Static Pages | 1/3 | In Progress|  |
+| 2. Static Pages | 2/3 | In Progress|  |
 | 3. Live Data, Charts, and AI | 0/TBD | Not started | - |
 | 4. Compliance, Polish, and Performance | 0/TBD | Not started | - |

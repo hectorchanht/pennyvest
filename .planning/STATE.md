@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: "Completed 02-static-pages plan 01"
-last_updated: "2026-03-26T11:48:40Z"
+stopped_at: Completed 02-static-pages 02-02-PLAN.md
+last_updated: "2026-03-26T11:55:24.708Z"
 last_activity: 2026-03-26
 progress:
   total_phases: 4
   completed_phases: 1
-  total_plans: 2
-  completed_plans: 3
+  total_plans: 5
+  completed_plans: 4
   percent: 15
 ---
 
@@ -55,6 +55,7 @@ Progress: [██░░░░░░░░] 15%
 *Updated after each plan completion*
 | Phase 01-foundation P02 | 3 | 2 tasks | 10 files |
 | Phase 02-static-pages P01 | 15 min | 2 tasks | 16 files |
+| Phase 02-static-pages P02 | 10 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -77,6 +78,9 @@ Recent decisions affecting current work:
 - [Phase 02-01]: shadcn init chose 'Base' style (uses @base-ui/react not Radix) — components use @base-ui/react primitives
 - [Phase 02-01]: MobileTabBar tab order: future-tech | traditional | profiles (center) | commodities | crypto
 - [Phase 02-01]: Header desktop nav hidden below md; mobile only logo + LanguageSwitcher (MobileTabBar handles fund navigation)
+- [Phase 02-02]: All i18n translation done in server component (page.tsx), pre-translated strings passed as props to client components
+- [Phase 02-02]: -mt-16 on landing page wrapper offsets layout pt-16 header clearance, allowing hero to extend behind transparent header
+- [Phase 02-02]: ProfileSelector defaults to balanced profile — deterministic initial state, no hydration mismatch risk
 
 ### Pending Todos
 
@@ -90,6 +94,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-26T11:48:40Z
-Stopped at: Completed 02-static-pages 02-01-PLAN.md
-Resume file: .planning/phases/02-static-pages/02-02-PLAN.md
+Last session: 2026-03-26T11:55:24.705Z
+Stopped at: Completed 02-static-pages 02-02-PLAN.md
+Resume file: None
