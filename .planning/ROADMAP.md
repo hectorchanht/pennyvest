@@ -13,7 +13,7 @@ Pennyvest ships as a view-only, bilingual investment information platform across
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation** - Next.js scaffold with bilingual routing, strategy config, and server-only API key hygiene (completed 2026-03-26)
-- [ ] **Phase 2: Static Pages** - Landing page and all four strategy page layouts, fully bilingual, with static content
+- [x] **Phase 2: Static Pages** - Landing page and all four strategy page layouts, fully bilingual, with static content (completed 2026-03-26)
 - [ ] **Phase 3: Live Data, Charts, and AI** - Price feeds, caching, allocation charts, equity curves, news feed, and AI impact analysis
 - [ ] **Phase 4: Compliance, Polish, and Performance** - Bilingual disclaimers, performance audit, and shippable quality bar
 
@@ -43,11 +43,11 @@ Plans:
   3. The language switcher on any page changes all visible text — navigation, headings, rationale, labels — to the selected language
   4. Every page renders correctly on a 375px mobile viewport and a 1280px desktop viewport
   5. Strategy rationale content is present and readable in both English and Traditional Chinese
-**Plans:** 2/3 plans executed
+**Plans:** 3/3 plans complete
 Plans:
 - [x] 02-01-PLAN.md — Install shadcn/ui + deps, fill bilingual content, build shared layout shell (Header, MobileTabBar, Footer, LanguageSwitcher)
 - [x] 02-02-PLAN.md — Landing page with hero section, profile selector tabs, and strategy card grid
-- [ ] 02-03-PLAN.md — Strategy fund pages (4), risk gauge, holdings table, placeholders, swipe nav, and profiles page
+- [x] 02-03-PLAN.md — Strategy fund pages (4), risk gauge, holdings table, placeholders, swipe nav, and profiles page
 
 ### Phase 3: Live Data, Charts, and AI
 **Goal**: Users can see real allocation breakdowns, current prices, simulated performance, and AI-analyzed news for each strategy — and all data refreshes on schedule
@@ -80,6 +80,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete   | 2026-03-26 |
-| 2. Static Pages | 2/3 | In Progress|  |
+| 2. Static Pages | 3/3 | Complete   | 2026-03-26 |
 | 3. Live Data, Charts, and AI | 0/TBD | Not started | - |
 | 4. Compliance, Polish, and Performance | 0/TBD | Not started | - |

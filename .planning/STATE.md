@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02-static-pages 02-02-PLAN.md
-last_updated: "2026-03-26T11:55:24.708Z"
+stopped_at: Completed 02-static-pages 02-03-PLAN.md
+last_updated: "2026-03-26T12:00:33.576Z"
 last_activity: 2026-03-26
 progress:
   total_phases: 4
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 5
-  completed_plans: 4
+  completed_plans: 5
   percent: 15
 ---
 
@@ -56,6 +56,7 @@ Progress: [██░░░░░░░░] 15%
 | Phase 01-foundation P02 | 3 | 2 tasks | 10 files |
 | Phase 02-static-pages P01 | 15 min | 2 tasks | 16 files |
 | Phase 02-static-pages P02 | 10 | 2 tasks | 4 files |
+| Phase 02-static-pages P03 | 18 | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -81,6 +82,8 @@ Recent decisions affecting current work:
 - [Phase 02-02]: All i18n translation done in server component (page.tsx), pre-translated strings passed as props to client components
 - [Phase 02-02]: -mt-16 on landing page wrapper offsets layout pt-16 header clearance, allowing hero to extend behind transparent header
 - [Phase 02-02]: ProfileSelector defaults to balanced profile — deterministic initial state, no hydration mismatch risk
+- [Phase 02-static-pages]: generateStaticParams on fund/[slug]/page.tsx returns only {slug} — locale inherited from parent layout
+- [Phase 02-static-pages]: SVG gauge uses polar-to-cartesian math; inactive segments at 0.4 opacity; needle angles: low=30°, medium=90°, high=150°
 
 ### Pending Todos
 
@@ -94,6 +97,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-26T11:55:24.705Z
-Stopped at: Completed 02-static-pages 02-02-PLAN.md
+Last session: 2026-03-26T12:00:33.572Z
+Stopped at: Completed 02-static-pages 02-03-PLAN.md
 Resume file: None
