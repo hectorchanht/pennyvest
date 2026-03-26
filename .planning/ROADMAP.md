@@ -54,11 +54,11 @@ Plans:
 **Goal:** Landing page transformed from minimal hero splash into a content-dense, dashboard-style layout with enhanced strategy cards showing mock daily P&L data, a news digest section with impact analysis, and full bilingual support
 **Requirements**: N/A (inserted phase — visual alignment, no formal requirement IDs)
 **Depends on:** Phase 2
-**Plans:** 1/2 plans executed
+**Plans:** 2/2 plans complete
 
 Plans:
 - [x] 02.1-01-PLAN.md — Mock data layer, bilingual i18n keys, NewsCard component, and enhanced StrategyCard with data density
-- [ ] 02.1-02-PLAN.md — Restructure landing page layout (compact hero, NewsDigest section) and wire mock data + components
+- [x] 02.1-02-PLAN.md — Restructure landing page layout (compact hero, NewsDigest section) and wire mock data + components
 
 ### Phase 3: Live Data, Charts, and AI
 **Goal**: Users can see real allocation breakdowns, current prices, simulated performance, and AI-analyzed news for each strategy — and all data refreshes on schedule

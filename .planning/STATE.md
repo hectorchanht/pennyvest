@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02.1-01-PLAN.md
-last_updated: "2026-03-26T13:34:37.989Z"
+stopped_at: Completed 02.1-02-PLAN.md
+last_updated: "2026-03-26T13:38:03.959Z"
 last_activity: 2026-03-26
 progress:
   total_phases: 5
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 12
-  completed_plans: 6
+  completed_plans: 7
   percent: 15
 ---
 
@@ -58,6 +58,7 @@ Progress: [██░░░░░░░░] 15%
 | Phase 02-static-pages P02 | 10 | 2 tasks | 4 files |
 | Phase 02-static-pages P03 | 18 | 2 tasks | 7 files |
 | Phase 02.1-align-landing-page-to-prototype P01 | 2 | 2 tasks | 5 files |
+| Phase 02.1-align-landing-page-to-prototype P02 | 5 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -91,6 +92,9 @@ Recent decisions affecting current work:
 - [Phase 02-static-pages]: SVG gauge uses polar-to-cartesian math; inactive segments at 0.4 opacity; needle angles: low=30°, medium=90°, high=150°
 - [Phase 02.1-01]: Mock data uses i18n key references (headlineKey, summaryKey) rather than hardcoded strings — data layer stays locale-agnostic
 - [Phase 02.1-01]: StrategyCard dailyChangePct and topHoldings are optional props — backward compatible with existing fund page usage
+- [Phase 02.1-align-landing-page-to-prototype]: HeroSection no longer uses min-h-screen or full-page centering — compact pt-24 header matching prototype
+- [Phase 02.1-align-landing-page-to-prototype]: CTA button and animate-fade-in removed from HeroSection — dashboard style requires no splash animation
+- [Phase 02.1-align-landing-page-to-prototype]: dailyChangeLabel threaded through HeroSection -> ProfileSelector -> StrategyCard for bilingual daily change label
 
 ### Pending Todos
 
@@ -104,6 +108,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-26T13:34:37.985Z
-Stopped at: Completed 02.1-01-PLAN.md
+Last session: 2026-03-26T13:38:03.956Z
+Stopped at: Completed 02.1-02-PLAN.md
 Resume file: None
