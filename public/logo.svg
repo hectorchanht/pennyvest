@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 160" fill="none">
+  <!-- Small circle (penny) -->
+  <circle cx="45" cy="95" r="22" fill="currentColor"/>
+  <!-- Growth line connecting small to large -->
+  <path d="M 45 95 L 30 75 L 85 55 L 140 30" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- Slash through large circle -->
+  <clipPath id="big-circle-clip">
+    <circle cx="140" cy="55" r="45"/>
+  </clipPath>
+  <!-- Large circle (snowball) -->
+  <circle cx="140" cy="55" r="45" fill="currentColor"/>
+  <!-- Slash line through large circle -->
+  <line x1="105" y1="80" x2="160" y2="20" stroke="var(--color-background, #0d1117)" stroke-width="3"/>
+</svg>

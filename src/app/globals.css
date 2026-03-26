@@ -148,3 +148,84 @@ body {
     @apply font-sans;
   }
 }
+
+/* Glowing profile button animation */
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 8px 2px oklch(0.72 0.17 155 / 0.3),
+                0 0 20px 4px oklch(0.72 0.17 155 / 0.15);
+  }
+  50% {
+    box-shadow: 0 0 12px 4px oklch(0.72 0.17 155 / 0.5),
+                0 0 30px 8px oklch(0.72 0.17 155 / 0.25);
+  }
+}
+
+@keyframes glow-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.profile-btn-glow {
+  position: relative;
+  animation: glow-pulse 2.5s ease-in-out infinite;
+  background: linear-gradient(
+    135deg,
+    oklch(0.72 0.17 155 / 0.15) 0%,
+    oklch(0.70 0.14 190 / 0.15) 50%,
+    oklch(0.72 0.17 155 / 0.15) 100%
+  );
+  background-size: 200% 200%;
+  animation: glow-pulse 2.5s ease-in-out infinite, glow-flow 4s ease infinite;
+  border: 1px solid oklch(0.72 0.17 155 / 0.4);
+  transition: all 0.3s ease;
+}
+
+.profile-btn-glow:hover {
+  box-shadow: 0 0 16px 6px oklch(0.72 0.17 155 / 0.6),
+              0 0 40px 12px oklch(0.72 0.17 155 / 0.3);
+  border-color: oklch(0.72 0.17 155 / 0.7);
+}
+
+.profile-btn-glow[data-active="true"] {
+  background: linear-gradient(
+    135deg,
+    oklch(0.72 0.17 155 / 0.3) 0%,
+    oklch(0.70 0.14 190 / 0.3) 50%,
+    oklch(0.72 0.17 155 / 0.3) 100%
+  );
+  background-size: 200% 200%;
+  animation: glow-pulse 2s ease-in-out infinite, glow-flow 3s ease infinite;
+  border-color: oklch(0.72 0.17 155 / 0.8);
+}
+
+/* Connector line from card to donut */
+.card-connector {
+  position: relative;
+}
+.card-connector::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--connector-color, oklch(0.50 0.01 240)));
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+.card-connector:hover::before {
+  opacity: 1;
+}
+.card-connector--left::before {
+  right: 100%;
+}
+.card-connector--right::before {
+  left: 100%;
+}

@@ -36,7 +36,6 @@ export default async function HomePage({ params }: Props) {
       tagline: t('landing.hero.tagline'),
       subtagline: t('landing.hero.subtagline'),
       profileLabel: t('landing.profileSelector.label'),
-      weightLabel: t('landing.profileSelector.weightLabel'),
       dailyChangeLabel: t('landing.dailyChange'),
     },
   };

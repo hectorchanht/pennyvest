@@ -32,8 +32,13 @@ export default function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="text-lg font-bold text-text-primary hover:text-brand-green transition-colors"
+            className="flex items-center gap-2 text-lg font-bold text-text-primary hover:text-brand-green transition-colors"
           >
+            <img
+              src="/logo.svg"
+              alt=""
+              className="h-7 w-auto invert"
+            />
             Pennyvest
           </Link>
 

@@ -1,8 +1,19 @@
-import './globals.css';
 import type { Metadata } from 'next';
-import { Geist } from "next/font/google";
+import { Inter, Noto_Sans_TC } from 'next/font/google';
+import '@/app/globals.css';
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+const notoSansTC = Noto_Sans_TC({
+  subsets: ['latin'],
+  variable: '--font-noto-sans-tc',
+  display: 'swap',
+  weight: ['400', '500', '700'],
+});
 
 export const metadata: Metadata = {
   title: 'Pennyvest',
@@ -14,5 +25,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return children;
+  return (
+    <html suppressHydrationWarning className={`dark ${inter.variable} ${notoSansTC.variable}`}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `document.documentElement.classList.add('dark');var m=location.pathname.match(/^\\/(zh-HK|zh)/);if(m)document.documentElement.lang='zh-HK';` }} />
+      </head>
+      <body>{children}</body>
+    </html>
+  );
 }

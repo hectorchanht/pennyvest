@@ -22,7 +22,6 @@ interface HeroSectionProps {
     tagline: string;
     subtagline: string;
     profileLabel: string;
-    weightLabel: string;
     dailyChangeLabel: string;
   };
 }
@@ -31,20 +30,27 @@ export default function HeroSection({ profiles, strategies, labels }: HeroSectio
   return (
     <section className="pt-24 pb-8 px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-text-primary">
+        {/* Centered tagline */}
+        <div className="text-center mb-6">
+          <h1 className="text-3xl md:text-5xl font-bold text-text-primary">
             {labels.tagline}
           </h1>
-          <p className="text-base text-text-secondary mt-2">
+          <p className="text-base md:text-lg text-text-secondary mt-3 max-w-2xl mx-auto">
             {labels.subtagline}
           </p>
         </div>
+
+        {/* Profile label */}
+        <p className="text-text-secondary text-sm mb-3 text-center">
+          {labels.profileLabel}
+        </p>
+
+        {/* Profile selector with glowing buttons, donut, and cards */}
         <ProfileSelector
           profiles={profiles}
           strategies={strategies}
           labels={{
             profileLabel: labels.profileLabel,
-            weightLabel: labels.weightLabel,
             dailyChangeLabel: labels.dailyChangeLabel,
           }}
         />
