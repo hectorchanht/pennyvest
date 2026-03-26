@@ -49,6 +49,17 @@ Plans:
 - [x] 02-02-PLAN.md — Landing page with hero section, profile selector tabs, and strategy card grid
 - [x] 02-03-PLAN.md — Strategy fund pages (4), risk gauge, holdings table, placeholders, swipe nav, and profiles page
 
+### Phase 02.1: Align landing page to prototype — reactive layout, mixed strategy center, prototype styling (INSERTED)
+
+**Goal:** Landing page transformed from minimal hero splash into a content-dense, dashboard-style layout with enhanced strategy cards showing mock daily P&L data, a news digest section with impact analysis, and full bilingual support
+**Requirements**: N/A (inserted phase — visual alignment, no formal requirement IDs)
+**Depends on:** Phase 2
+**Plans:** 2 plans
+
+Plans:
+- [ ] 02.1-01-PLAN.md — Mock data layer, bilingual i18n keys, NewsCard component, and enhanced StrategyCard with data density
+- [ ] 02.1-02-PLAN.md — Restructure landing page layout (compact hero, NewsDigest section) and wire mock data + components
+
 ### Phase 3: Live Data, Charts, and AI
 **Goal**: Users can see real allocation breakdowns, current prices, simulated performance, and AI-analyzed news for each strategy — and all data refreshes on schedule
 **Depends on**: Phase 2
@@ -81,11 +92,12 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4
+Phases execute in numeric order: 1 → 2 → 2.1 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete   | 2026-03-26 |
 | 2. Static Pages | 3/3 | Complete   | 2026-03-26 |
+| 2.1 Align Landing Page | 0/2 | Planned | - |
 | 3. Live Data, Charts, and AI | 0/5 | Planned | - |
 | 4. Compliance, Polish, and Performance | 0/TBD | Not started | - |
