@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02.1-02-PLAN.md
-last_updated: "2026-03-26T13:38:34.399Z"
+stopped_at: Completed 03-01-PLAN.md
+last_updated: "2026-03-26T17:14:13.668Z"
 last_activity: 2026-03-26
 progress:
   total_phases: 5
   completed_phases: 3
   total_plans: 12
-  completed_plans: 7
+  completed_plans: 8
   percent: 15
 ---
 
@@ -59,6 +59,7 @@ Progress: [██░░░░░░░░] 15%
 | Phase 02-static-pages P03 | 18 | 2 tasks | 7 files |
 | Phase 02.1-align-landing-page-to-prototype P01 | 2 | 2 tasks | 5 files |
 | Phase 02.1-align-landing-page-to-prototype P02 | 5 | 2 tasks | 4 files |
+| Phase 03-live-data-charts-and-ai P01 | 1 | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -95,6 +96,9 @@ Recent decisions affecting current work:
 - [Phase 02.1-align-landing-page-to-prototype]: HeroSection no longer uses min-h-screen or full-page centering — compact pt-24 header matching prototype
 - [Phase 02.1-align-landing-page-to-prototype]: CTA button and animate-fade-in removed from HeroSection — dashboard style requires no splash animation
 - [Phase 02.1-align-landing-page-to-prototype]: dailyChangeLabel threaded through HeroSection -> ProfileSelector -> StrategyCard for bilingual daily change label
+- [Phase 03-live-data-charts-and-ai]: withCache returns { data, cachedAt } so downstream consumers can display cache timestamps (D-14, COMP-04)
+- [Phase 03-live-data-charts-and-ai]: Cache degrades gracefully on Redis failures — logs warning, fetches fresh data, never throws
+- [Phase 03-live-data-charts-and-ai]: TTL values match D-12: prices=300s (5m), news=1800s (30m), aiAnalysis=3600s (1h), equity=86400s (24h)
 
 ### Pending Todos
 
@@ -108,6 +112,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-26T13:38:03.956Z
-Stopped at: Completed 02.1-02-PLAN.md
+Last session: 2026-03-26T17:14:13.665Z
+Stopped at: Completed 03-01-PLAN.md
 Resume file: None

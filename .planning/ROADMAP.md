@@ -72,7 +72,7 @@ Plans:
   5. Chart and news components display a loading skeleton while data fetches and a graceful error state if the fetch fails
 **Plans:** 5 plans
 Plans:
-- [ ] 03-01-PLAN.md — Install Phase 3 deps, shared types (prices/news), Upstash Redis cache wrapper, env config
+- [x] 03-01-PLAN.md — Install Phase 3 deps, shared types (prices/news), Upstash Redis cache wrapper, env config
 - [ ] 03-02-PLAN.md — Data adapters (Yahoo Finance, CoinGecko, Marketaux news) and AI analysis service
 - [ ] 03-03-PLAN.md — Chart components (allocation donut, equity curve) and Phase 3 i18n keys
 - [ ] 03-04-PLAN.md — Route Handlers for prices, equity curve, and news with AI analysis

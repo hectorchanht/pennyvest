@@ -29,7 +29,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **NEWS-01**: User can see aggregated relevant news headlines per strategy
 - [ ] **NEWS-02**: User can read AI-generated summaries of each news article relevant to a strategy
 - [ ] **NEWS-03**: User can read AI-generated impact analysis explaining how each news item affects the strategy's allocation and risk
-- [ ] **NEWS-04**: News content refreshes at least every 30 minutes
+- [x] **NEWS-04**: News content refreshes at least every 30 minutes
 
 ### Bilingual (i18n)
 
@@ -41,7 +41,7 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Data Integration
 
 - [ ] **DATA-01**: Asset prices are fetched from free APIs (Yahoo Finance for stocks/commodities, CoinGecko for crypto)
-- [ ] **DATA-02**: Price data is cached server-side to stay within free-tier API limits
+- [x] **DATA-02**: Price data is cached server-side to stay within free-tier API limits
 - [ ] **DATA-03**: News articles are fetched from free news APIs (NewsAPI or equivalent)
 - [x] **DATA-04**: All API keys and credentials are server-side only, never exposed to client
 
@@ -50,7 +50,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **COMP-01**: Every strategy page displays a "not financial advice" disclaimer above the fold
 - [ ] **COMP-02**: Disclaimers are bilingual with legally equivalent text in both languages
 - [ ] **COMP-03**: Performance charts are clearly labeled as "simulated" / "hypothetical"
-- [ ] **COMP-04**: "Last updated" timestamps visible wherever live data is displayed
+- [x] **COMP-04**: "Last updated" timestamps visible wherever live data is displayed
 
 ### Performance & Quality
 
@@ -123,12 +123,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | NEWS-01 | Phase 3 | Pending |
 | NEWS-02 | Phase 3 | Pending |
 | NEWS-03 | Phase 3 | Pending |
-| NEWS-04 | Phase 3 | Pending |
+| NEWS-04 | Phase 3 | Complete |
 | I18N-03 | Phase 3 | Pending |
 | DATA-01 | Phase 3 | Pending |
-| DATA-02 | Phase 3 | Pending |
+| DATA-02 | Phase 3 | Complete |
 | DATA-03 | Phase 3 | Pending |
-| COMP-04 | Phase 3 | Pending |
+| COMP-04 | Phase 3 | Complete |
 | COMP-01 | Phase 4 | Pending |
 | COMP-02 | Phase 4 | Pending |
 | COMP-03 | Phase 4 | Pending |
