@@ -1,18 +1,30 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { getAllStrategies, getStrategyConfig } from '@/lib/strategies';
 import { notFound } from 'next/navigation';
+import dynamic from 'next/dynamic';
+import { Skeleton } from '@/components/ui/skeleton';
 import SwipeNavigator from '@/components/strategy/SwipeNavigator';
 import FundHeader from '@/components/strategy/FundHeader';
-import EnhancedHoldingsTable from '@/components/strategy/EnhancedHoldingsTable';
-import FundNewsSection from '@/components/strategy/FundNewsSection';
+import HoldingsTable from '@/components/strategy/HoldingsTable';
+import DataSection from '@/components/strategy/DataSection';
+import NewsFeed from '@/components/news/NewsFeed';
 import OpportunityCard from '@/components/strategy/OpportunityCard';
 import PortfolioNotes from '@/components/strategy/PortfolioNotes';
 import {
   mockFundDetails,
   mockOpportunities,
   mockPortfolioNotes,
-  mockNewsItems,
 } from '@/lib/mock-data';
+import type { PriceResponse, EquityResponse } from '@/types/prices';
+
+const AllocationDonut = dynamic(
+  () => import('@/components/charts/AllocationDonut'),
+  { ssr: false, loading: () => <Skeleton className="h-[220px] w-full rounded-lg" /> }
+);
+const EquityCurve = dynamic(
+  () => import('@/components/charts/EquityCurve'),
+  { ssr: false, loading: () => <Skeleton className="h-[180px] w-full rounded-lg" /> }
+);
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
@@ -45,11 +57,6 @@ export default async function FundPage({ params }: Props) {
   const opportunities = mockOpportunities[slug] ?? [];
   const portfolioNotes = mockPortfolioNotes[slug];
 
-  // Filter news to this strategy
-  const strategyNews = mockNewsItems.filter((item) =>
-    item.relatedStrategies.includes(slug),
-  );
-
   // Build stats for header
   const dailyGainPct = fundDetail?.dailyGainPct ?? 0;
   const cashRatio = fundDetail?.cashRatio ?? 2;
@@ -78,25 +85,6 @@ export default async function FundPage({ params }: Props) {
       isPositive: true,
     },
   ];
-
-  // Build enhanced allocations (merge strategy allocations with daily change data)
-  const holdingDetailsMap = new Map(
-    (fundDetail?.holdingDetails ?? []).map((h) => [h.ticker, h.dailyChangePct]),
-  );
-  const enhancedAllocations = strategy.allocations.map((a) => ({
-    ticker: a.ticker,
-    weight: a.weight,
-    dailyChangePct: holdingDetailsMap.get(a.ticker) ?? 0,
-  }));
-
-  // Translate news items
-  const newsTranslations = strategyNews.map((item) => ({
-    headline: t(item.headlineKey),
-    summary: t(item.summaryKey),
-    shortTermImpact: t(item.shortTermImpactKey),
-    midTermImpact: t(item.midTermImpactKey),
-    category: t(`newsDigest.categories.${item.category}`),
-  }));
 
   // Translate opportunities
   const translatedOpportunities = opportunities.map((opp) => ({
@@ -136,6 +124,44 @@ export default async function FundPage({ params }: Props) {
     actionReduce: t('fundDetail.labels.actionReduce'),
   };
 
+  // Risk label for allocation donut center
+  const riskLabel = t(`riskLevel.${strategy.riskLevel}`);
+
+  // Phase 3: translated labels for live data sections
+  const chartLabels = {
+    allocationTitle: t('charts.allocationTitle'),
+    equityTitle: t('charts.equityTitle'),
+    simulatedLabel: t('charts.simulatedLabel'),
+    loading: t('charts.loading'),
+    error: t('charts.error'),
+    retry: t('charts.retry'),
+  };
+  const newsLabels = {
+    sectionTitle: t('news.sectionTitle'),
+    loading: t('news.loading'),
+    error: t('news.error'),
+    retry: t('news.retry'),
+    lastUpdated: t('common.lastUpdated', { time: '{time}' }),
+    staleWarning: t('common.staleWarning'),
+    noArticles: t('news.noArticles'),
+    source: t('news.source'),
+    analysisUnavailable: t('news.analysisUnavailable'),
+    bullish: t('news.impact.bullish'),
+    neutral: t('news.impact.neutral'),
+    bearish: t('news.impact.bearish'),
+  };
+  const dataLabels = {
+    loading: t('charts.loading'),
+    error: t('charts.error'),
+    retry: t('charts.retry'),
+    lastUpdated: t('common.lastUpdated', { time: '{time}' }),
+    staleWarning: t('common.staleWarning'),
+  };
+  const priceLabels = {
+    price: t('common.price'),
+    change24h: t('common.change24h'),
+  };
+
   return (
     <SwipeNavigator prevSlug={prevSlug} nextSlug={nextSlug}>
       <div className="max-w-4xl mx-auto px-4 py-8">
@@ -150,46 +176,72 @@ export default async function FundPage({ params }: Props) {
           }}
         />
 
-        {/* 2. Enhanced Holdings Table */}
-        <EnhancedHoldingsTable
-          allocations={enhancedAllocations}
-          portfolioValue={fundDetail?.portfolioValue ?? 1_000_000}
-          cashRatio={cashRatio}
-          labels={{
-            ticker: t('fundDetail.labels.ticker'),
-            allocation: t('fundDetail.labels.allocation'),
-            marketValue: t('fundDetail.labels.marketValue'),
-            dailyChangePct: t('fundDetail.labels.dailyChangePct'),
-            dailyChangeAmt: t('fundDetail.labels.dailyChangeAmt'),
-            cash: t('fundDetail.labels.cash'),
-          }}
-        />
-
-        {/* 3. News Section */}
-        {strategyNews.length > 0 && (
-          <FundNewsSection
-            newsItems={strategyNews}
-            translations={newsTranslations}
-            labels={{
-              title: t('fundDetail.labels.newsTitle'),
-              subtitle: t('fundDetail.labels.newsSubtitle'),
-              impactLabel: t('newsDigest.impactLabel'),
-              shortTermLabel: t('newsDigest.shortTermLabel'),
-              midTermLabel: t('newsDigest.midTermLabel'),
-              relatedLabel: t('newsDigest.relatedLabel'),
-              categories: {
-                geopolitics: t('newsDigest.categories.geopolitics'),
-                ai: t('newsDigest.categories.ai'),
-                semiconductor: t('newsDigest.categories.semiconductor'),
-                commodities: t('newsDigest.categories.commodities'),
-                crypto: t('newsDigest.categories.crypto'),
-                macro: t('newsDigest.categories.macro'),
-              },
-            }}
+        {/* 2. Allocation Donut Chart -- STRT-02 (static allocation data, no API needed) */}
+        <section className="mb-8">
+          <AllocationDonut
+            allocations={strategy.allocations.map((a) => ({
+              name: a.name,
+              ticker: a.ticker,
+              weight: a.weight,
+            }))}
+            centerLabel={riskLabel}
+            title={chartLabels.allocationTitle}
           />
-        )}
+        </section>
 
-        {/* 4. Investment Opportunities */}
+        {/* 3. Live Holdings with Prices -- STRT-05 */}
+        <section className="mb-8">
+          <DataSection
+            slug={slug}
+            endpoint={`/api/prices/${slug}`}
+            locale={locale}
+            labels={dataLabels}
+            staleTtlMs={600000}
+          >
+            {(priceData) => (
+              <HoldingsTable
+                allocations={strategy.allocations.map((a) => ({
+                  ticker: a.ticker,
+                  name: a.name,
+                  weight: a.weight,
+                }))}
+                labels={{
+                  ticker: t('strategy.holdingsTable.ticker'),
+                  name: t('strategy.holdingsTable.name'),
+                  weight: t('strategy.holdingsTable.weight'),
+                }}
+                prices={(priceData as unknown as PriceResponse).prices}
+                priceLabels={priceLabels}
+              />
+            )}
+          </DataSection>
+        </section>
+
+        {/* 4. Equity Curve -- STRT-06 */}
+        <section className="mb-8">
+          <DataSection
+            slug={slug}
+            endpoint={`/api/equity/${slug}`}
+            locale={locale}
+            labels={dataLabels}
+            staleTtlMs={172800000}
+          >
+            {(equityData) => (
+              <EquityCurve
+                data={(equityData as unknown as EquityResponse).curve}
+                simulatedLabel={chartLabels.simulatedLabel}
+                title={chartLabels.equityTitle}
+              />
+            )}
+          </DataSection>
+        </section>
+
+        {/* 5. News + AI Analysis -- NEWS-01 through NEWS-04 */}
+        <section className="mb-8">
+          <NewsFeed slug={slug} locale={locale} labels={newsLabels} />
+        </section>
+
+        {/* 6. Investment Opportunities */}
         {translatedOpportunities.length > 0 && (
           <section className="mb-8">
             <div className="mb-4">
@@ -212,7 +264,7 @@ export default async function FundPage({ params }: Props) {
           </section>
         )}
 
-        {/* 5. Portfolio Notes */}
+        {/* 7. Portfolio Notes */}
         {translatedNotes && (
           <PortfolioNotes
             actionSummary={translatedNotes.actionSummary}
@@ -232,7 +284,7 @@ export default async function FundPage({ params }: Props) {
           />
         )}
 
-        {/* 6. Disclaimer */}
+        {/* 8. Disclaimer */}
         <p className="text-xs text-text-muted text-center py-4 border-t border-border">
           {t('fundDetail.labels.disclaimer')}
         </p>
