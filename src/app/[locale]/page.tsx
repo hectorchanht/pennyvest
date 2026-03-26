@@ -1,7 +1,9 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { getAllStrategies } from '@/lib/strategies';
 import { getAllProfiles } from '@/lib/strategies/profiles';
+import { mockNewsItems, mockStrategyData } from '@/lib/mock-data';
 import HeroSection from '@/components/landing/HeroSection';
+import NewsDigest from '@/components/landing/NewsDigest';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -27,19 +29,47 @@ export default async function HomePage({ params }: Props) {
       tagline: t(s.nameKey.replace('.name', '.tagline')),
       riskLevel: s.riskLevel,
       riskLabel: t(`riskLevel.${s.riskLevel}`),
+      dailyChangePct: mockStrategyData[s.slug]?.dailyChangePct ?? 0,
+      topHoldings: mockStrategyData[s.slug]?.topHoldings ?? [],
     })),
     labels: {
       tagline: t('landing.hero.tagline'),
       subtagline: t('landing.hero.subtagline'),
-      cta: t('landing.hero.cta'),
       profileLabel: t('landing.profileSelector.label'),
       weightLabel: t('landing.profileSelector.weightLabel'),
+      dailyChangeLabel: t('landing.dailyChange'),
+    },
+  };
+
+  const newsDigestProps = {
+    title: t('newsDigest.title'),
+    newsItems: mockNewsItems.map((item) => ({
+      id: item.id,
+      headline: t(item.headlineKey),
+      category: t(`newsDigest.categories.${item.category}`),
+      categorySlug: item.category,
+      source: item.source,
+      date: item.date,
+      impactScore: item.impactScore,
+      summary: t(item.summaryKey),
+      shortTermImpact: t(item.shortTermImpactKey),
+      midTermImpact: t(item.midTermImpactKey),
+      relatedHoldings: item.relatedHoldings,
+    })),
+    labels: {
+      impactLabel: t('newsDigest.impactLabel'),
+      shortTermLabel: t('newsDigest.shortTermLabel'),
+      midTermLabel: t('newsDigest.midTermLabel'),
+      relatedLabel: t('newsDigest.relatedLabel'),
     },
   };
 
   return (
     <div className="-mt-16">
       <HeroSection {...heroProps} />
+      <div className="max-w-6xl mx-auto px-4 pb-16">
+        <NewsDigest {...newsDigestProps} />
+      </div>
     </div>
   );
 }

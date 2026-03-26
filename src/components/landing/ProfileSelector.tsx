@@ -17,10 +17,13 @@ interface ProfileSelectorProps {
     tagline: string;
     riskLevel: RiskLevel;
     riskLabel: string;
+    dailyChangePct: number;
+    topHoldings: Array<{ ticker: string; weight: number }>;
   }>;
   labels: {
     profileLabel: string;
     weightLabel: string;
+    dailyChangeLabel: string;
   };
 }
 
@@ -70,6 +73,9 @@ export default function ProfileSelector({
                   riskLabel={strategy.riskLabel}
                   weight={profile.weights[strategy.slug]}
                   weightLabel={labels.weightLabel}
+                  dailyChangePct={strategy.dailyChangePct}
+                  topHoldings={strategy.topHoldings}
+                  dailyChangeLabel={labels.dailyChangeLabel}
                 />
               ))}
             </div>

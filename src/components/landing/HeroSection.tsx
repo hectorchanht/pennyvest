@@ -1,6 +1,5 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
 import ProfileSelector from './ProfileSelector';
 import type { RiskLevel } from '@/lib/strategies/types';
 
@@ -16,42 +15,37 @@ interface HeroSectionProps {
     tagline: string;
     riskLevel: RiskLevel;
     riskLabel: string;
+    dailyChangePct: number;
+    topHoldings: Array<{ ticker: string; weight: number }>;
   }>;
   labels: {
     tagline: string;
     subtagline: string;
-    cta: string;
     profileLabel: string;
     weightLabel: string;
+    dailyChangeLabel: string;
   };
 }
 
 export default function HeroSection({ profiles, strategies, labels }: HeroSectionProps) {
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center px-4 animate-fade-in">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-6xl font-bold text-text-primary">
-          {labels.tagline}
-        </h1>
-        <p className="text-lg md:text-xl text-text-secondary mt-4">
-          {labels.subtagline}
-        </p>
-        <a href="#strategies" className="mt-8 inline-block">
-          <Button
-            size="lg"
-            className="bg-brand-green hover:bg-brand-green-dark text-background"
-          >
-            {labels.cta}
-          </Button>
-        </a>
-      </div>
-      <div className="w-full max-w-4xl">
+    <section className="pt-24 pb-8 px-4">
+      <div className="max-w-6xl mx-auto">
+        <div className="mb-8">
+          <h1 className="text-3xl md:text-4xl font-bold text-text-primary">
+            {labels.tagline}
+          </h1>
+          <p className="text-base text-text-secondary mt-2">
+            {labels.subtagline}
+          </p>
+        </div>
         <ProfileSelector
           profiles={profiles}
           strategies={strategies}
           labels={{
             profileLabel: labels.profileLabel,
             weightLabel: labels.weightLabel,
+            dailyChangeLabel: labels.dailyChangeLabel,
           }}
         />
       </div>
