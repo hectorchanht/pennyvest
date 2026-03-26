@@ -1,4 +1,43 @@
 {
+  "newsDigest": {
+    "title": "環球新聞速報",
+    "impactLabel": "影響度",
+    "shortTermLabel": "短期影響",
+    "midTermLabel": "中期影響",
+    "relatedLabel": "相關",
+    "categories": {
+      "geopolitics": "地緣政治",
+      "ai": "AI 資本支出",
+      "semiconductor": "半導體",
+      "commodities": "大宗商品",
+      "crypto": "加密貨幣",
+      "macro": "宏觀經濟"
+    },
+    "news1": {
+      "headline": "NVIDIA 發布新一代 AI 晶片架構，半導體股應聲上漲",
+      "summary": "NVIDIA 公布針對企業 AI 負載的下一代 GPU 架構，主要雲端供應商已提前下單。",
+      "shortTermImpact": "半導體股受訂單消息帶動上漲 3-5%；AMD 及 PLTR 受板塊動力提振。",
+      "midTermImpact": "加速 AI 基建部署，支持未來 12-18 個月集中配置科技板塊的投資邏輯。"
+    },
+    "news2": {
+      "headline": "中美貿易摩擦升級，避險需求推升金價",
+      "summary": "新一輪先進晶片出口管制引發報復措施，投資者轉向黃金等避險資產。",
+      "shortTermImpact": "黃金盤中漲 1.8%；油價因供應鏈不確定性波動加劇。",
+      "midTermImpact": "持續的地緣政治摩擦支持商品配置作為組合對沖工具至 2026 年下半年。"
+    },
+    "news3": {
+      "headline": "聯儲局暗示維持利率至第三季，高息股穩守",
+      "summary": "聯儲局主席確認利率將在夏季前維持不變，為收入導向的股票持倉提供穩定性。",
+      "shortTermImpact": "股息貴族股維持漲幅；REITs 板塊錄得溫和資金流入。",
+      "midTermImpact": "可預測的利率環境有利藍籌派息股作為資本保值工具。"
+    },
+    "news4": {
+      "headline": "比特幣 ETF 單週資金流入創新高，機構採用加速",
+      "summary": "現貨比特幣 ETF 本週錄得 21 億美元淨流入，顯示機構對數字資產的採用正在加速。",
+      "shortTermImpact": "BTC 測試 95,000 美元阻力位；ETH 跟隨日漲 4%。",
+      "midTermImpact": "日益完善的 ETF 基建降低機構配置門檻，支撐價格下限。"
+    }
+  },
   "navigation": {
     "funds": "基金",
     "profiles": "投資組合",
@@ -17,7 +56,12 @@
     "profileSelector": {
       "label": "揀選你的投資風格",
       "weightLabel": "{weight}% 配置"
-    }
+    },
+    "dailyChange": "日變動",
+    "topHoldings": "主要持倉",
+    "portfolioSnapshot": "組合概覽",
+    "totalValue": "總值",
+    "viewStrategy": "查看策略"
   },
   "strategies": {
     "futureTech": {

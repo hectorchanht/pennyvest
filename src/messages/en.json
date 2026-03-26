@@ -1,4 +1,43 @@
 {
+  "newsDigest": {
+    "title": "Global News Digest",
+    "impactLabel": "Impact",
+    "shortTermLabel": "Short-term",
+    "midTermLabel": "Mid-term",
+    "relatedLabel": "Related",
+    "categories": {
+      "geopolitics": "Geopolitics",
+      "ai": "AI Capex",
+      "semiconductor": "Semiconductor",
+      "commodities": "Commodities",
+      "crypto": "Crypto",
+      "macro": "Macro"
+    },
+    "news1": {
+      "headline": "NVIDIA Announces Next-Gen AI Chip Architecture, Sending Semiconductor Stocks Higher",
+      "summary": "NVIDIA unveiled its next-generation GPU architecture targeting enterprise AI workloads, with major cloud providers already placing advance orders.",
+      "shortTermImpact": "Semiconductor stocks rally 3-5% on order book visibility; AMD and PLTR benefit from sector momentum.",
+      "midTermImpact": "Accelerates AI infrastructure buildout, strengthening the case for concentrated tech exposure over 12-18 months."
+    },
+    "news2": {
+      "headline": "US-China Trade Tensions Escalate, Boosting Safe-Haven Demand",
+      "summary": "New export controls on advanced chips have prompted retaliatory measures, pushing investors toward gold and other safe-haven assets.",
+      "shortTermImpact": "Gold prices up 1.8% intraday; oil volatility increases on supply chain uncertainty.",
+      "midTermImpact": "Sustained geopolitical friction supports commodity allocation as portfolio hedge through H2 2026."
+    },
+    "news3": {
+      "headline": "Federal Reserve Signals Rate Hold Through Q3, Dividend Stocks Steady",
+      "summary": "Fed chair confirmed rates will remain unchanged through summer, providing stability for income-focused equity positions.",
+      "shortTermImpact": "Dividend aristocrats hold gains; REIT sector sees mild inflows.",
+      "midTermImpact": "Predictable rate environment favors blue-chip dividend compounders for capital preservation."
+    },
+    "news4": {
+      "headline": "Bitcoin ETF Inflows Hit Record Week as Institutional Adoption Grows",
+      "summary": "Spot Bitcoin ETFs recorded $2.1B in net inflows this week, signaling accelerating institutional adoption of digital assets.",
+      "shortTermImpact": "BTC tests resistance near $95K; ETH follows with 4% daily gain.",
+      "midTermImpact": "Growing ETF infrastructure reduces friction for institutional allocation, supporting price floor."
+    }
+  },
   "navigation": {
     "funds": "Funds",
     "profiles": "Profiles",
@@ -17,7 +56,12 @@
     "profileSelector": {
       "label": "Pick your investor profile",
       "weightLabel": "{weight}% allocation"
-    }
+    },
+    "dailyChange": "Daily",
+    "topHoldings": "Top Holdings",
+    "portfolioSnapshot": "Portfolio Snapshot",
+    "totalValue": "Total Value",
+    "viewStrategy": "View Strategy"
   },
   "strategies": {
     "futureTech": {
