@@ -33,8 +33,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Bilingual (i18n)
 
-- [ ] **I18N-01**: User can switch between English and Traditional Chinese for all UI elements
-- [ ] **I18N-02**: Strategy rationale content is available in both languages
+- [x] **I18N-01**: User can switch between English and Traditional Chinese for all UI elements
+- [x] **I18N-02**: Strategy rationale content is available in both languages
 - [ ] **I18N-03**: AI news analysis output supports both languages
 - [x] **I18N-04**: URL routing reflects selected language (e.g., /en/strategy/... and /zh/strategy/...)
 
@@ -114,8 +114,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | STRT-01 | Phase 2 | Pending |
 | STRT-03 | Phase 2 | Pending |
 | STRT-07 | Phase 2 | Pending |
-| I18N-01 | Phase 2 | Pending |
-| I18N-02 | Phase 2 | Pending |
+| I18N-01 | Phase 2 | Complete |
+| I18N-02 | Phase 2 | Complete |
 | STRT-02 | Phase 3 | Pending |
 | STRT-04 | Phase 3 | Pending |
 | STRT-05 | Phase 3 | Pending |

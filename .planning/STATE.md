@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Phase 2 context gathered
-last_updated: "2026-03-26T11:24:02.339Z"
+stopped_at: "Completed 02-static-pages plan 01"
+last_updated: "2026-03-26T11:48:40Z"
 last_activity: 2026-03-26
 progress:
   total_phases: 4
   completed_phases: 1
   total_plans: 2
-  completed_plans: 2
-  percent: 10
+  completed_plans: 3
+  percent: 15
 ---
 
 # Project State
@@ -26,33 +26,35 @@ See: .planning/PROJECT.md (updated 2026-03-26)
 ## Current Position
 
 Phase: 2 of 4 (static pages)
-Plan: Not started
+Plan: 1 complete (02-01-SUMMARY.md written)
 Status: In progress
 Last activity: 2026-03-26
 
-Progress: [█░░░░░░░░░] 10%
+Progress: [██░░░░░░░░] 15%
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 1
-- Average duration: 6 min
-- Total execution time: 6 min
+- Total plans completed: 3
+- Average duration: 10 min
+- Total execution time: 36 min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 01-foundation | 1 | 6 min | 6 min |
+| 01-foundation | 2 | 21 min | 10 min |
+| 02-static-pages | 1 | 15 min | 15 min |
 
 **Recent Trend:**
 
-- Last 5 plans: 6 min
-- Trend: -
+- Last 5 plans: 15 min
+- Trend: stable
 
 *Updated after each plan completion*
 | Phase 01-foundation P02 | 3 | 2 tasks | 10 files |
+| Phase 02-static-pages P01 | 15 min | 2 tasks | 16 files |
 
 ## Accumulated Context
 
@@ -72,6 +74,9 @@ Recent decisions affecting current work:
 - [Phase 01-02]: Crypto tickers use CoinGecko-compatible ids (bitcoin, ethereum, solana) for Phase 3 CoinGecko API compatibility
 - [Phase 01-02]: server-only import boundary established in lib/data/ — all future data-fetchers must include import 'server-only' at top
 - [Phase 01-02]: .gitignore negation pattern allows .env.local.example to be committed while all actual .env files remain gitignored
+- [Phase 02-01]: shadcn init chose 'Base' style (uses @base-ui/react not Radix) — components use @base-ui/react primitives
+- [Phase 02-01]: MobileTabBar tab order: future-tech | traditional | profiles (center) | commodities | crypto
+- [Phase 02-01]: Header desktop nav hidden below md; mobile only logo + LanguageSwitcher (MobileTabBar handles fund navigation)
 
 ### Pending Todos
 
@@ -85,6 +90,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-26T11:24:02.335Z
-Stopped at: Phase 2 context gathered
-Resume file: .planning/phases/02-static-pages/02-CONTEXT.md
+Last session: 2026-03-26T11:48:40Z
+Stopped at: Completed 02-static-pages 02-01-PLAN.md
+Resume file: .planning/phases/02-static-pages/02-02-PLAN.md
