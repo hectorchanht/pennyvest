@@ -30,7 +30,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. The project builds and deploys with TypeScript strict mode passing and no ESLint errors
 **Plans:** 2 plans
 Plans:
-- [ ] 01-01-PLAN.md — Bootstrap Next.js 16 with next-intl bilingual routing and Tailwind v4 dark theme
+- [x] 01-01-PLAN.md — Bootstrap Next.js 16 with next-intl bilingual routing and Tailwind v4 dark theme
 - [ ] 01-02-PLAN.md — Strategy config system (4 funds, 3 profiles) and server-only API key hygiene
 
 ### Phase 2: Static Pages
@@ -75,7 +75,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/2 | Planning complete | - |
+| 1. Foundation | 1/2 | In progress | - |
 | 2. Static Pages | 0/TBD | Not started | - |
 | 3. Live Data, Charts, and AI | 0/TBD | Not started | - |
 | 4. Compliance, Polish, and Performance | 0/TBD | Not started | - |

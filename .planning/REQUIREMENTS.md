@@ -36,7 +36,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **I18N-01**: User can switch between English and Traditional Chinese for all UI elements
 - [ ] **I18N-02**: Strategy rationale content is available in both languages
 - [ ] **I18N-03**: AI news analysis output supports both languages
-- [ ] **I18N-04**: URL routing reflects selected language (e.g., /en/strategy/... and /zh/strategy/...)
+- [x] **I18N-04**: URL routing reflects selected language (e.g., /en/strategy/... and /zh/strategy/...)
 
 ### Data Integration
 
@@ -105,7 +105,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| I18N-04 | Phase 1 | Pending |
+| I18N-04 | Phase 1 | Complete |
 | DATA-04 | Phase 1 | Pending |
 | LAND-01 | Phase 2 | Pending |
 | LAND-02 | Phase 2 | Pending |

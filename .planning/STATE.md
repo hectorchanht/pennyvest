@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: planning
-stopped_at: Phase 1 context gathered
-last_updated: "2026-03-26T08:37:10.430Z"
-last_activity: 2026-03-26 — Roadmap created
+status: in-progress
+stopped_at: "Completed 01-01-PLAN.md"
+last_updated: "2026-03-26T10:26:02Z"
+last_activity: 2026-03-26 — Completed Phase 1 Plan 01 (Next.js bootstrap + bilingual routing)
 progress:
   total_phases: 4
   completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
-  percent: 0
+  total_plans: 10
+  completed_plans: 1
+  percent: 10
 ---
 
 # Project State
@@ -26,27 +26,27 @@ See: .planning/PROJECT.md (updated 2026-03-26)
 ## Current Position
 
 Phase: 1 of 4 (Foundation)
-Plan: 0 of TBD in current phase
-Status: Ready to plan
-Last activity: 2026-03-26 — Roadmap created
+Plan: 1 of TBD in current phase
+Status: In progress
+Last activity: 2026-03-26 — Completed 01-01 Next.js 16 bootstrap with bilingual routing
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [█░░░░░░░░░] 10%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 0
-- Average duration: -
-- Total execution time: -
+- Total plans completed: 1
+- Average duration: 6 min
+- Total execution time: 6 min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| - | - | - | - |
+| 01-foundation | 1 | 6 min | 6 min |
 
 **Recent Trend:**
-- Last 5 plans: -
+- Last 5 plans: 6 min
 - Trend: -
 
 *Updated after each plan completion*
@@ -62,6 +62,10 @@ Recent decisions affecting current work:
 - [Research]: next-intl 4.x / Next.js 16 peer dep compatibility must be verified before Phase 1 scaffold builds
 - [Research]: Zod 4.x + AI SDK 6 compatibility proof-of-concept needed before Phase 3 AI pipeline design
 - [Research]: yahoo-finance2 3.x historical price method signatures must be confirmed before Phase 3 adapter work
+- [01-01]: Used src/proxy.ts (not middleware.ts) — Next.js 16 proxy pattern
+- [01-01]: Static switch-case message loading in request.ts — Turbopack cannot resolve dynamic template literal import paths
+- [01-01]: locale prefix mapping: zh-HK locale → /zh/ URL path via localePrefix.prefixes
+- [01-01]: Fonts loaded in [locale]/layout.tsx (not root layout) to apply lang-aware font variables to html
 
 ### Pending Todos
 
@@ -69,13 +73,12 @@ None yet.
 
 ### Blockers/Concerns
 
-- [Phase 1]: next-intl 4.x peer dependency on Next.js 16 — verify changelog before installing
 - [Phase 3]: yahoo-finance2 3.x historical price API method signatures — confirm before building adapters
 - [Phase 3/AI]: Zod 4.x breaking changes impact on Vercel AI SDK 6 generateObject — run POC before committing to schema design
 - [Phase 4]: HK SFC disclaimer language — verify current SFC circulars before finalizing bilingual disclaimer text
 
 ## Session Continuity
 
-Last session: 2026-03-26T08:37:10.427Z
-Stopped at: Phase 1 context gathered
-Resume file: .planning/phases/01-foundation/01-CONTEXT.md
+Last session: 2026-03-26T10:26:02Z
+Stopped at: Completed 01-01-PLAN.md
+Resume file: .planning/phases/01-foundation/01-01-SUMMARY.md
