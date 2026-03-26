@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: in-progress
-stopped_at: "Completed 01-01-PLAN.md"
-last_updated: "2026-03-26T10:26:02Z"
-last_activity: 2026-03-26 — Completed Phase 1 Plan 01 (Next.js bootstrap + bilingual routing)
+status: executing
+stopped_at: Completed 01-02-PLAN.md
+last_updated: "2026-03-26T10:32:28.058Z"
+last_activity: 2026-03-26 — Completed 01-01 Next.js 16 bootstrap with bilingual routing
 progress:
   total_phases: 4
-  completed_phases: 0
-  total_plans: 10
-  completed_plans: 1
+  completed_phases: 1
+  total_plans: 2
+  completed_plans: 2
   percent: 10
 ---
 
@@ -35,6 +35,7 @@ Progress: [█░░░░░░░░░] 10%
 ## Performance Metrics
 
 **Velocity:**
+
 - Total plans completed: 1
 - Average duration: 6 min
 - Total execution time: 6 min
@@ -46,10 +47,12 @@ Progress: [█░░░░░░░░░] 10%
 | 01-foundation | 1 | 6 min | 6 min |
 
 **Recent Trend:**
+
 - Last 5 plans: 6 min
 - Trend: -
 
 *Updated after each plan completion*
+| Phase 01-foundation P02 | 3 | 2 tasks | 10 files |
 
 ## Accumulated Context
 
@@ -66,6 +69,9 @@ Recent decisions affecting current work:
 - [01-01]: Static switch-case message loading in request.ts — Turbopack cannot resolve dynamic template literal import paths
 - [01-01]: locale prefix mapping: zh-HK locale → /zh/ URL path via localePrefix.prefixes
 - [01-01]: Fonts loaded in [locale]/layout.tsx (not root layout) to apply lang-aware font variables to html
+- [Phase 01-02]: Crypto tickers use CoinGecko-compatible ids (bitcoin, ethereum, solana) for Phase 3 CoinGecko API compatibility
+- [Phase 01-02]: server-only import boundary established in lib/data/ — all future data-fetchers must include import 'server-only' at top
+- [Phase 01-02]: .gitignore negation pattern allows .env.local.example to be committed while all actual .env files remain gitignored
 
 ### Pending Todos
 
@@ -79,6 +85,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-26T10:26:02Z
-Stopped at: Completed 01-01-PLAN.md
-Resume file: .planning/phases/01-foundation/01-01-SUMMARY.md
+Last session: 2026-03-26T10:32:28.055Z
+Stopped at: Completed 01-02-PLAN.md
+Resume file: None

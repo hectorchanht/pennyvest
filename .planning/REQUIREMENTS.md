@@ -43,7 +43,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **DATA-01**: Asset prices are fetched from free APIs (Yahoo Finance for stocks/commodities, CoinGecko for crypto)
 - [ ] **DATA-02**: Price data is cached server-side to stay within free-tier API limits
 - [ ] **DATA-03**: News articles are fetched from free news APIs (NewsAPI or equivalent)
-- [ ] **DATA-04**: All API keys and credentials are server-side only, never exposed to client
+- [x] **DATA-04**: All API keys and credentials are server-side only, never exposed to client
 
 ### Compliance & Trust
 
@@ -106,7 +106,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | I18N-04 | Phase 1 | Complete |
-| DATA-04 | Phase 1 | Pending |
+| DATA-04 | Phase 1 | Complete |
 | LAND-01 | Phase 2 | Pending |
 | LAND-02 | Phase 2 | Pending |
 | LAND-03 | Phase 2 | Pending |

@@ -12,7 +12,7 @@ Pennyvest ships as a view-only, bilingual investment information platform across
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation** - Next.js scaffold with bilingual routing, strategy config, and server-only API key hygiene
+- [x] **Phase 1: Foundation** - Next.js scaffold with bilingual routing, strategy config, and server-only API key hygiene (completed 2026-03-26)
 - [ ] **Phase 2: Static Pages** - Landing page and all four strategy page layouts, fully bilingual, with static content
 - [ ] **Phase 3: Live Data, Charts, and AI** - Price feeds, caching, allocation charts, equity curves, news feed, and AI impact analysis
 - [ ] **Phase 4: Compliance, Polish, and Performance** - Bilingual disclaimers, performance audit, and shippable quality bar
@@ -28,10 +28,10 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. All four strategy configurations (Future Tech, Traditional Industries, Commodities, Crypto) exist as TypeScript files with tickers, risk levels, and allocation weights
   3. No API key or credential is accessible in the browser's network tab or JS bundle
   4. The project builds and deploys with TypeScript strict mode passing and no ESLint errors
-**Plans:** 2 plans
+**Plans:** 2/2 plans complete
 Plans:
 - [x] 01-01-PLAN.md — Bootstrap Next.js 16 with next-intl bilingual routing and Tailwind v4 dark theme
-- [ ] 01-02-PLAN.md — Strategy config system (4 funds, 3 profiles) and server-only API key hygiene
+- [x] 01-02-PLAN.md — Strategy config system (4 funds, 3 profiles) and server-only API key hygiene
 
 ### Phase 2: Static Pages
 **Goal**: Users can navigate the full product — landing page to any strategy — read all static content bilingually, and see the correct risk level and rationale before any live data exists
@@ -75,7 +75,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 1/2 | In progress | - |
+| 1. Foundation | 2/2 | Complete   | 2026-03-26 |
 | 2. Static Pages | 0/TBD | Not started | - |
 | 3. Live Data, Charts, and AI | 0/TBD | Not started | - |
 | 4. Compliance, Polish, and Performance | 0/TBD | Not started | - |
