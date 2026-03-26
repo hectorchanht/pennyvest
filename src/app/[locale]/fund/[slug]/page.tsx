@@ -1,13 +1,12 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { getAllStrategies, getStrategyConfig } from '@/lib/strategies';
 import { notFound } from 'next/navigation';
-import dynamic from 'next/dynamic';
-import { Skeleton } from '@/components/ui/skeleton';
 import SwipeNavigator from '@/components/strategy/SwipeNavigator';
 import FundHeader from '@/components/strategy/FundHeader';
-import HoldingsTable from '@/components/strategy/HoldingsTable';
-import DataSection from '@/components/strategy/DataSection';
+import PricesSection from '@/components/strategy/PricesSection';
+import EquitySection from '@/components/charts/EquitySection';
 import NewsFeed from '@/components/news/NewsFeed';
+import { AllocationDonutClient } from '@/components/charts/ClientCharts';
 import OpportunityCard from '@/components/strategy/OpportunityCard';
 import PortfolioNotes from '@/components/strategy/PortfolioNotes';
 import {
@@ -15,16 +14,6 @@ import {
   mockOpportunities,
   mockPortfolioNotes,
 } from '@/lib/mock-data';
-import type { PriceResponse, EquityResponse } from '@/types/prices';
-
-const AllocationDonut = dynamic(
-  () => import('@/components/charts/AllocationDonut'),
-  { ssr: false, loading: () => <Skeleton className="h-[220px] w-full rounded-lg" /> }
-);
-const EquityCurve = dynamic(
-  () => import('@/components/charts/EquityCurve'),
-  { ssr: false, loading: () => <Skeleton className="h-[180px] w-full rounded-lg" /> }
-);
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
@@ -128,14 +117,6 @@ export default async function FundPage({ params }: Props) {
   const riskLabel = t(`riskLevel.${strategy.riskLevel}`);
 
   // Phase 3: translated labels for live data sections
-  const chartLabels = {
-    allocationTitle: t('charts.allocationTitle'),
-    equityTitle: t('charts.equityTitle'),
-    simulatedLabel: t('charts.simulatedLabel'),
-    loading: t('charts.loading'),
-    error: t('charts.error'),
-    retry: t('charts.retry'),
-  };
   const newsLabels = {
     sectionTitle: t('news.sectionTitle'),
     loading: t('news.loading'),
@@ -150,16 +131,27 @@ export default async function FundPage({ params }: Props) {
     neutral: t('news.impact.neutral'),
     bearish: t('news.impact.bearish'),
   };
-  const dataLabels = {
+
+  const pricesSectionLabels = {
+    ticker: t('strategy.holdingsTable.ticker'),
+    name: t('strategy.holdingsTable.name'),
+    weight: t('strategy.holdingsTable.weight'),
+    price: t('common.price'),
+    change24h: t('common.change24h'),
     loading: t('charts.loading'),
     error: t('charts.error'),
     retry: t('charts.retry'),
     lastUpdated: t('common.lastUpdated', { time: '{time}' }),
     staleWarning: t('common.staleWarning'),
   };
-  const priceLabels = {
-    price: t('common.price'),
-    change24h: t('common.change24h'),
+
+  const equitySectionLabels = {
+    equityTitle: t('charts.equityTitle'),
+    simulatedLabel: t('charts.simulatedLabel'),
+    error: t('charts.error'),
+    retry: t('charts.retry'),
+    lastUpdated: t('common.lastUpdated', { time: '{time}' }),
+    staleWarning: t('common.staleWarning'),
   };
 
   return (
@@ -176,64 +168,40 @@ export default async function FundPage({ params }: Props) {
           }}
         />
 
-        {/* 2. Allocation Donut Chart -- STRT-02 (static allocation data, no API needed) */}
+        {/* 2. Allocation Donut Chart -- STRT-02 (static allocation data, ssr:false in ClientCharts) */}
         <section className="mb-8">
-          <AllocationDonut
+          <AllocationDonutClient
             allocations={strategy.allocations.map((a) => ({
               name: a.name,
               ticker: a.ticker,
               weight: a.weight,
             }))}
             centerLabel={riskLabel}
-            title={chartLabels.allocationTitle}
+            title={t('charts.allocationTitle')}
           />
         </section>
 
         {/* 3. Live Holdings with Prices -- STRT-05 */}
         <section className="mb-8">
-          <DataSection
+          <PricesSection
             slug={slug}
-            endpoint={`/api/prices/${slug}`}
-            locale={locale}
-            labels={dataLabels}
+            allocations={strategy.allocations.map((a) => ({
+              ticker: a.ticker,
+              name: a.name,
+              weight: a.weight,
+            }))}
+            labels={pricesSectionLabels}
             staleTtlMs={600000}
-          >
-            {(priceData) => (
-              <HoldingsTable
-                allocations={strategy.allocations.map((a) => ({
-                  ticker: a.ticker,
-                  name: a.name,
-                  weight: a.weight,
-                }))}
-                labels={{
-                  ticker: t('strategy.holdingsTable.ticker'),
-                  name: t('strategy.holdingsTable.name'),
-                  weight: t('strategy.holdingsTable.weight'),
-                }}
-                prices={(priceData as unknown as PriceResponse).prices}
-                priceLabels={priceLabels}
-              />
-            )}
-          </DataSection>
+          />
         </section>
 
-        {/* 4. Equity Curve -- STRT-06 */}
+        {/* 4. Equity Curve -- STRT-06 (ssr:false dynamic import inside EquitySection) */}
         <section className="mb-8">
-          <DataSection
+          <EquitySection
             slug={slug}
-            endpoint={`/api/equity/${slug}`}
-            locale={locale}
-            labels={dataLabels}
+            labels={equitySectionLabels}
             staleTtlMs={172800000}
-          >
-            {(equityData) => (
-              <EquityCurve
-                data={(equityData as unknown as EquityResponse).curve}
-                simulatedLabel={chartLabels.simulatedLabel}
-                title={chartLabels.equityTitle}
-              />
-            )}
-          </DataSection>
+          />
         </section>
 
         {/* 5. News + AI Analysis -- NEWS-01 through NEWS-04 */}
