@@ -118,6 +118,34 @@
       "description": "重倉高增長科技及加密貨幣。預期波動較大，追求長線超額回報。"
     }
   },
+  "charts": {
+    "allocationTitle": "資產配置",
+    "equityTitle": "歷史表現",
+    "simulatedLabel": "模擬回測 — 非實際回報",
+    "loading": "正在載入圖表數據...",
+    "error": "圖表數據暫時無法使用",
+    "retry": "重試"
+  },
+  "news": {
+    "sectionTitle": "市場新聞及AI分析",
+    "impact": {
+      "bullish": "看漲",
+      "neutral": "中性",
+      "bearish": "看跌"
+    },
+    "analysisUnavailable": "AI分析暫時無法使用",
+    "noArticles": "暫無相關新聞",
+    "loading": "正在載入新聞...",
+    "error": "新聞數據暫時無法使用",
+    "retry": "重試",
+    "source": "來源"
+  },
+  "common": {
+    "lastUpdated": "最後更新：{time}",
+    "staleWarning": "數據可能已過時",
+    "price": "價格",
+    "change24h": "24小時變化"
+  },
   "riskLevel": {
     "low": "低風險",
     "medium": "中等風險",

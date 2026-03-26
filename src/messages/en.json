@@ -118,6 +118,34 @@
       "description": "Heavy allocation to high-growth technology and crypto. Expects significant volatility in pursuit of outsized long-term returns."
     }
   },
+  "charts": {
+    "allocationTitle": "Allocation Breakdown",
+    "equityTitle": "Performance History",
+    "simulatedLabel": "Simulated back-test — not actual returns",
+    "loading": "Loading chart data...",
+    "error": "Chart data unavailable",
+    "retry": "Retry"
+  },
+  "news": {
+    "sectionTitle": "Market News & AI Analysis",
+    "impact": {
+      "bullish": "Bullish",
+      "neutral": "Neutral",
+      "bearish": "Bearish"
+    },
+    "analysisUnavailable": "AI analysis unavailable",
+    "noArticles": "No recent news available",
+    "loading": "Loading news...",
+    "error": "News data unavailable",
+    "retry": "Retry",
+    "source": "Source"
+  },
+  "common": {
+    "lastUpdated": "Last updated: {time}",
+    "staleWarning": "Data may be outdated",
+    "price": "Price",
+    "change24h": "24h Change"
+  },
   "riskLevel": {
     "low": "Low Risk",
     "medium": "Medium Risk",
