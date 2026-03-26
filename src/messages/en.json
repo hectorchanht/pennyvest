@@ -49,8 +49,8 @@
   },
   "landing": {
     "hero": {
-      "tagline": "Invest with clarity.",
-      "subtagline": "Four strategies. Plain language. Both languages.",
+      "tagline": "Start with a penny. Build a snowball.",
+      "subtagline": "AI-powered strategies across every risk level.",
       "cta": "Explore Strategies"
     },
     "profileSelector": {
@@ -126,5 +126,168 @@
   "footer": {
     "tagline": "Investment education, not financial advice.",
     "copyright": "Pennyvest {year}"
+  },
+  "fundDetail": {
+    "labels": {
+      "dailyGain": "Daily Gain",
+      "cashRatio": "Cash Ratio",
+      "sixMonthTarget": "6-Month Target",
+      "annualizedReturn": "Annualized Return",
+      "trackingLive": "Tracking Live",
+      "modelPortfolio": "$1M Model Portfolio",
+      "portfolioValue": "Portfolio Value",
+      "newsTitle": "Global News Digest",
+      "newsSubtitle": "Top stories relevant to this strategy",
+      "opportunitiesTitle": "Investment Opportunities",
+      "opportunitiesSubtitle": "AI-identified entry points and strategic moves",
+      "notesTitle": "Portfolio Change Notes",
+      "notesSubtitle": "Today's position review and rationale",
+      "confidence": "Confidence",
+      "horizon": "Horizon",
+      "logic": "Investment Logic",
+      "catalysts": "Catalysts",
+      "risks": "Risk Factors",
+      "actionHold": "Hold",
+      "actionAdd": "Add",
+      "actionReduce": "Reduce",
+      "riskManagement": "Risk Management",
+      "cashStrategy": "Cash Strategy",
+      "disclaimer": "This is a simulated portfolio for educational purposes only. Not financial advice.",
+      "ticker": "Ticker",
+      "allocation": "Allocation",
+      "marketValue": "Market Value",
+      "dailyChangePct": "Daily %",
+      "dailyChangeAmt": "Change ($)",
+      "cash": "CASH"
+    },
+    "futureTech": {
+      "opportunity1": {
+        "title": "AI Infrastructure Supercycle",
+        "description": "Sustained enterprise AI deployment is driving multi-year capex cycles at hyperscalers, directly benefiting GPU and inference chip suppliers.",
+        "horizon": "12–18 months",
+        "logic": "Cloud provider capex guidance for 2026 remains elevated. NVIDIA's data center revenue has compounded at 200%+ annually. Enterprise AI adoption is still in early innings with most workloads not yet migrated.",
+        "catalyst1": "Next-gen GPU architecture launch driving upgrade cycle",
+        "catalyst2": "Hyperscaler capex guidance raised above consensus",
+        "catalyst3": "Enterprise AI software adoption accelerating NIM deployments",
+        "risk1": "US export controls tightening restrict addressable market",
+        "risk2": "Customer concentration risk if one hyperscaler delays orders",
+        "actions": []
+      },
+      "opportunity2": {
+        "title": "EV Cycle Inflection Watch",
+        "description": "Tesla faces near-term margin pressure but remains positioned to benefit when consumer sentiment and EV subsidy structures normalize.",
+        "horizon": "6–12 months",
+        "logic": "EV penetration stalled in 2025 as interest rates weighed on financing costs. Rate cuts expected in H2 2026 could reignite demand. Tesla's autonomy narrative adds optionality at current levels.",
+        "catalyst1": "Fed rate cut trajectory supporting vehicle financing costs",
+        "catalyst2": "Full Self-Driving regulatory approval in key markets",
+        "risk1": "Continued margin erosion from price competition with BYD",
+        "risk2": "Brand perception risk from ongoing management distraction",
+        "actions": []
+      },
+      "notes": {
+        "actionSummary": "Hold + Opportunistic Add",
+        "description": "Portfolio remains positioned for the AI infrastructure cycle. Today's action focus is trimming MSTR given elevated correlation to crypto volatility while adding to core AI holdings on the dip.",
+        "nvdaReasoning": "Core position. Earnings beat confirmed continued data center momentum. Adding 2% on price weakness.",
+        "tslaReasoning": "Holding flat. Watching Q2 delivery numbers before committing further capital.",
+        "mstrReasoning": "Trimming 2% allocation. MicroStrategy's premium to NAV has compressed; crypto exposure better obtained directly.",
+        "riskNote": "Maintaining stop-loss discipline at 20% drawdown from entry for individual positions. Portfolio-level drawdown limit remains 35%.",
+        "cashNote": "2% cash reserve held for tactical deployment on any 5%+ single-day market dislocations."
+      }
+    },
+    "traditional": {
+      "opportunity1": {
+        "title": "Financial Sector Rate Play",
+        "description": "With rates holding steady through Q3, bank net interest margins remain supportive. JPMorgan's diversified revenue mix offers resilience.",
+        "horizon": "6–9 months",
+        "logic": "Fed's confirmed hold through summer removes rate-cut headwind for bank earnings. JPM's investment banking pipeline is recovering as M&A activity picks up post-election certainty.",
+        "catalyst1": "M&A deal volumes recovering with regulatory clarity",
+        "catalyst2": "Consumer credit quality holding despite macro headwinds",
+        "risk1": "Commercial real estate loan loss provisions could pressure Q3 earnings",
+        "actions": []
+      },
+      "opportunity2": {
+        "title": "REIT Stabilization Entry",
+        "description": "Real estate investment trusts have underperformed for 18 months. With rate expectations anchored, this segment offers asymmetric recovery potential.",
+        "horizon": "9–12 months",
+        "logic": "VNQ and Realty Income (O) trade near multi-year lows on a price-to-FFO basis. Dividend yields are at levels historically associated with outperformance over the following 12 months.",
+        "catalyst1": "Rate expectations anchored, reducing refinancing uncertainty",
+        "catalyst2": "Institutional rebalancing into yield assets as equity vol spikes",
+        "risk1": "Prolonged rate hold delays REIT re-rating",
+        "actions": []
+      },
+      "notes": {
+        "actionSummary": "Hold + Selective Add",
+        "description": "Defensive posture maintained. The Fed hold removes the key re-rating catalyst for REITs near-term, but dividend yields remain attractive. Adding to JPM on earnings confirmation.",
+        "jpmReasoning": "Adding 3% after earnings beat confirmed NIM stability through H2 2026.",
+        "jnjReasoning": "Holding. Litigation tail risk from talc settlement fully priced in at current levels.",
+        "vnqReasoning": "Holding. Waiting for clearer rate-cut signal before adding to REIT exposure.",
+        "riskNote": "Portfolio volatility remains low. Maximum single-position drawdown tolerance is 15% for dividend names.",
+        "cashNote": "3% cash reserve provides dry powder for REIT additions if a buying opportunity materializes."
+      }
+    },
+    "commodities": {
+      "opportunity1": {
+        "title": "Gold Safe-Haven Re-Rating",
+        "description": "Escalating US-China trade friction is driving institutional safe-haven flows into gold. Central bank buying continues to underpin demand.",
+        "horizon": "3–6 months",
+        "logic": "Central bank gold purchases hit a record in 2025 and continue in 2026. Geopolitical uncertainty is structurally elevated. Gold's correlation to USD has weakened as a new buyer base (EM central banks) dominates.",
+        "catalyst1": "Further US-China tariff escalation driving safe-haven flows",
+        "catalyst2": "Central bank accumulation from BRICS nations continues",
+        "risk1": "Rapid US-China trade deal would remove geopolitical premium",
+        "risk2": "Dollar strength on risk-off could temporarily suppress gold price",
+        "actions": []
+      },
+      "opportunity2": {
+        "title": "Agricultural Supply Chain Disruption",
+        "description": "Wheat and agricultural commodity ETFs offer a hedge against supply shocks from climate disruption and geopolitical shipping route disruptions.",
+        "horizon": "6–12 months",
+        "logic": "La Niña weather patterns are affecting grain harvests in key producing regions. DBA and WEAT provide diversified exposure to this structural supply uncertainty without individual commodity concentration.",
+        "catalyst1": "La Niña crop damage emerging in South American grain belts",
+        "risk1": "Bumper US crop season would reverse agricultural supply concerns",
+        "actions": []
+      },
+      "notes": {
+        "actionSummary": "Rebalance — Add Gold, Reduce Oil",
+        "description": "Rotating within the portfolio to increase safe-haven weighting. Oil faces demand uncertainty from slowing Chinese industrial activity while gold benefits directly from geopolitical tension.",
+        "gldReasoning": "Adding 5% allocation. Central bank demand and geopolitical safe-haven flows align with our thesis.",
+        "usoReasoning": "Reducing 5% allocation. Chinese demand weakness and OPEC+ production discipline uncertainty weigh on near-term oil price outlook.",
+        "dbaReasoning": "Holding. Agricultural supply disruption thesis intact. Monitoring La Niña crop damage data.",
+        "riskNote": "Commodity correlations can shift rapidly. Stop-loss at 15% drawdown per position. Portfolio correlation reviewed weekly.",
+        "cashNote": "5% cash reserve elevated given current volatility. Will deploy opportunistically into dislocations."
+      }
+    },
+    "crypto": {
+      "opportunity1": {
+        "title": "Institutional ETF Accumulation Cycle",
+        "description": "Record ETF inflows signal a structural shift in institutional crypto adoption. This is not a retail-driven cycle — pension funds and endowments are entering the space.",
+        "horizon": "12–24 months",
+        "logic": "Spot Bitcoin ETFs absorbed $2.1B in a single week — a pace that structurally supports price floors. Institutional custody solutions are maturing. The regulatory environment post-2025 is the most favorable in crypto history.",
+        "catalyst1": "Bitcoin ETF inflows sustaining above $1B per week",
+        "catalyst2": "Sovereign wealth fund crypto allocation announcements",
+        "catalyst3": "US crypto regulatory framework providing legal clarity",
+        "risk1": "Exchange hack or stablecoin de-peg event triggers risk-off",
+        "risk2": "Regulatory reversal under new global coordination frameworks",
+        "actions": []
+      },
+      "opportunity2": {
+        "title": "Solana DeFi Ecosystem Momentum",
+        "description": "Solana's transaction volumes are outpacing Ethereum for DeFi activity. Low fees and high throughput are attracting a new wave of dApps and institutional developers.",
+        "horizon": "6–12 months",
+        "logic": "SOL has rebounded strongly on TVL growth and meme coin trading fee revenue. The ecosystem is now the second-largest by active developers. Upcoming staking yield improvements add income component.",
+        "catalyst1": "Solana ETF approval increasing institutional access",
+        "catalyst2": "DeFi TVL milestone attracting additional developer talent",
+        "risk1": "Network outage events would damage institutional confidence",
+        "actions": []
+      },
+      "notes": {
+        "actionSummary": "Hold Core + Add ETH & SOL",
+        "description": "Bitcoin core position maintained as institutional ETF flows continue to provide structural support. Adding to ETH on DeFi momentum and SOL on ecosystem growth signals.",
+        "bitcoinReasoning": "Holding core 35% allocation. ETF flow data supports current price levels. No tactical reason to reduce.",
+        "ethereumReasoning": "Adding 2% on DeFi TVL growth and upcoming protocol upgrade. ETH/BTC ratio near historic lows.",
+        "solanaReasoning": "Adding 2% as ecosystem metrics accelerate. Monitoring validator decentralization progress.",
+        "riskNote": "Crypto positions sized at maximum 10% of overall portfolio. 80%+ drawdown scenarios remain plausible — position sizing reflects this.",
+        "cashNote": "1% cash reserve maintained at minimum. High conviction in current cycle; cash drag minimized."
+      }
+    }
   }
 }

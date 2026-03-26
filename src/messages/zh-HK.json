@@ -49,8 +49,8 @@
   },
   "landing": {
     "hero": {
-      "tagline": "睇得清，投得穩。",
-      "subtagline": "四大策略，簡明易懂，中英雙語。",
+      "tagline": "一仙開始，滾出雪球。",
+      "subtagline": "AI 驅動策略，覆蓋所有風險級別。",
       "cta": "探索策略"
     },
     "profileSelector": {
@@ -126,5 +126,160 @@
   "footer": {
     "tagline": "投資教育，非理財建議。",
     "copyright": "Pennyvest {year}"
+  },
+  "fundDetail": {
+    "labels": {
+      "dailyGain": "日收益",
+      "cashRatio": "現金比例",
+      "sixMonthTarget": "六個月目標",
+      "annualizedReturn": "年化回報",
+      "trackingLive": "即時追蹤",
+      "modelPortfolio": "100萬美元模擬組合",
+      "portfolioValue": "組合總值",
+      "newsTitle": "全球新聞擇要",
+      "newsSubtitle": "與本策略相關的重要資訊",
+      "opportunitiesTitle": "投資機會評估",
+      "opportunitiesSubtitle": "AI 識別的入市時機及策略部署",
+      "notesTitle": "組合變動說明",
+      "notesSubtitle": "今日持倉審查及操作理據",
+      "confidence": "信心評分",
+      "horizon": "投資期限",
+      "logic": "投資邏輯",
+      "catalysts": "催化劑",
+      "risks": "風險因素",
+      "actionHold": "持有",
+      "actionAdd": "增持",
+      "actionReduce": "減持",
+      "riskManagement": "風險管理",
+      "cashStrategy": "現金策略",
+      "disclaimer": "此為模擬組合，僅供教育參考用途，並非理財建議。",
+      "ticker": "代號",
+      "allocation": "配置",
+      "marketValue": "市值",
+      "dailyChangePct": "日變動%",
+      "dailyChangeAmt": "變動金額",
+      "cash": "現金"
+    },
+    "futureTech": {
+      "opportunity1": {
+        "title": "AI 基建超級周期",
+        "description": "企業持續部署 AI 推動超大型雲端供應商多年資本支出周期，直接利好 GPU 及推理芯片供應商。",
+        "horizon": "12–18 個月",
+        "logic": "雲端供應商 2026 年資本支出指引持續偏高。NVIDIA 數據中心收入年複合增長超過 200%。企業 AI 採用仍處早期，大多數工作負載尚未遷移。",
+        "catalyst1": "新一代 GPU 架構發布推動升級周期",
+        "catalyst2": "超大型雲端供應商資本支出指引超出預期",
+        "catalyst3": "企業 AI 軟件採用加速 NIM 部署",
+        "risk1": "美國出口管制收緊限制可觸達市場",
+        "risk2": "若大型雲端客戶推遲訂單則集中度風險上升"
+      },
+      "opportunity2": {
+        "title": "電動車周期拐點觀察",
+        "description": "Tesla 面臨短期利潤率壓力，但一旦消費者情緒及電動車補貼結構恢復正常，其長期定位依然具備優勢。",
+        "horizon": "6–12 個月",
+        "logic": "2025 年高利率拖累汽車融資，電動車普及速度放緩。預計 2026 年下半年降息或重燃需求。Tesla 的自動駕駛敘事在現有估值水平提供額外期權價值。",
+        "catalyst1": "聯儲局減息路徑支撐汽車融資成本",
+        "catalyst2": "完全自動駕駛在主要市場獲監管批准",
+        "risk1": "比亞迪價格競爭持續壓縮利潤率",
+        "risk2": "管理層分心導致品牌認知風險持續"
+      },
+      "notes": {
+        "actionSummary": "持有 + 逢低增持",
+        "description": "組合繼續布局 AI 基建周期。今日操作重點：削減 MSTR 以降低與加密貨幣波動的相關性，同時趁下跌增持核心 AI 持倉。",
+        "nvdaReasoning": "核心持倉。業績超預期確認數據中心動力持續。趁價格回調增持 2%。",
+        "tslaReasoning": "維持持倉不變。等待第二季交付數據後再決定是否加倉。",
+        "mstrReasoning": "削減 2% 配置。MicroStrategy 相對資產淨值的溢價已收窄；加密貨幣敞口宜直接獲取。",
+        "riskNote": "個別持倉嚴守入場價 20% 止蝕紀律。組合整體回撤上限維持 35%。",
+        "cashNote": "保留 2% 現金儲備，用於單日市場大跌 5% 以上時的戰術性部署。"
+      }
+    },
+    "traditional": {
+      "opportunity1": {
+        "title": "金融板塊利率機遇",
+        "description": "利率維持穩定至第三季，銀行淨息差繼續受到支撐。摩根大通多元化收入結構提供韌性。",
+        "horizon": "6–9 個月",
+        "logic": "聯儲局確認夏季前維持利率，消除銀行盈利的減息逆風。選舉後政策確定性提升，M&A 活動復甦，摩根大通投資銀行業務管線回暖。",
+        "catalyst1": "監管明朗化帶動 M&A 交易量回升",
+        "catalyst2": "儘管宏觀承壓，消費信貸質量維持穩健",
+        "risk1": "商業房地產貸款撥備或壓縮第三季業績"
+      },
+      "opportunity2": {
+        "title": "房地產信託基金企穩入市",
+        "description": "房地產投資信託基金跑輸大市 18 個月。隨著利率預期錨定，此板塊具備不對稱反彈潛力。",
+        "horizon": "9–12 個月",
+        "logic": "VNQ 及 Realty Income (O) 按 FFO 市盈率計處於多年低位。股息收益率處於歷史上預示未來 12 個月跑贏的水平。",
+        "catalyst1": "利率預期錨定，降低再融資不確定性",
+        "catalyst2": "股市波動上升促使機構資金轉向收益資產",
+        "risk1": "利率長期維持高位推遲 REITs 重新估值"
+      },
+      "notes": {
+        "actionSummary": "持有 + 選擇性增持",
+        "description": "維持防禦性倉位。聯儲局按兵不動使 REITs 短期重新估值的主要催化劑缺席，但股息收益率依然吸引。業績確認後增持摩根大通。",
+        "jpmReasoning": "業績超預期確認 2026 年下半年淨息差穩定後增持 3%。",
+        "jnjReasoning": "維持持倉。滑石粉訴訟尾部風險已充分在現有估值中反映。",
+        "vnqReasoning": "維持持倉。等待更明確的減息信號後再增加 REIT 敞口。",
+        "riskNote": "組合波動性維持低水平。派息股個別持倉最大回撤容忍度為 15%。",
+        "cashNote": "3% 現金儲備提供充裕彈藥，隨時部署於 REIT 的買入機會。"
+      }
+    },
+    "commodities": {
+      "opportunity1": {
+        "title": "黃金避險重新估值",
+        "description": "中美貿易摩擦升級推動機構避險資金流入黃金。央行持續買入為需求提供底部支撐。",
+        "horizon": "3–6 個月",
+        "logic": "2025 年央行黃金購買量創歷史新高，2026 年延續。地緣政治不確定性呈結構性上升。隨著新買家群體（新興市場央行）主導，黃金與美元的相關性已減弱。",
+        "catalyst1": "中美關稅進一步升級推動避險資金流入",
+        "catalyst2": "金磚國家央行持續累積黃金儲備",
+        "risk1": "中美快速達成貿易協議將消除地緣政治溢價",
+        "risk2": "避險情緒下美元走強可能短暫壓低金價"
+      },
+      "opportunity2": {
+        "title": "農業供應鏈干擾機遇",
+        "description": "小麥及農業商品 ETF 可對沖氣候干擾及地緣政治航運路線中斷帶來的供應衝擊。",
+        "horizon": "6–12 個月",
+        "logic": "拉尼娜氣候影響主要產區糧食收成。DBA 和 WEAT 提供對這一結構性供應不確定性的多元化敞口，無需集中押注單一商品。",
+        "catalyst1": "拉尼娜氣候損害南美穀物帶出現",
+        "risk1": "美國農業豐收將逆轉農業供應隱憂"
+      },
+      "notes": {
+        "actionSummary": "再平衡 — 增持黃金、減持石油",
+        "description": "組合內部輪動，提高避險資產比重。石油面臨中國工業活動放緩帶來的需求不確定性，而黃金直接受益於地緣政治緊張局勢。",
+        "gldReasoning": "增持 5% 配置。央行需求與地緣政治避險資金流入與我們的投資論點相符。",
+        "usoReasoning": "減持 5% 配置。中國需求疲弱及歐佩克+產量紀律不確定性拖累短期油價前景。",
+        "dbaReasoning": "維持持倉。農業供應干擾論點完整。密切監察拉尼娜農作物損害數據。",
+        "riskNote": "商品相關性可快速變化。個別持倉止蝕位設於回撤 15%。每週審查組合相關性。",
+        "cashNote": "鑑於當前波動性，現金儲備提高至 5%。伺機在市場錯位中部署。"
+      }
+    },
+    "crypto": {
+      "opportunity1": {
+        "title": "機構 ETF 累積周期",
+        "description": "破紀錄的 ETF 資金流入標誌著機構加密貨幣採用的結構性轉變。這不是零售驅動的周期——養老基金及捐贈基金正在進場。",
+        "horizon": "12–24 個月",
+        "logic": "現貨比特幣 ETF 單週吸收 21 億美元，這一速度在結構上支撐價格下限。機構託管解決方案日趨成熟。2025 年後的監管環境是加密貨幣歷史上最有利的。",
+        "catalyst1": "比特幣 ETF 資金流入持續高於每週 10 億美元",
+        "catalyst2": "主權財富基金宣布加密貨幣配置",
+        "catalyst3": "美國加密貨幣監管框架提供法律確定性",
+        "risk1": "交易所被黑客攻擊或穩定幣脫鉤觸發避險",
+        "risk2": "全球監管協調框架下的政策逆轉"
+      },
+      "opportunity2": {
+        "title": "Solana DeFi 生態系統動力",
+        "description": "Solana 的 DeFi 交易量超越以太坊。低手續費和高吞吐量正吸引新一波去中心化應用及機構開發者。",
+        "horizon": "6–12 個月",
+        "logic": "SOL 受 TVL 增長及迷因幣交易手續費收入帶動強勁反彈。生態系統現為活躍開發者數量第二的區塊鏈。即將推出的質押收益改善增加收益組成部分。",
+        "catalyst1": "Solana ETF 批准提升機構准入",
+        "catalyst2": "DeFi TVL 里程碑吸引更多開發人才",
+        "risk1": "網絡中斷事件將損害機構信心"
+      },
+      "notes": {
+        "actionSummary": "持有核心 + 增持 ETH 及 SOL",
+        "description": "比特幣核心持倉維持不變，因機構 ETF 資金流入繼續提供結構性支撐。受 DeFi 動力驅動增持 ETH，受生態系統增長信號驅動增持 SOL。",
+        "bitcoinReasoning": "維持核心 35% 配置。ETF 資金流入數據支撐現有價格水平。無戰術性減倉理由。",
+        "ethereumReasoning": "受 DeFi TVL 增長及即將到來的協議升級驅動增持 2%。ETH/BTC 比率接近歷史低位。",
+        "solanaReasoning": "受生態系統指標加速驅動增持 2%。密切監察驗證者去中心化進程。",
+        "riskNote": "加密貨幣持倉佔整體組合最多 10%。80% 以上回撤在歷史上曾出現——持倉規模反映此風險。",
+        "cashNote": "最低保留 1% 現金儲備。對本輪周期高度確信；現金拖累降至最低。"
+      }
+    }
   }
 }
