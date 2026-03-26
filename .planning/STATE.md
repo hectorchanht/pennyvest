@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 03-04-PLAN.md
-last_updated: "2026-03-26T17:25:00.793Z"
+stopped_at: Completed 03-05-PLAN.md
+last_updated: "2026-03-26T17:33:09.673Z"
 last_activity: 2026-03-26
 progress:
   total_phases: 5
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 12
-  completed_plans: 11
+  completed_plans: 12
   percent: 15
 ---
 
@@ -63,6 +63,7 @@ Progress: [██░░░░░░░░] 15%
 | Phase 03-live-data-charts-and-ai P03 | 2 | 2 tasks | 4 files |
 | Phase 03 P02 | 8 | 2 tasks | 6 files |
 | Phase 03 P04 | 1 | 2 tasks | 3 files |
+| Phase 03 P05 | 5 | 3 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -111,6 +112,9 @@ Recent decisions affecting current work:
 - [Phase 03]: analyzeNewsItem returns { data, cachedAt } wrapper — news route extracts .data for analysis merge
 - [Phase 03]: equity mergeEquityCurves uses date superset with carry-forward for misaligned stock/crypto dates
 - [Phase 03]: Promise.allSettled for AI analysis ensures individual failures don't break news response (D-16)
+- [Phase 03]: Next.js 16 enforces ssr:false only in Client Components — moved dynamic chart imports to ClientCharts.tsx and EquitySection.tsx
+- [Phase 03]: Functions (render props) cannot cross Server-to-Client boundary — replaced DataSection render-prop with specialized PricesSection and EquitySection components
+- [Phase 03]: AllocationDonut uses static strategy config data — only ssr:false wrapper needed, no API fetch required for donut chart
 
 ### Pending Todos
 
@@ -124,6 +128,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-26T17:24:56.926Z
-Stopped at: Completed 03-04-PLAN.md
+Last session: 2026-03-26T17:33:09.670Z
+Stopped at: Completed 03-05-PLAN.md
 Resume file: None

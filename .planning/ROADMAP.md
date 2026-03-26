@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation** - Next.js scaffold with bilingual routing, strategy config, and server-only API key hygiene (completed 2026-03-26)
 - [x] **Phase 2: Static Pages** - Landing page and all four strategy page layouts, fully bilingual, with static content (completed 2026-03-26)
-- [ ] **Phase 3: Live Data, Charts, and AI** - Price feeds, caching, allocation charts, equity curves, news feed, and AI impact analysis
+- [x] **Phase 3: Live Data, Charts, and AI** - Price feeds, caching, allocation charts, equity curves, news feed, and AI impact analysis (completed 2026-03-26)
 - [ ] **Phase 4: Compliance, Polish, and Performance** - Bilingual disclaimers, performance audit, and shippable quality bar
 
 ## Phase Details
@@ -70,13 +70,13 @@ Plans:
   3. Each strategy page shows aggregated news headlines with AI-generated summaries and an impact analysis explaining how each news item affects the strategy — available in both English and Traditional Chinese
   4. News content has refreshed within the last 30 minutes (verified by the "last updated" timestamp)
   5. Chart and news components display a loading skeleton while data fetches and a graceful error state if the fetch fails
-**Plans:** 3/5 plans executed
+**Plans:** 5/5 plans complete
 Plans:
 - [x] 03-01-PLAN.md — Install Phase 3 deps, shared types (prices/news), Upstash Redis cache wrapper, env config
 - [x] 03-02-PLAN.md — Data adapters (Yahoo Finance, CoinGecko, Marketaux news) and AI analysis service
 - [x] 03-03-PLAN.md — Chart components (allocation donut, equity curve) and Phase 3 i18n keys
 - [x] 03-04-PLAN.md — Route Handlers for prices, equity curve, and news with AI analysis
-- [ ] 03-05-PLAN.md — Wire into fund page: replace ComingSoonCard placeholders with live data components
+- [x] 03-05-PLAN.md — Wire into fund page: replace ComingSoonCard placeholders with live data components
 
 ### Phase 4: Compliance, Polish, and Performance
 **Goal**: Every page meets the compliance bar required to operate as an educational platform, performance meets the target thresholds, and the product is ready to ship
@@ -99,5 +99,5 @@ Phases execute in numeric order: 1 → 2 → 2.1 → 3 → 4
 | 1. Foundation | 2/2 | Complete   | 2026-03-26 |
 | 2. Static Pages | 3/3 | Complete   | 2026-03-26 |
 | 2.1 Align Landing Page | 0/2 | Planned | - |
-| 3. Live Data, Charts, and AI | 3/5 | In Progress|  |
+| 3. Live Data, Charts, and AI | 5/5 | Complete   | 2026-03-26 |
 | 4. Compliance, Polish, and Performance | 0/TBD | Not started | - |
