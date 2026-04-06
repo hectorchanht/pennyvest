@@ -1,7 +1,6 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { getAllStrategies } from '@/lib/strategies';
 import { getAllProfiles } from '@/lib/strategies/profiles';
-import { mockStrategyData } from '@/lib/mock-data';
 import HeroSection from '@/components/landing/HeroSection';
 import NewsDigest from '@/components/landing/NewsDigest';
 
@@ -29,8 +28,11 @@ export default async function HomePage({ params }: Props) {
       tagline: t(s.nameKey.replace('.name', '.tagline')),
       riskLevel: s.riskLevel,
       riskLabel: t(`riskLevel.${s.riskLevel}`),
-      dailyChangePct: mockStrategyData[s.slug]?.dailyChangePct ?? 0,
-      topHoldings: mockStrategyData[s.slug]?.topHoldings ?? [],
+      dailyChangePct: 0, // placeholder — replaced by live data in HeroSection
+      topHoldings: s.allocations
+        .sort((a, b) => b.weight - a.weight)
+        .slice(0, 3)
+        .map((a) => ({ ticker: a.ticker, weight: a.weight })),
     })),
     labels: {
       tagline: t('landing.hero.tagline'),

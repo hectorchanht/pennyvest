@@ -1,37 +1,6 @@
 import type { NextRequest } from 'next/server';
 import { getStrategyConfig } from '@/lib/strategies';
-import { getHistoricalForStrategy } from '@/lib/data/yahoo-finance';
-import { getCryptoHistorical } from '@/lib/data/coingecko';
-import type { EquityPoint } from '@/types/prices';
-
-function mergeEquityCurves(
-  stockPoints: EquityPoint[],
-  cryptoPoints: EquityPoint[]
-): EquityPoint[] {
-  if (stockPoints.length === 0) return cryptoPoints;
-  if (cryptoPoints.length === 0) return stockPoints;
-
-  // Build maps for fast lookup
-  const stockMap = new Map<string, number>(stockPoints.map((p) => [p.date, p.value]));
-  const cryptoMap = new Map<string, number>(cryptoPoints.map((p) => [p.date, p.value]));
-
-  // Collect superset of dates
-  const allDates = Array.from(
-    new Set([...stockMap.keys(), ...cryptoMap.keys()])
-  ).sort();
-
-  let lastStock = 0;
-  let lastCrypto = 0;
-  const merged: EquityPoint[] = [];
-
-  for (const date of allDates) {
-    if (stockMap.has(date)) lastStock = stockMap.get(date)!;
-    if (cryptoMap.has(date)) lastCrypto = cryptoMap.get(date)!;
-    merged.push({ date, value: parseFloat((lastStock + lastCrypto).toFixed(4)) });
-  }
-
-  return merged;
-}
+import { getSnapshotHistory, getOrCreateTodaySnapshot } from '@/lib/data/snapshots';
 
 export async function GET(
   _req: NextRequest,
@@ -45,16 +14,15 @@ export async function GET(
       return Response.json({ error: 'Strategy not found' }, { status: 404 });
     }
 
-    const [stockEquity, cryptoEquity] = await Promise.all([
-      getHistoricalForStrategy(strategy),
-      getCryptoHistorical(strategy),
-    ]);
+    // Ensure today's snapshot exists (triggers backfill if needed)
+    await getOrCreateTodaySnapshot(strategy);
 
-    const curve = mergeEquityCurves(stockEquity.data, cryptoEquity.data);
+    // Return full history as equity curve
+    const curve = await getSnapshotHistory(slug);
 
     return Response.json({
       curve,
-      cachedAt: Math.min(stockEquity.cachedAt, cryptoEquity.cachedAt),
+      cachedAt: Date.now(),
     });
   } catch (error) {
     console.error('[api/equity]', error);

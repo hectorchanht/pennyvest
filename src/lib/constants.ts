@@ -1,0 +1,2 @@
+export const FUND_INCEPTION = '2026-01-01';
+export const PORTFOLIO_BASE_VALUE = 1_000_000;
