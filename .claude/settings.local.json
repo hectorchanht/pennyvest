@@ -24,7 +24,15 @@
       "Bash(mkdir -p /Users/laichan/code/pennyvest/v1/src/app/[locale]/auth/sign-up)",
       "Read(//Users/laichan/code/pennyvest/v1/$HOME/.nvm/versions/node/*/bin/**)",
       "Read(//opt/homebrew/Cellar/node/25.5.0/bin/**)",
-      "Read(//usr/local/**)"
+      "Read(//usr/local/**)",
+      "Bash(export PATH=\"/usr/local/bin:$HOME/.nvm/versions/node/v22.22.0/bin:$PATH\")",
+      "Bash(curl -s http://localhost:3000/zh-HK/auth/sign-in)",
+      "Bash(curl -sI http://localhost:3000/zh-HK/)",
+      "Bash(curl -sI http://localhost:3000/zh-HK)",
+      "Bash(curl -sI http://localhost:3000/zh/auth/sign-in)",
+      "Bash(cat -n /Users/laichan/code/pennyvest/v1/src/app/[locale]/layout.tsx)",
+      "Bash(pnpm run:*)",
+      "Bash(git rm:*)"
     ]
   }
 }
