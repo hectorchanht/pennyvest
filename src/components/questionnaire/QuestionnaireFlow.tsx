@@ -38,10 +38,10 @@ export default function QuestionnaireFlow() {
     if (!currentQuestion) return;
     const q = currentQuestion;
     if (q.multiSelect && Array.isArray(indices)) {
-      const scores = indices.map((i) => q.options[i].score);
+      const scores = indices.map((i) => q.options[i]!.score);
       setAnswers((prev) => ({ ...prev, [q.id]: scores }));
     } else if (typeof indices === 'number') {
-      setAnswers((prev) => ({ ...prev, [q.id]: q.options[indices].score }));
+      setAnswers((prev) => ({ ...prev, [q.id]: q.options[indices]!.score }));
     }
   }
 
