@@ -17,7 +17,7 @@ const profileDescKeys: Record<string, string> = {
   aggressive: 'aggressiveDesc',
 };
 
-export default function ResultsCard({ result }: { result: QuestionnaireResult }) {
+export default function ResultsCard({ result, hideActions }: { result: QuestionnaireResult; hideActions?: boolean }) {
   const t = useTranslations('questionnaire');
 
   return (
@@ -79,24 +79,26 @@ export default function ResultsCard({ result }: { result: QuestionnaireResult })
       </div>
 
       {/* CTA */}
-      <div className="flex flex-col gap-3 pt-4">
-        <Link href="/profiles">
+      {!hideActions && (
+        <div className="flex flex-col gap-3 pt-4">
+          <Link href="/profiles">
+            <Button
+              className="w-full bg-brand-green text-black hover:bg-brand-green/90"
+              size="lg"
+            >
+              {t('viewPortfolio')}
+            </Button>
+          </Link>
           <Button
-            className="w-full bg-brand-green text-black hover:bg-brand-green/90"
+            variant="outline"
             size="lg"
+            className="w-full"
+            onClick={() => window.location.reload()}
           >
-            {t('viewPortfolio')}
+            {t('retake')}
           </Button>
-        </Link>
-        <Button
-          variant="outline"
-          size="lg"
-          className="w-full"
-          onClick={() => window.location.reload()}
-        >
-          {t('retake')}
-        </Button>
-      </div>
+        </div>
+      )}
     </div>
   );
 }

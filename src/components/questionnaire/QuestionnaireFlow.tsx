@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
 import { authClient } from '@/lib/auth/client';
@@ -8,21 +8,25 @@ import { sections, calculateResult } from '@/lib/questionnaire/questions';
 import type { QuestionnaireResult } from '@/lib/questionnaire/types';
 import { Button } from '@/components/ui/button';
 import QuestionCard from './QuestionCard';
-import ResultsCard from './ResultsCard';
+import ReviewCard from './ReviewCard';
 
-// Flatten all questions with section info
 const allQuestions = sections.flatMap((section) =>
   section.questions.map((q) => ({ ...q, sectionId: section.id, sectionName: section.name }))
 );
+
+type FlowState = 'loading' | 'quiz' | 'review';
 
 export default function QuestionnaireFlow() {
   const t = useTranslations('questionnaire');
   const session = authClient.useSession();
   const router = useRouter();
+  const [flowState, setFlowState] = useState<FlowState>('loading');
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, number | number[]>>({});
   const [result, setResult] = useState<QuestionnaireResult | null>(null);
+  const [saving, setSaving] = useState(false);
 
+  // Auth guard
   useEffect(() => {
     if (!session.isPending && !session.data?.user) {
       const callbackUrl = encodeURIComponent('/questionnaire');
@@ -30,17 +34,54 @@ export default function QuestionnaireFlow() {
     }
   }, [session.isPending, session.data, router]);
 
+  // Fetch existing result on mount
+  useEffect(() => {
+    if (session.isPending || !session.data?.user) return;
+
+    fetch('/api/questionnaire')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.answers) {
+          setAnswers(data.answers);
+          setResult(data.result);
+          setFlowState('review');
+        } else {
+          setFlowState('quiz');
+        }
+      })
+      .catch(() => {
+        setFlowState('quiz');
+      });
+  }, [session.isPending, session.data]);
+
+  const saveToDb = useCallback(async (ans: Record<string, number | number[]>) => {
+    setSaving(true);
+    try {
+      const res = await fetch('/api/questionnaire', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ answers: ans }),
+      });
+      const data = await res.json();
+      if (data.result) {
+        setResult(data.result);
+      }
+    } catch {
+      // Silent fail — result is already calculated client-side
+    } finally {
+      setSaving(false);
+    }
+  }, []);
+
   const currentQuestion = allQuestions[step];
   const totalQuestions = allQuestions.length;
-  const progress = result ? 100 : ((step) / totalQuestions) * 100;
+  const progress = flowState === 'review' ? 100 : ((step) / totalQuestions) * 100;
 
-  // Store indices directly — convert to scores only at calculation time
   function handleSelect(indices: number | number[]) {
     if (!currentQuestion) return;
     setAnswers((prev) => ({ ...prev, [currentQuestion.id]: indices }));
   }
 
-  // Answers are stored as indices already
   const currentSelectedIndices = useMemo(() => {
     if (!currentQuestion) return undefined;
     return answers[currentQuestion.id];
@@ -52,7 +93,11 @@ export default function QuestionnaireFlow() {
     if (step < totalQuestions - 1) {
       setStep(step + 1);
     } else {
-      setResult(calculateResult(answers));
+      // Quiz complete — calculate and save
+      const calcResult = calculateResult(answers);
+      setResult(calcResult);
+      saveToDb(answers);
+      setFlowState('review');
     }
   }
 
@@ -60,7 +105,23 @@ export default function QuestionnaireFlow() {
     if (step > 0) setStep(step - 1);
   }
 
-  if (session.isPending) {
+  function handleAnswerChange(questionId: string, value: number | number[]) {
+    const newAnswers = { ...answers, [questionId]: value };
+    setAnswers(newAnswers);
+    const newResult = calculateResult(newAnswers);
+    setResult(newResult);
+    saveToDb(newAnswers);
+  }
+
+  function handleRetake() {
+    setAnswers({});
+    setResult(null);
+    setStep(0);
+    setFlowState('quiz');
+  }
+
+  // Loading states
+  if (session.isPending || flowState === 'loading') {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
         <p className="text-text-muted">{t('loading')}</p>
@@ -76,6 +137,26 @@ export default function QuestionnaireFlow() {
     );
   }
 
+  // Review state — show past results with edit capability
+  if (flowState === 'review' && result) {
+    return (
+      <div className="mx-auto max-w-xl px-4 py-8">
+        {saving && (
+          <div className="mb-4 text-center text-xs text-text-muted">
+            {t('saving')}
+          </div>
+        )}
+        <ReviewCard
+          answers={answers}
+          result={result}
+          onAnswerChange={handleAnswerChange}
+          onRetake={handleRetake}
+        />
+      </div>
+    );
+  }
+
+  // Quiz state — step through questions
   return (
     <div className="mx-auto max-w-xl px-4 py-8">
       <div className="mb-8 space-y-2">
@@ -85,16 +166,12 @@ export default function QuestionnaireFlow() {
             style={{ width: `${progress}%` }}
           />
         </div>
-        {!result && (
-          <p className="text-xs text-text-muted text-right">
-            {step + 1} / {totalQuestions}
-          </p>
-        )}
+        <p className="text-xs text-text-muted text-right">
+          {step + 1} / {totalQuestions}
+        </p>
       </div>
 
-      {result ? (
-        <ResultsCard result={result} />
-      ) : currentQuestion ? (
+      {currentQuestion ? (
         <>
           <QuestionCard
             question={currentQuestion}
