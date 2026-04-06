@@ -303,9 +303,11 @@ export function calculateResult(
       const answer = answers[q.id];
       if (answer === undefined) continue;
       if (Array.isArray(answer)) {
-        rawScore += answer.reduce((sum, s) => sum + s, 0);
+        // Multi-select: answer is array of selected option indices
+        rawScore += answer.reduce((sum, idx) => sum + (q.options[idx]?.score ?? 0), 0);
       } else {
-        rawScore += answer;
+        // Single-select: answer is the selected option index
+        rawScore += q.options[answer]?.score ?? 0;
       }
     }
     const percentage = (rawScore / section.maxScore) * 100;
