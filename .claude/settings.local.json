@@ -32,7 +32,9 @@
       "Bash(curl -sI http://localhost:3000/zh/auth/sign-in)",
       "Bash(cat -n /Users/laichan/code/pennyvest/v1/src/app/[locale]/layout.tsx)",
       "Bash(pnpm run:*)",
-      "Bash(git rm:*)"
+      "Bash(git rm:*)",
+      "Bash(timeout 60 curl -s http://localhost:3000/api/insights/future-tech?locale=en)",
+      "Bash(curl -s --max-time 90 'http://localhost:3000/api/insights/future-tech?locale=en')"
     ]
   }
 }
