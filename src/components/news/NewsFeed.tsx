@@ -2,9 +2,9 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
-import ImpactBadge from './ImpactBadge';
-import type { NewsItem, NewsResponse } from '@/types/news';
+import type { NewsArticle, NewsResponse } from '@/types/news';
 
 interface NewsFeedProps {
   slug: string;
@@ -18,14 +18,10 @@ interface NewsFeedProps {
     staleWarning: string;
     noArticles: string;
     source: string;
-    analysisUnavailable: string;
-    bullish: string;
-    neutral: string;
-    bearish: string;
   };
 }
 
-const STALE_TTL_MS = 2 * 1800 * 1000; // 3600000ms (1 hour)
+const STALE_TTL_MS = 600_000; // 10 minutes
 
 function getRelativeTime(ts: number): string {
   const diffMs = Date.now() - ts;
@@ -44,7 +40,7 @@ function parsePublishedAt(publishedAt: string): string {
 }
 
 export default function NewsFeed({ slug, locale, labels }: NewsFeedProps) {
-  const [articles, setArticles] = useState<NewsItem[]>([]);
+  const [articles, setArticles] = useState<NewsArticle[]>([]);
   const [cachedAt, setCachedAt] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -55,7 +51,7 @@ export default function NewsFeed({ slug, locale, labels }: NewsFeedProps) {
     try {
       const res = await fetch(`/api/news/${slug}?locale=${locale}`);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const json = await res.json() as NewsResponse;
+      const json = (await res.json()) as NewsResponse;
       setArticles(json.articles ?? []);
       setCachedAt(json.cachedAt ?? Date.now());
     } catch {
@@ -68,15 +64,6 @@ export default function NewsFeed({ slug, locale, labels }: NewsFeedProps) {
   useEffect(() => {
     fetchNews();
   }, [fetchNews]);
-
-  const impactLabel = (impact: 'bullish' | 'neutral' | 'bearish') => {
-    const map: Record<string, string> = {
-      bullish: labels.bullish,
-      neutral: labels.neutral,
-      bearish: labels.bearish,
-    };
-    return map[impact] ?? impact;
-  };
 
   return (
     <section>
@@ -115,7 +102,7 @@ export default function NewsFeed({ slug, locale, labels }: NewsFeedProps) {
       {!loading && !error && articles.length > 0 && (
         <div className="space-y-4">
           {articles.map((article) => (
-            <Card key={article.uuid}>
+            <Card key={article.id}>
               <CardHeader>
                 <CardTitle>
                   <a
@@ -124,7 +111,7 @@ export default function NewsFeed({ slug, locale, labels }: NewsFeedProps) {
                     rel="noopener noreferrer"
                     className="hover:underline text-text-primary"
                   >
-                    {article.title}
+                    {article.headline}
                   </a>
                 </CardTitle>
                 <p className="text-xs text-text-muted mt-1">
@@ -132,17 +119,15 @@ export default function NewsFeed({ slug, locale, labels }: NewsFeedProps) {
                 </p>
               </CardHeader>
               <CardContent>
-                {article.analysis ? (
-                  <div className="space-y-2">
-                    <p className="text-sm text-text-secondary">{article.analysis.summary}</p>
-                    <ImpactBadge
-                      impact={article.analysis.impact}
-                      label={impactLabel(article.analysis.impact)}
-                    />
-                    <p className="text-xs text-text-muted">{article.analysis.reasoning}</p>
+                <p className="text-sm text-text-secondary">{article.summary}</p>
+                {article.relatedTickers.length > 0 && (
+                  <div className="flex items-center gap-1.5 flex-wrap mt-2">
+                    {article.relatedTickers.map((ticker) => (
+                      <Badge key={ticker} variant="outline" className="text-xs">
+                        {ticker}
+                      </Badge>
+                    ))}
                   </div>
-                ) : (
-                  <p className="text-sm text-text-muted italic">{labels.analysisUnavailable}</p>
                 )}
               </CardContent>
             </Card>

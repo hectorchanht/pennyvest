@@ -1,7 +1,7 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { getAllStrategies } from '@/lib/strategies';
 import { getAllProfiles } from '@/lib/strategies/profiles';
-import { mockNewsItems, mockStrategyData } from '@/lib/mock-data';
+import { mockStrategyData } from '@/lib/mock-data';
 import HeroSection from '@/components/landing/HeroSection';
 import NewsDigest from '@/components/landing/NewsDigest';
 
@@ -40,34 +40,18 @@ export default async function HomePage({ params }: Props) {
     },
   };
 
-  const newsDigestProps = {
-    title: t('newsDigest.title'),
-    newsItems: mockNewsItems.map((item) => ({
-      id: item.id,
-      headline: t(item.headlineKey),
-      category: t(`newsDigest.categories.${item.category}`),
-      categorySlug: item.category,
-      source: item.source,
-      date: item.date,
-      impactScore: item.impactScore,
-      summary: t(item.summaryKey),
-      shortTermImpact: t(item.shortTermImpactKey),
-      midTermImpact: t(item.midTermImpactKey),
-      relatedHoldings: item.relatedHoldings,
-    })),
-    labels: {
-      impactLabel: t('newsDigest.impactLabel'),
-      shortTermLabel: t('newsDigest.shortTermLabel'),
-      midTermLabel: t('newsDigest.midTermLabel'),
-      relatedLabel: t('newsDigest.relatedLabel'),
-    },
-  };
-
   return (
     <div className="-mt-16">
       <HeroSection {...heroProps} />
       <div className="max-w-6xl mx-auto px-4 pb-16">
-        <NewsDigest {...newsDigestProps} />
+        <NewsDigest
+          title={t('newsDigest.title')}
+          labels={{
+            relatedLabel: t('newsDigest.relatedLabel'),
+            loading: t('news.loading'),
+            error: t('news.error'),
+          }}
+        />
       </div>
     </div>
   );

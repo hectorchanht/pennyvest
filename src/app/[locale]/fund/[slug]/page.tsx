@@ -126,10 +126,6 @@ export default async function FundPage({ params }: Props) {
     staleWarning: t('common.staleWarning'),
     noArticles: t('news.noArticles'),
     source: t('news.source'),
-    analysisUnavailable: t('news.analysisUnavailable'),
-    bullish: t('news.impact.bullish'),
-    neutral: t('news.impact.neutral'),
-    bearish: t('news.impact.bearish'),
   };
 
   const pricesSectionLabels = {

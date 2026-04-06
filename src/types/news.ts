@@ -1,23 +1,16 @@
-export interface RawNewsItem {
-  uuid: string;
-  title: string;
-  description: string;
-  url: string;
+export interface NewsArticle {
+  id: string;
+  headline: string;
+  summary: string;
   source: string;
+  url: string;
+  imageUrl: string | null;
+  category: string;
   publishedAt: string; // ISO date string
-}
-
-export interface NewsAnalysis {
-  summary: string; // 2-3 sentence extractive summary
-  impact: 'bullish' | 'neutral' | 'bearish';
-  reasoning: string; // 1-2 sentence explanation
-}
-
-export interface NewsItem extends RawNewsItem {
-  analysis: NewsAnalysis | null; // null if AI analysis unavailable
+  relatedTickers: string[];
 }
 
 export interface NewsResponse {
-  articles: NewsItem[];
+  articles: NewsArticle[];
   cachedAt: number;
 }
