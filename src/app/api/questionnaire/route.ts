@@ -43,7 +43,7 @@ export async function GET() {
     return NextResponse.json(null);
   }
 
-  const row = rows[0];
+  const row = rows[0]!;
   return NextResponse.json({
     answers: row.answers,
     result: {
