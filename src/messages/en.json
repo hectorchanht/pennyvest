@@ -50,7 +50,8 @@
     "traditional": "Traditional",
     "commodities": "Commodities",
     "crypto": "Crypto",
-    "questionnaire": "Quiz"
+    "questionnaire": "Quiz",
+    "profile": "Profile"
   },
   "landing": {
     "hero": {
@@ -234,6 +235,19 @@
       "t6": { "text": "Compared to others, how would you describe your risk appetite?", "o": ["Much more conservative", "Somewhat more cautious", "About the same", "Somewhat more adventurous", "Much higher risk appetite"] },
       "t7": { "text": "How do you feel about losses vs gains?", "o": ["Avoiding losses is far more important than gains", "I feel losses about twice as strongly as gains", "I can accept losses for the chance of higher returns"] }
     }
+  },
+  "userProfile": {
+    "title": "Your Profile",
+    "signInPrompt": "Sign in to view your profile",
+    "signInButton": "Sign In",
+    "riskProfile": "Risk Profile",
+    "notAssessed": "Not yet assessed",
+    "takeQuiz": "Take Risk Questionnaire",
+    "retakeQuiz": "Retake Questionnaire",
+    "viewPortfolio": "View Recommended Portfolio",
+    "memberSince": "Member since",
+    "email": "Email",
+    "name": "Name"
   },
   "theme": {
     "switchToLight": "Switch to light mode",

@@ -50,7 +50,8 @@
     "traditional": "傳統行業",
     "commodities": "大宗商品",
     "crypto": "加密貨幣",
-    "questionnaire": "問卷"
+    "questionnaire": "問卷",
+    "profile": "個人"
   },
   "landing": {
     "hero": {
@@ -234,6 +235,19 @@
       "t6": { "text": "與他人相比，你如何形容自己的風險偏好？", "o": ["保守得多", "稍為謹慎", "差不多", "稍為進取", "風險偏好高得多"] },
       "t7": { "text": "你對虧損與收益的態度？", "o": ["避免虧損遠比獲利重要", "虧損的感受比收益強烈約兩倍", "我能接受虧損以換取更高回報的機會"] }
     }
+  },
+  "userProfile": {
+    "title": "你的檔案",
+    "signInPrompt": "登入以查看你的檔案",
+    "signInButton": "登入",
+    "riskProfile": "風險評估",
+    "notAssessed": "尚未評估",
+    "takeQuiz": "進行風險問卷",
+    "retakeQuiz": "重新填寫問卷",
+    "viewPortfolio": "查看推薦投資組合",
+    "memberSince": "註冊日期",
+    "email": "電郵",
+    "name": "姓名"
   },
   "theme": {
     "switchToLight": "切換至淺色模式",
