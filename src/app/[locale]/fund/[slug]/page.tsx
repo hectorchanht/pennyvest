@@ -7,12 +7,7 @@ import PricesSection from '@/components/strategy/PricesSection';
 import EquitySection from '@/components/charts/EquitySection';
 import NewsFeed from '@/components/news/NewsFeed';
 import { AllocationDonutClient } from '@/components/charts/ClientCharts';
-import OpportunityCard from '@/components/strategy/OpportunityCard';
-import PortfolioNotes from '@/components/strategy/PortfolioNotes';
-import {
-  mockOpportunities,
-  mockPortfolioNotes,
-} from '@/lib/mock-data';
+import LiveInsights from '@/components/strategy/LiveInsights';
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
@@ -41,45 +36,24 @@ export default async function FundPage({ params }: Props) {
   const nextSlug = nextStrategy?.slug ?? null;
 
   const fundName = t(strategy.nameKey);
-  const opportunities = mockOpportunities[slug] ?? [];
-  const portfolioNotes = mockPortfolioNotes[slug];
 
-  // Translate opportunities
-  const translatedOpportunities = opportunities.map((opp) => ({
-    title: t(opp.titleKey),
-    description: t(opp.descriptionKey),
-    confidence: opp.confidence,
-    horizon: t(opp.horizonKey),
-    logic: t(opp.logicKey),
-    catalysts: opp.catalystKeys.map((k) => t(k)),
-    risks: opp.riskKeys.map((k) => t(k)),
-    actions: opp.actions,
-  }));
-
-  // Translate portfolio notes
-  const translatedNotes = portfolioNotes
-    ? {
-        actionSummary: t(portfolioNotes.actionSummaryKey),
-        description: t(portfolioNotes.descriptionKey),
-        holdingAdjustments: portfolioNotes.holdingAdjustments.map((adj) => ({
-          ticker: adj.ticker,
-          action: adj.action,
-          reasoning: t(adj.reasoningKey),
-        })),
-        riskNote: t(portfolioNotes.riskNoteKey),
-        cashNote: t(portfolioNotes.cashNoteKey),
-      }
-    : null;
-
-  const opportunityLabels = {
+  const insightsLabels = {
+    opportunitiesTitle: t('fundDetail.labels.opportunitiesTitle'),
+    opportunitiesSubtitle: t('fundDetail.labels.opportunitiesSubtitle'),
+    notesTitle: t('fundDetail.labels.notesTitle'),
+    notesSubtitle: t('fundDetail.labels.notesSubtitle'),
     confidence: t('fundDetail.labels.confidence'),
     horizon: t('fundDetail.labels.horizon'),
     logic: t('fundDetail.labels.logic'),
     catalysts: t('fundDetail.labels.catalysts'),
     risks: t('fundDetail.labels.risks'),
+    riskManagement: t('fundDetail.labels.riskManagement'),
+    cashStrategy: t('fundDetail.labels.cashStrategy'),
     actionHold: t('fundDetail.labels.actionHold'),
     actionAdd: t('fundDetail.labels.actionAdd'),
     actionReduce: t('fundDetail.labels.actionReduce'),
+    loading: t('charts.loading'),
+    error: t('charts.error'),
   };
 
   // Risk label for allocation donut center
@@ -175,48 +149,8 @@ export default async function FundPage({ params }: Props) {
           <NewsFeed slug={slug} locale={locale} labels={newsLabels} />
         </section>
 
-        {/* 6. Investment Opportunities */}
-        {translatedOpportunities.length > 0 && (
-          <section className="mb-8">
-            <div className="mb-4">
-              <h2 className="text-xl font-bold text-text-primary">
-                {t('fundDetail.labels.opportunitiesTitle')}
-              </h2>
-              <p className="text-sm text-text-secondary mt-1">
-                {t('fundDetail.labels.opportunitiesSubtitle')}
-              </p>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
-              {translatedOpportunities.map((opp, i) => (
-                <OpportunityCard
-                  key={opportunities[i]?.id ?? i}
-                  data={opp}
-                  labels={opportunityLabels}
-                />
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* 7. Portfolio Notes */}
-        {translatedNotes && (
-          <PortfolioNotes
-            actionSummary={translatedNotes.actionSummary}
-            description={translatedNotes.description}
-            holdingAdjustments={translatedNotes.holdingAdjustments}
-            riskNote={translatedNotes.riskNote}
-            cashNote={translatedNotes.cashNote}
-            labels={{
-              title: t('fundDetail.labels.notesTitle'),
-              subtitle: t('fundDetail.labels.notesSubtitle'),
-              riskManagement: t('fundDetail.labels.riskManagement'),
-              cashStrategy: t('fundDetail.labels.cashStrategy'),
-              actionHold: t('fundDetail.labels.actionHold'),
-              actionAdd: t('fundDetail.labels.actionAdd'),
-              actionReduce: t('fundDetail.labels.actionReduce'),
-            }}
-          />
-        )}
+        {/* 6. AI-Generated Opportunities + Portfolio Notes */}
+        <LiveInsights slug={slug} locale={locale} labels={insightsLabels} />
 
         {/* 8. Disclaimer */}
         <p className="text-xs text-text-muted text-center py-4 border-t border-border">
