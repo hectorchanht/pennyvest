@@ -6,6 +6,7 @@ import { Link } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
 import { authClient } from '@/lib/auth/client';
 import LanguageSwitcher from './LanguageSwitcher';
+import ThemeToggle from './ThemeToggle';
 
 export default function Header() {
   const t = useTranslations('navigation');
@@ -39,7 +40,7 @@ export default function Header() {
             <img
               src="/logo.svg"
               alt=""
-              className="h-7 w-auto invert"
+              className="h-7 w-auto dark:invert"
             />
             Pennyvest
           </Link>
@@ -109,6 +110,7 @@ export default function Header() {
                 Sign In
               </Link>
             )}
+            <ThemeToggle />
             <LanguageSwitcher />
           </div>
         </div>
