@@ -97,7 +97,7 @@ export async function getStrategyInsights(
         const { text } = await generateText({
           model,
           prompt,
-          maxTokens: 2000,
+          // maxOutputTokens: 2000,
         });
 
         // Parse JSON from response — handle potential markdown fences

@@ -21,6 +21,7 @@ export function buildInsightsPrompt(ctx: InsightsContext): string {
       const recStr = rec
         ? `Analysts: ${rec.strongBuy + rec.buy} buy, ${rec.hold} hold, ${rec.sell + rec.strongSell} sell`
         : 'No analyst data';
+      if (!price?.changePct) return null;
       return `- ${a.ticker} (${Math.round(a.weight * 100)}%, ${a.assetClass}): $${price?.price?.toFixed(2) ?? '?'} (${price?.changePct >= 0 ? '+' : ''}${price?.changePct?.toFixed(2) ?? '?'}% today) | ${recStr}`;
     })
     .join('\n');
