@@ -26,9 +26,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html suppressHydrationWarning className={`dark ${inter.variable} ${notoSansTC.variable}`}>
+    <html suppressHydrationWarning className={`${inter.variable} ${notoSansTC.variable}`}>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: `document.documentElement.classList.add('dark');var m=location.pathname.match(/^\\/(zh-HK|zh)/);if(m)document.documentElement.lang='zh-HK';` }} />
+        <script dangerouslySetInnerHTML={{ __html: `(function(){var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark');var m=location.pathname.match(/^\\/(zh-HK|zh)/);if(m)document.documentElement.lang='zh-HK';})();` }} />
       </head>
       <body>{children}</body>
     </html>
