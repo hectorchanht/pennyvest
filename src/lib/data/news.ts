@@ -72,7 +72,7 @@ async function getCachedNews(slug: string, limit: number): Promise<{ articles: N
 
   return {
     articles: rows.map(rowToArticle),
-    cachedAt: new Date(freshCheck[0].fetched_at as string).getTime(),
+    cachedAt: new Date(freshCheck[0]!.fetched_at as string).getTime(),
   };
 }
 

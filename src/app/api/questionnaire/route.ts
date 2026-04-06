@@ -89,7 +89,7 @@ export async function POST(request: Request) {
           profile_slug = ${result.profileSlug},
           section_scores = ${JSON.stringify(result.sectionScores)},
           updated_at = now()
-      WHERE id = ${existing[0].id}
+      WHERE id = ${existing[0]!.id}
     `;
   } else {
     await sql`

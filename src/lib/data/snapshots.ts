@@ -58,21 +58,21 @@ export async function getOrCreateTodaySnapshot(
     SELECT * FROM portfolio_snapshots
     WHERE strategy_slug = ${strategy.slug} AND date = ${today}
   `;
-  if (existing.length > 0) return rowToSnapshot(existing[0]);
+  if (existing.length > 0) return rowToSnapshot(existing[0]!);
 
   // Check if any snapshots exist — if not, backfill first
   const count = await sql`
     SELECT COUNT(*) as cnt FROM portfolio_snapshots
     WHERE strategy_slug = ${strategy.slug}
   `;
-  if (Number(count[0].cnt) === 0) {
+  if (Number(count[0]!.cnt) === 0) {
     await backfillSnapshots(strategy);
     // Re-check for today
     const afterBackfill = await sql`
       SELECT * FROM portfolio_snapshots
       WHERE strategy_slug = ${strategy.slug} AND date = ${today}
     `;
-    if (afterBackfill.length > 0) return rowToSnapshot(afterBackfill[0]);
+    if (afterBackfill.length > 0) return rowToSnapshot(afterBackfill[0]!);
   }
 
   // Get latest previous snapshot
@@ -81,7 +81,7 @@ export async function getOrCreateTodaySnapshot(
     WHERE strategy_slug = ${strategy.slug} AND date < ${today}
     ORDER BY date DESC LIMIT 1
   `;
-  const prevCumulative = prev.length > 0 ? (prev[0].cumulative_return_pct as number) : 0;
+  const prevCumulative = prev.length > 0 ? (prev[0]!.cumulative_return_pct as number) : 0;
 
   // Fetch live prices
   const [stockResult, cryptoResult] = await Promise.all([
@@ -164,7 +164,8 @@ async function backfillSnapshots(strategy: Strategy): Promise<void> {
             ? q.date.toISOString().slice(0, 10)
             : String(q.date).slice(0, 10);
           if (!stockHistory.has(date)) stockHistory.set(date, new Map());
-          stockHistory.get(date)!.set(alloc.ticker, q.close ?? q.adjClose ?? 0);
+          const price = typeof q.close === 'number' ? q.close : (typeof q.adjClose === 'number' ? q.adjClose : 0);
+          stockHistory.get(date)!.set(alloc.ticker, price);
         }
       }
     } catch (e) {

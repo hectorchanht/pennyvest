@@ -4,7 +4,21 @@ import { z } from 'zod';
 import { model } from './client';
 import { buildSystemPrompt, buildAnalysisPrompt } from './prompts';
 import { withCache, TTL } from '@/lib/data/cache';
-import type { NewsAnalysis, RawNewsItem } from '@/types/news';
+// Types defined locally — not currently exported from @/types/news
+interface NewsAnalysis {
+  summary: string;
+  impact: 'bullish' | 'neutral' | 'bearish';
+  reasoning: string;
+}
+
+interface RawNewsItem {
+  uuid: string;
+  title: string;
+  description: string;
+  url: string;
+  source: string;
+  publishedAt: string;
+}
 
 const NewsAnalysisSchema = z.object({
   summary: z.string(),

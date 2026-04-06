@@ -29,8 +29,8 @@ export async function withCache<T>(
     `;
     if (rows.length > 0) {
       return {
-        data: rows[0].data as T,
-        cachedAt: rows[0].cached_at as number,
+        data: rows[0]!.data as T,
+        cachedAt: rows[0]!.cached_at as number,
       };
     }
   } catch (e) {

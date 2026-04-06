@@ -39,10 +39,12 @@ export async function fetchCompanyNews(
   const from = new Date();
   from.setDate(from.getDate() - daysBack);
 
+  const fromStr = from.toISOString().split('T')[0]!;
+  const toStr = to.toISOString().split('T')[0]!;
   const params = new URLSearchParams({
     symbol: ticker,
-    from: from.toISOString().split('T')[0],
-    to: to.toISOString().split('T')[0],
+    from: fromStr,
+    to: toStr,
     token: process.env.FINNHUB_API_KEY!,
   });
 
