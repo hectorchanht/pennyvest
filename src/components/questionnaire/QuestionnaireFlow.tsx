@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
 import { authClient } from '@/lib/auth/client';
 import { sections, calculateResult } from '@/lib/questionnaire/questions';
@@ -11,17 +12,17 @@ import ResultsCard from './ResultsCard';
 
 // Flatten all questions with section info
 const allQuestions = sections.flatMap((section) =>
-  section.questions.map((q) => ({ ...q, sectionName: section.name }))
+  section.questions.map((q) => ({ ...q, sectionId: section.id, sectionName: section.name }))
 );
 
 export default function QuestionnaireFlow() {
+  const t = useTranslations('questionnaire');
   const session = authClient.useSession();
   const router = useRouter();
-  const [step, setStep] = useState(0); // 0-based index into allQuestions
+  const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, number | number[]>>({});
   const [result, setResult] = useState<QuestionnaireResult | null>(null);
 
-  // Auth guard: redirect to sign-in if not logged in
   useEffect(() => {
     if (!session.isPending && !session.data?.user) {
       const callbackUrl = encodeURIComponent('/questionnaire');
@@ -33,7 +34,6 @@ export default function QuestionnaireFlow() {
   const totalQuestions = allQuestions.length;
   const progress = result ? 100 : ((step) / totalQuestions) * 100;
 
-  // Convert index-based selection to score for storage
   function handleSelect(indices: number | number[]) {
     if (!currentQuestion) return;
     const q = currentQuestion;
@@ -45,13 +45,11 @@ export default function QuestionnaireFlow() {
     }
   }
 
-  // Get current selection as indices for QuestionCard
   const currentSelectedIndices = useMemo(() => {
     if (!currentQuestion) return undefined;
     const answer = answers[currentQuestion.id];
     if (answer === undefined) return undefined;
     if (currentQuestion.multiSelect && Array.isArray(answer)) {
-      // Map scores back to indices
       const used = new Set<number>();
       return answer.map((score) => {
         const idx = currentQuestion.options.findIndex(
@@ -61,7 +59,6 @@ export default function QuestionnaireFlow() {
         return idx;
       });
     }
-    // Single select: find option index by score
     return currentQuestion.options.findIndex((o) => o.score === answer);
   }, [currentQuestion, answers]);
 
@@ -71,7 +68,6 @@ export default function QuestionnaireFlow() {
     if (step < totalQuestions - 1) {
       setStep(step + 1);
     } else {
-      // Calculate result
       setResult(calculateResult(answers));
     }
   }
@@ -80,27 +76,24 @@ export default function QuestionnaireFlow() {
     if (step > 0) setStep(step - 1);
   }
 
-  // Show loading while checking auth
   if (session.isPending) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <p className="text-text-muted">Loading...</p>
+        <p className="text-text-muted">{t('loading')}</p>
       </div>
     );
   }
 
-  // Don't render questionnaire if not logged in (redirect happening)
   if (!session.data?.user) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <p className="text-text-muted">Redirecting to sign in...</p>
+        <p className="text-text-muted">{t('redirecting')}</p>
       </div>
     );
   }
 
   return (
     <div className="mx-auto max-w-xl px-4 py-8">
-      {/* Progress bar */}
       <div className="mb-8 space-y-2">
         <div className="h-1.5 w-full rounded-full bg-surface overflow-hidden">
           <div
@@ -121,28 +114,30 @@ export default function QuestionnaireFlow() {
         <>
           <QuestionCard
             question={currentQuestion}
-            sectionName={currentQuestion.sectionName}
+            translatedText={t(`q.${currentQuestion.id}.text`)}
+            translatedHint={t.has(`q.${currentQuestion.id}.hint`) ? t(`q.${currentQuestion.id}.hint`) : undefined}
+            translatedOptions={currentQuestion.options.map((_, i) => t(`q.${currentQuestion.id}.o.${i}`))}
+            sectionName={t(`sections.${currentQuestion.sectionId}` as 'sections.capacity')}
             questionIndex={step}
             totalQuestions={totalQuestions}
             selectedIndices={currentSelectedIndices}
             onSelect={handleSelect}
           />
 
-          {/* Navigation */}
           <div className="mt-8 flex justify-between gap-4">
             <Button
               variant="outline"
               onClick={handleBack}
               disabled={step === 0}
             >
-              Back
+              {t('back')}
             </Button>
             <Button
               className="bg-brand-green text-black hover:bg-brand-green/90"
               onClick={handleNext}
               disabled={!hasAnswer}
             >
-              {step === totalQuestions - 1 ? 'See Results' : 'Next'}
+              {step === totalQuestions - 1 ? t('seeResults') : t('next')}
             </Button>
           </div>
         </>

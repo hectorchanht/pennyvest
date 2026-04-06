@@ -1,39 +1,43 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import type { Question } from '@/lib/questionnaire/types';
 
 interface QuestionCardProps {
   question: Question;
+  translatedText: string;
+  translatedHint?: string;
+  translatedOptions: string[];
   sectionName: string;
   questionIndex: number;
   totalQuestions: number;
-  /** For single-select: the selected option index. For multi-select: array of selected indices. */
   selectedIndices: number | number[] | undefined;
   onSelect: (indices: number | number[]) => void;
 }
 
 export default function QuestionCard({
   question,
+  translatedText,
+  translatedHint,
+  translatedOptions,
   sectionName,
   questionIndex,
   totalQuestions,
   selectedIndices,
   onSelect,
 }: QuestionCardProps) {
+  const t = useTranslations('questionnaire');
   const multiSelected = Array.isArray(selectedIndices) ? selectedIndices : [];
 
   function handleMultiToggle(idx: number) {
-    const isNone = question.options[idx]?.label === 'None of the above';
+    // "None of the above" is always the last option with score 0
+    const isNone = question.options[idx]?.score === 0;
     if (isNone) {
-      // Toggle "none" — clears everything else
       onSelect(multiSelected.includes(idx) ? [] : [idx]);
       return;
     }
-    // Remove "none" index if present, toggle the clicked index
-    const noneIdx = question.options.findIndex(
-      (o) => o.label === 'None of the above'
-    );
+    const noneIdx = question.options.findIndex((o) => o.score === 0);
     let next = multiSelected.filter((i) => i !== noneIdx);
     if (next.includes(idx)) {
       next = next.filter((i) => i !== idx);
@@ -50,20 +54,20 @@ export default function QuestionCard({
           {sectionName}
         </p>
         <p className="text-sm text-text-muted">
-          Question {questionIndex + 1} of {totalQuestions}
+          {t('questionOf', { current: questionIndex + 1, total: totalQuestions })}
         </p>
       </div>
 
       <h2 className="text-xl font-semibold text-text-primary leading-relaxed">
-        {question.text}
+        {translatedText}
       </h2>
 
-      {question.hint && (
-        <p className="text-sm text-text-muted">{question.hint}</p>
+      {translatedHint && (
+        <p className="text-sm text-text-muted">{translatedHint}</p>
       )}
 
       <div className="space-y-3">
-        {question.options.map((option, i) => {
+        {translatedOptions.map((label, i) => {
           const active = question.multiSelect
             ? multiSelected.includes(i)
             : selectedIndices === i;
@@ -87,7 +91,7 @@ export default function QuestionCard({
                   : 'border-border bg-surface text-text-secondary'
               )}
             >
-              {option.label}
+              {label}
             </button>
           );
         })}

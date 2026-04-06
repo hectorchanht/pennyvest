@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/button';
 import type { QuestionnaireResult } from '@/lib/questionnaire/types';
@@ -10,27 +11,26 @@ const profileColors: Record<string, string> = {
   aggressive: 'text-orange-400',
 };
 
-const profileDescriptions: Record<string, string> = {
-  conservative:
-    'You prefer stability and capital preservation. A portfolio weighted toward bonds, dividend stocks, and real assets suits your risk appetite.',
-  balanced:
-    'You seek a healthy mix of growth and safety. A diversified portfolio across all asset classes matches your goals.',
-  aggressive:
-    'You are comfortable with volatility for higher returns. A growth-oriented portfolio with heavy equity and crypto exposure fits your profile.',
+const profileDescKeys: Record<string, string> = {
+  conservative: 'conservativeDesc',
+  balanced: 'balancedDesc',
+  aggressive: 'aggressiveDesc',
 };
 
 export default function ResultsCard({ result }: { result: QuestionnaireResult }) {
+  const t = useTranslations('questionnaire');
+
   return (
     <div className="space-y-8">
       <div className="text-center space-y-3">
         <p className="text-xs font-medium uppercase tracking-wider text-brand-green">
-          Your Result
+          {t('yourResult')}
         </p>
         <h2 className="text-3xl font-bold text-text-primary">
           {result.riskBand}
         </h2>
         <p className={`text-lg font-semibold ${profileColors[result.profileSlug]}`}>
-          Score: {result.overallScore}/100
+          {t('score', { score: result.overallScore })}
         </p>
       </div>
 
@@ -43,28 +43,28 @@ export default function ResultsCard({ result }: { result: QuestionnaireResult })
           />
         </div>
         <div className="flex justify-between text-xs text-text-muted">
-          <span>Conservative</span>
-          <span>Balanced</span>
-          <span>Aggressive</span>
+          <span>{t('conservative')}</span>
+          <span>{t('balanced')}</span>
+          <span>{t('aggressive')}</span>
         </div>
       </div>
 
       {/* Description */}
       <p className="text-sm text-text-secondary leading-relaxed text-center">
-        {profileDescriptions[result.profileSlug]}
+        {t(profileDescKeys[result.profileSlug] as 'conservativeDesc')}
       </p>
 
       {/* Section breakdown */}
       <div className="space-y-3">
-        <h3 className="text-sm font-medium text-text-primary">Score Breakdown</h3>
+        <h3 className="text-sm font-medium text-text-primary">{t('scoreBreakdown')}</h3>
         {result.sectionScores.map((s) => (
           <div key={s.sectionId} className="space-y-1">
             <div className="flex justify-between text-sm">
-              <span className="text-text-secondary">{s.sectionName}</span>
+              <span className="text-text-secondary">{t(`sections.${s.sectionId}` as 'sections.capacity')}</span>
               <span className="text-text-primary font-medium">
                 {Math.round(s.percentage)}%
                 <span className="text-text-muted ml-1">
-                  (weight: {Math.round(s.weight * 100)}%)
+                  {t('weight', { weight: Math.round(s.weight * 100) })}
                 </span>
               </span>
             </div>
@@ -85,7 +85,7 @@ export default function ResultsCard({ result }: { result: QuestionnaireResult })
             className="w-full bg-brand-green text-black hover:bg-brand-green/90"
             size="lg"
           >
-            View Your Recommended Portfolio
+            {t('viewPortfolio')}
           </Button>
         </Link>
         <Button
@@ -94,7 +94,7 @@ export default function ResultsCard({ result }: { result: QuestionnaireResult })
           className="w-full"
           onClick={() => window.location.reload()}
         >
-          Retake Questionnaire
+          {t('retake')}
         </Button>
       </div>
     </div>

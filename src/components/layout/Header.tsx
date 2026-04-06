@@ -10,6 +10,7 @@ import ThemeToggle from './ThemeToggle';
 
 export default function Header() {
   const t = useTranslations('navigation');
+  const tAuth = useTranslations('auth');
   const [scrolled, setScrolled] = useState(false);
   const session = authClient.useSession();
 
@@ -81,7 +82,7 @@ export default function Header() {
               href="/questionnaire"
               className="text-sm font-medium text-brand-green hover:text-brand-green/80 transition-colors"
             >
-              Questionnaire
+              {t('questionnaire')}
             </Link>
           </nav>
 
@@ -99,7 +100,7 @@ export default function Header() {
                   }}
                   className="text-sm text-text-secondary hover:text-text-primary transition-colors"
                 >
-                  Sign Out
+                  {tAuth('signOut')}
                 </button>
               </div>
             ) : (
@@ -107,7 +108,7 @@ export default function Header() {
                 href="/auth/sign-in"
                 className="text-sm font-medium text-brand-green hover:text-brand-green/80 transition-colors"
               >
-                Sign In
+                {tAuth('signIn')}
               </Link>
             )}
             <ThemeToggle />
