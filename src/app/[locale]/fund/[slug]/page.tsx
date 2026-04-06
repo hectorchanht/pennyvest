@@ -2,7 +2,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { getAllStrategies, getStrategyConfig } from '@/lib/strategies';
 import { notFound } from 'next/navigation';
 import SwipeNavigator from '@/components/strategy/SwipeNavigator';
-import FundHeader from '@/components/strategy/FundHeader';
+import LiveFundHeader from '@/components/strategy/LiveFundHeader';
 import PricesSection from '@/components/strategy/PricesSection';
 import EquitySection from '@/components/charts/EquitySection';
 import NewsFeed from '@/components/news/NewsFeed';
@@ -10,7 +10,6 @@ import { AllocationDonutClient } from '@/components/charts/ClientCharts';
 import OpportunityCard from '@/components/strategy/OpportunityCard';
 import PortfolioNotes from '@/components/strategy/PortfolioNotes';
 import {
-  mockFundDetails,
   mockOpportunities,
   mockPortfolioNotes,
 } from '@/lib/mock-data';
@@ -42,38 +41,8 @@ export default async function FundPage({ params }: Props) {
   const nextSlug = nextStrategy?.slug ?? null;
 
   const fundName = t(strategy.nameKey);
-  const fundDetail = mockFundDetails[slug];
   const opportunities = mockOpportunities[slug] ?? [];
   const portfolioNotes = mockPortfolioNotes[slug];
-
-  // Build stats for header
-  const dailyGainPct = fundDetail?.dailyGainPct ?? 0;
-  const cashRatio = fundDetail?.cashRatio ?? 2;
-  const sixMonthTargetPct = fundDetail?.sixMonthTargetPct ?? 0;
-  const annualizedReturnPct = fundDetail?.annualizedReturnPct ?? 0;
-
-  const stats = [
-    {
-      label: t('fundDetail.labels.dailyGain'),
-      value: `${dailyGainPct >= 0 ? '+' : ''}${dailyGainPct.toFixed(2)}%`,
-      isPositive: dailyGainPct > 0,
-      isNegative: dailyGainPct < 0,
-    },
-    {
-      label: t('fundDetail.labels.cashRatio'),
-      value: `${cashRatio.toFixed(1)}%`,
-    },
-    {
-      label: t('fundDetail.labels.sixMonthTarget'),
-      value: `+${sixMonthTargetPct}%`,
-      isPositive: true,
-    },
-    {
-      label: t('fundDetail.labels.annualizedReturn'),
-      value: `+${annualizedReturnPct}%`,
-      isPositive: true,
-    },
-  ];
 
   // Translate opportunities
   const translatedOpportunities = opportunities.map((opp) => ({
@@ -154,13 +123,14 @@ export default async function FundPage({ params }: Props) {
     <SwipeNavigator prevSlug={prevSlug} nextSlug={nextSlug}>
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* 1. Fund Header Banner */}
-        <FundHeader
+        <LiveFundHeader
+          slug={slug}
           fundName={fundName}
-          date="2026-03-27"
-          stats={stats}
           labels={{
             trackingLive: t('fundDetail.labels.trackingLive'),
             modelPortfolio: t('fundDetail.labels.modelPortfolio'),
+            dailyGain: t('fundDetail.labels.dailyGain'),
+            portfolioValue: t('fundDetail.labels.portfolioValue'),
           }}
         />
 
