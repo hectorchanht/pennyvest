@@ -1,7 +1,30 @@
 {
   "permissions": {
     "allow": [
-      "WebSearch"
+      "WebSearch",
+      "WebFetch(domain:predeploy-502db858-aitechreport-diidgg3y-gkthbqipr7rhsmfd.manus.space)",
+      "Bash(pnpm build:*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(kill 34622)",
+      "Bash(xargs kill:*)",
+      "Bash(find /private/tmp/claude-501 -name *.png)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git status:*)",
+      "Bash(ssh -T git@github-b)",
+      "Bash(ssh -T git@github.com)",
+      "Bash(ssh-keygen -l -f ~/.ssh/hectorchanht.pub)",
+      "Bash(pnpm add:*)",
+      "Bash(npm --version)",
+      "Bash(export PATH=\"$HOME/.local/share/pnpm:$HOME/.nvm/versions/node/*/bin:/opt/homebrew/bin:/usr/local/bin:$PATH\")",
+      "Bash(export PATH=\"/usr/local/bin:$PATH\")",
+      "Bash(openssl rand:*)",
+      "Bash(ls /Users/laichan/code/pennyvest/v1/node_modules/@neondatabase/auth/*.md)",
+      "Bash(mkdir -p /Users/laichan/code/pennyvest/v1/src/app/[locale]/auth/sign-in)",
+      "Bash(mkdir -p /Users/laichan/code/pennyvest/v1/src/app/[locale]/auth/sign-up)",
+      "Read(//Users/laichan/code/pennyvest/v1/$HOME/.nvm/versions/node/*/bin/**)",
+      "Read(//opt/homebrew/Cellar/node/25.5.0/bin/**)",
+      "Read(//usr/local/**)"
     ]
   }
 }
