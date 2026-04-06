@@ -24,7 +24,7 @@ export default function QuestionCard({
   const multiSelected = Array.isArray(selectedIndices) ? selectedIndices : [];
 
   function handleMultiToggle(idx: number) {
-    const isNone = question.options[idx].label === 'None of the above';
+    const isNone = question.options[idx]?.label === 'None of the above';
     if (isNone) {
       // Toggle "none" — clears everything else
       onSelect(multiSelected.includes(idx) ? [] : [idx]);
