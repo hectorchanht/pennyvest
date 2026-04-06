@@ -117,7 +117,7 @@ export default function QuestionnaireFlow() {
 
       {result ? (
         <ResultsCard result={result} />
-      ) : (
+      ) : currentQuestion ? (
         <>
           <QuestionCard
             question={currentQuestion}
@@ -146,7 +146,7 @@ export default function QuestionnaireFlow() {
             </Button>
           </div>
         </>
-      )}
+      ) : null}
     </div>
   );
 }
