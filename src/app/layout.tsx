@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import { Inter, Noto_Sans_TC } from 'next/font/google';
 import '@/app/globals.css';
 
@@ -14,11 +13,6 @@ const notoSansTC = Noto_Sans_TC({
   display: 'swap',
   weight: ['400', '500', '700'],
 });
-
-export const metadata: Metadata = {
-  title: 'Pennyvest',
-  description: 'Clearly explained investment strategies with real-time news context',
-};
 
 export default function RootLayout({
   children,

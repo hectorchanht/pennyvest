@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { authClient } from '@/lib/auth/client';
 import { Link } from '@/i18n/navigation';
@@ -8,6 +9,8 @@ import { Button } from '@/components/ui/button';
 
 export default function SignUpPage() {
   const t = useTranslations('auth');
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl') || '/';
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,7 +35,7 @@ export default function SignUpPage() {
         return;
       }
 
-      window.location.href = '/';
+      window.location.href = callbackUrl;
     } catch {
       setError(t('genericError'));
       setLoading(false);
@@ -114,7 +117,7 @@ export default function SignUpPage() {
 
         <p className="text-center text-sm text-text-secondary">
           {t('hasAccount')}{' '}
-          <Link href="/auth/sign-in" className="text-brand-green hover:underline">
+          <Link href={`/auth/sign-in${callbackUrl !== '/' ? `?callbackUrl=${encodeURIComponent(callbackUrl)}` : ''}`} className="text-brand-green hover:underline">
             {t('signIn')}
           </Link>
         </p>

@@ -1,4 +1,8 @@
 {
+  "metadata": {
+    "title": "Pennyvest",
+    "description": "清晰易懂的投資策略，配合即時新聞分析"
+  },
   "newsDigest": {
     "title": "環球新聞速報",
     "impactLabel": "影響度",

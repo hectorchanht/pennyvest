@@ -1,4 +1,8 @@
 {
+  "metadata": {
+    "title": "Pennyvest",
+    "description": "Clearly explained investment strategies with real-time news context"
+  },
   "newsDigest": {
     "title": "Global News Digest",
     "impactLabel": "Impact",
