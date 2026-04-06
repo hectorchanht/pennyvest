@@ -4,11 +4,13 @@ import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
+import { authClient } from '@/lib/auth/client';
 import LanguageSwitcher from './LanguageSwitcher';
 
 export default function Header() {
   const t = useTranslations('navigation');
   const [scrolled, setScrolled] = useState(false);
+  const session = authClient.useSession();
 
   useEffect(() => {
     function handleScroll() {
@@ -74,10 +76,39 @@ export default function Header() {
             >
               {t('profiles')}
             </Link>
+            <Link
+              href="/questionnaire"
+              className="text-sm font-medium text-brand-green hover:text-brand-green/80 transition-colors"
+            >
+              Questionnaire
+            </Link>
           </nav>
 
-          {/* Right side: language switcher always visible */}
-          <div className="flex items-center">
+          {/* Right side: auth + language switcher */}
+          <div className="flex items-center gap-3">
+            {session.isPending ? null : session.data?.user ? (
+              <div className="flex items-center gap-3">
+                <span className="hidden sm:block text-sm text-text-secondary">
+                  {session.data.user.name || session.data.user.email}
+                </span>
+                <button
+                  onClick={async () => {
+                    await authClient.signOut();
+                    window.location.href = '/';
+                  }}
+                  className="text-sm text-text-secondary hover:text-text-primary transition-colors"
+                >
+                  Sign Out
+                </button>
+              </div>
+            ) : (
+              <Link
+                href="/auth/sign-in"
+                className="text-sm font-medium text-brand-green hover:text-brand-green/80 transition-colors"
+              >
+                Sign In
+              </Link>
+            )}
             <LanguageSwitcher />
           </div>
         </div>

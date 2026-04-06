@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/navigation';
-import { Cpu, Factory, User, Gem, Bitcoin } from 'lucide-react';
+import { Cpu, Factory, User, Gem, Bitcoin, ClipboardList } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 type Tab = {
@@ -15,7 +15,7 @@ type Tab = {
 const tabs: Tab[] = [
   { href: '/fund/future-tech', labelKey: 'futureTech', icon: Cpu, match: '/fund/future-tech' },
   { href: '/fund/traditional', labelKey: 'traditional', icon: Factory, match: '/fund/traditional' },
-  { href: '/profiles', labelKey: 'profiles', icon: User, match: '/profiles' },
+  { href: '/questionnaire', labelKey: 'questionnaire', icon: ClipboardList, match: '/questionnaire' },
   { href: '/fund/commodities', labelKey: 'commodities', icon: Gem, match: '/fund/commodities' },
   { href: '/fund/crypto', labelKey: 'crypto', icon: Bitcoin, match: '/fund/crypto' },
 ];
