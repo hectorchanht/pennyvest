@@ -65,7 +65,7 @@ export default function QuestionnaireFlow() {
     return currentQuestion.options.findIndex((o) => o.score === answer);
   }, [currentQuestion, answers]);
 
-  const hasAnswer = answers[currentQuestion?.id] !== undefined;
+  const hasAnswer = currentQuestion ? answers[currentQuestion.id] !== undefined : false;
 
   function handleNext() {
     if (step < totalQuestions - 1) {
