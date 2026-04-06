@@ -247,7 +247,8 @@
     "viewPortfolio": "查看推薦投資組合",
     "memberSince": "註冊日期",
     "email": "電郵",
-    "name": "姓名"
+    "name": "姓名",
+    "saving": "儲存中..."
   },
   "theme": {
     "switchToLight": "切換至淺色模式",

@@ -1,28 +1,24 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { authClient } from '@/lib/auth/client';
+import { calculateResult } from '@/lib/questionnaire/questions';
+import type { QuestionnaireResult } from '@/lib/questionnaire/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { User } from 'lucide-react';
-
-interface QuizResult {
-  answers: Record<string, unknown>;
-  result: {
-    overallScore: number;
-    riskBand: string;
-    profileSlug: string;
-  };
-}
+import ReviewCard from '@/components/questionnaire/ReviewCard';
 
 export default function ProfilePage() {
   const t = useTranslations('userProfile');
   const tAuth = useTranslations('auth');
   const session = authClient.useSession();
-  const [quizResult, setQuizResult] = useState<QuizResult | null>(null);
+  const [answers, setAnswers] = useState<Record<string, number | number[]>>({});
+  const [result, setResult] = useState<QuestionnaireResult | null>(null);
   const [loadingQuiz, setLoadingQuiz] = useState(true);
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     if (!session.data?.user) {
@@ -33,13 +29,46 @@ export default function ProfilePage() {
     fetch('/api/questionnaire')
       .then((res) => res.json())
       .then((data) => {
-        if (data?.result) setQuizResult(data);
+        if (data?.result && data?.answers) {
+          setAnswers(data.answers);
+          setResult(data.result);
+        }
       })
       .catch(() => {})
       .finally(() => setLoadingQuiz(false));
   }, [session.data]);
 
-  // Not logged in — prompt to sign in
+  const saveToDb = useCallback(async (ans: Record<string, number | number[]>) => {
+    setSaving(true);
+    try {
+      const res = await fetch('/api/questionnaire', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ answers: ans }),
+      });
+      const data = await res.json();
+      if (data.result) setResult(data.result);
+    } catch {
+      // Silent fail
+    } finally {
+      setSaving(false);
+    }
+  }, []);
+
+  function handleAnswerChange(questionId: string, value: number | number[]) {
+    const newAnswers = { ...answers, [questionId]: value };
+    setAnswers(newAnswers);
+    const newResult = calculateResult(newAnswers);
+    setResult(newResult);
+    saveToDb(newAnswers);
+  }
+
+  function handleRetake() {
+    // Navigate to questionnaire in fresh quiz mode
+    window.location.href = '/questionnaire';
+  }
+
+  // Not logged in
   if (!session.isPending && !session.data?.user) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center px-4">
@@ -62,7 +91,6 @@ export default function ProfilePage() {
     );
   }
 
-  // Loading
   if (session.isPending) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
@@ -74,7 +102,7 @@ export default function ProfilePage() {
   const user = session.data!.user;
 
   return (
-    <div className="mx-auto max-w-lg px-4 py-8 space-y-6">
+    <div className="mx-auto max-w-xl px-4 py-8 space-y-6">
       {/* User info */}
       <div className="text-center space-y-3">
         <div className="mx-auto w-16 h-16 rounded-full bg-brand-green/20 flex items-center justify-center">
@@ -111,44 +139,30 @@ export default function ProfilePage() {
         </CardContent>
       </Card>
 
-      {/* Risk Profile */}
+      {/* Risk Profile — full questionnaire review or CTA */}
       <Card>
         <CardHeader>
           <CardTitle className="text-base">{t('riskProfile')}</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent>
           {loadingQuiz ? (
             <p className="text-sm text-text-muted">...</p>
-          ) : quizResult ? (
+          ) : result ? (
             <>
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xl font-bold text-text-primary">
-                    {quizResult.result.riskBand}
-                  </p>
-                  <p className="text-sm text-text-secondary">
-                    Score: {quizResult.result.overallScore}/100
-                  </p>
-                </div>
-                <div className="text-right">
-                  <Link href="/questionnaire">
-                    <Button variant="outline" size="sm">
-                      {t('retakeQuiz')}
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-              <Link href="/profiles">
-                <Button
-                  className="w-full bg-brand-green text-black hover:bg-brand-green/90"
-                  size="lg"
-                >
-                  {t('viewPortfolio')}
-                </Button>
-              </Link>
+              {saving && (
+                <p className="text-center text-xs text-text-muted mb-4">
+                  {t('saving') ?? '...'}
+                </p>
+              )}
+              <ReviewCard
+                answers={answers}
+                result={result}
+                onAnswerChange={handleAnswerChange}
+                onRetake={handleRetake}
+              />
             </>
           ) : (
-            <>
+            <div className="space-y-4">
               <p className="text-sm text-text-muted">{t('notAssessed')}</p>
               <Link href="/questionnaire">
                 <Button
@@ -158,7 +172,7 @@ export default function ProfilePage() {
                   {t('takeQuiz')}
                 </Button>
               </Link>
-            </>
+            </div>
           )}
         </CardContent>
       </Card>

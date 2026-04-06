@@ -247,7 +247,8 @@
     "viewPortfolio": "View Recommended Portfolio",
     "memberSince": "Member since",
     "email": "Email",
-    "name": "Name"
+    "name": "Name",
+    "saving": "Saving..."
   },
   "theme": {
     "switchToLight": "Switch to light mode",
