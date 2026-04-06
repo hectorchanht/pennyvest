@@ -5,7 +5,7 @@ export const sections: Section[] = [
     id: 'capacity',
     name: 'Financial Situation & Capacity',
     weight: 0.3,
-    maxScore: 58,
+    maxScore: 55,
     questions: [
       {
         id: 'c1',
