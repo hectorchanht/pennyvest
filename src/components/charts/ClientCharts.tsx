@@ -5,8 +5,8 @@ import { Skeleton } from '@/components/ui/skeleton';
 import type { EquityPoint } from '@/types/prices';
 
 const AllocationDonutDynamic = dynamic(
-  () => import('@/components/charts/AllocationDonut'),
-  { ssr: false, loading: () => <Skeleton className="h-[220px] w-full rounded-lg" /> }
+  () => import('@/components/landing/AllocationDonut'),
+  { ssr: false, loading: () => <Skeleton className="h-[220px] w-[220px] rounded-full mx-auto" /> }
 );
 
 const EquityCurveDynamic = dynamic(
@@ -14,10 +14,17 @@ const EquityCurveDynamic = dynamic(
   { ssr: false, loading: () => <Skeleton className="h-[180px] w-full rounded-lg" /> }
 );
 
+interface DonutSegment {
+  slug: string;
+  name: string;
+  weight: number;
+  color: string;
+}
+
 interface AllocationDonutClientProps {
-  allocations: { name: string; ticker: string; weight: number }[];
-  centerLabel?: string;
-  title: string;
+  segments: DonutSegment[];
+  activeSlug?: string | null;
+  onHover?: (slug: string | null) => void;
 }
 
 export function AllocationDonutClient(props: AllocationDonutClientProps) {

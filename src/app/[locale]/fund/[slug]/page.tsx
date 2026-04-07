@@ -5,7 +5,7 @@ import LiveFundHeader from '@/components/strategy/LiveFundHeader';
 import PricesSection from '@/components/strategy/PricesSection';
 import EquitySection from '@/components/charts/EquitySection';
 import NewsFeed from '@/components/news/NewsFeed';
-import AllocationDonut from '@/components/landing/AllocationDonut';
+import { AllocationDonutClient } from '@/components/charts/ClientCharts';
 import LiveInsights from '@/components/strategy/LiveInsights';
 
 type Props = {
@@ -106,7 +106,7 @@ export default async function FundPage({ params }: Props) {
         <h3 className="text-sm font-medium text-text-primary mb-3 self-start">
           {t('charts.allocationTitle')}
         </h3>
-        <AllocationDonut segments={donutSegments} />
+        <AllocationDonutClient segments={donutSegments} />
         <div className="flex flex-wrap justify-center gap-3 mt-4">
           {strategy.allocations.map((a, i) => (
             <div key={a.ticker} className="flex items-center gap-1.5 text-xs text-text-secondary">
