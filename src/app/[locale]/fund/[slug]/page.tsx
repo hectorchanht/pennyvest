@@ -1,12 +1,11 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { getAllStrategies, getStrategyConfig } from '@/lib/strategies';
 import { notFound } from 'next/navigation';
-import SwipeNavigator from '@/components/strategy/SwipeNavigator';
 import LiveFundHeader from '@/components/strategy/LiveFundHeader';
 import PricesSection from '@/components/strategy/PricesSection';
 import EquitySection from '@/components/charts/EquitySection';
 import NewsFeed from '@/components/news/NewsFeed';
-import { AllocationDonutClient } from '@/components/charts/ClientCharts';
+import AllocationDonut from '@/components/landing/AllocationDonut';
 import LiveInsights from '@/components/strategy/LiveInsights';
 
 type Props = {
@@ -25,15 +24,6 @@ export default async function FundPage({ params }: Props) {
   if (!strategy) notFound();
 
   const t = await getTranslations();
-  const allStrategies = getAllStrategies();
-
-  // Determine prev/next slugs for swipe navigation
-  const currentIndex = allStrategies.findIndex((s) => s.slug === slug);
-  const prevStrategy = currentIndex > 0 ? allStrategies[currentIndex - 1] : undefined;
-  const nextStrategy =
-    currentIndex < allStrategies.length - 1 ? allStrategies[currentIndex + 1] : undefined;
-  const prevSlug = prevStrategy?.slug ?? null;
-  const nextSlug = nextStrategy?.slug ?? null;
 
   const fundName = t(strategy.nameKey);
 
@@ -56,10 +46,6 @@ export default async function FundPage({ params }: Props) {
     error: t('charts.error'),
   };
 
-  // Risk label for allocation donut center
-  const riskLabel = t(`riskLevel.${strategy.riskLevel}`);
-
-  // Phase 3: translated labels for live data sections
   const newsLabels = {
     sectionTitle: t('news.sectionTitle'),
     loading: t('news.loading'),
@@ -93,70 +79,82 @@ export default async function FundPage({ params }: Props) {
     staleWarning: t('common.staleWarning'),
   };
 
+  // Build donut segments from strategy allocations
+  const HOLDING_COLORS = ['#6366f1', '#22d3ee', '#f59e0b', '#10b981', '#f43f5e', '#a78bfa'];
+  const donutSegments = strategy.allocations.map((a, i) => ({
+    slug: a.ticker.toLowerCase(),
+    name: a.name,
+    weight: a.weight,
+    color: HOLDING_COLORS[i % HOLDING_COLORS.length]!,
+  }));
+
   return (
-    <SwipeNavigator prevSlug={prevSlug} nextSlug={nextSlug}>
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        {/* 1. Fund Header Banner */}
-        <LiveFundHeader
+    <div className="max-w-4xl mx-auto px-4 py-8">
+      <LiveFundHeader
+        slug={slug}
+        fundName={fundName}
+        labels={{
+          trackingLive: t('fundDetail.labels.trackingLive'),
+          modelPortfolio: t('fundDetail.labels.modelPortfolio'),
+          dailyGain: t('fundDetail.labels.dailyGain'),
+          portfolioValue: t('fundDetail.labels.portfolioValue'),
+        }}
+      />
+
+      {/* Allocation Donut */}
+      <section className="mb-8 flex flex-col items-center">
+        <h3 className="text-sm font-medium text-text-primary mb-3 self-start">
+          {t('charts.allocationTitle')}
+        </h3>
+        <AllocationDonut segments={donutSegments} />
+        <div className="flex flex-wrap justify-center gap-3 mt-4">
+          {strategy.allocations.map((a, i) => (
+            <div key={a.ticker} className="flex items-center gap-1.5 text-xs text-text-secondary">
+              <span
+                className="w-2.5 h-2.5 rounded-full"
+                style={{ backgroundColor: HOLDING_COLORS[i % HOLDING_COLORS.length] }}
+              />
+              {a.ticker} {Math.round(a.weight * 100)}%
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Live Holdings with Prices */}
+      <section className="mb-8">
+        <PricesSection
           slug={slug}
-          fundName={fundName}
-          labels={{
-            trackingLive: t('fundDetail.labels.trackingLive'),
-            modelPortfolio: t('fundDetail.labels.modelPortfolio'),
-            dailyGain: t('fundDetail.labels.dailyGain'),
-            portfolioValue: t('fundDetail.labels.portfolioValue'),
-          }}
+          allocations={strategy.allocations.map((a) => ({
+            ticker: a.ticker,
+            name: a.name,
+            weight: a.weight,
+          }))}
+          labels={pricesSectionLabels}
+          staleTtlMs={600000}
         />
+      </section>
 
-        {/* 2. Allocation Donut Chart -- STRT-02 (static allocation data, ssr:false in ClientCharts) */}
-        <section className="mb-8">
-          <AllocationDonutClient
-            allocations={strategy.allocations.map((a) => ({
-              name: a.name,
-              ticker: a.ticker,
-              weight: a.weight,
-            }))}
-            centerLabel={riskLabel}
-            title={t('charts.allocationTitle')}
-          />
-        </section>
+      {/* Equity Curve */}
+      <section className="mb-8">
+        <EquitySection
+          slug={slug}
+          labels={equitySectionLabels}
+          staleTtlMs={172800000}
+        />
+      </section>
 
-        {/* 3. Live Holdings with Prices -- STRT-05 */}
-        <section className="mb-8">
-          <PricesSection
-            slug={slug}
-            allocations={strategy.allocations.map((a) => ({
-              ticker: a.ticker,
-              name: a.name,
-              weight: a.weight,
-            }))}
-            labels={pricesSectionLabels}
-            staleTtlMs={600000}
-          />
-        </section>
+      {/* News */}
+      <section className="mb-8">
+        <NewsFeed slug={slug} locale={locale} labels={newsLabels} />
+      </section>
 
-        {/* 4. Equity Curve -- STRT-06 (ssr:false dynamic import inside EquitySection) */}
-        <section className="mb-8">
-          <EquitySection
-            slug={slug}
-            labels={equitySectionLabels}
-            staleTtlMs={172800000}
-          />
-        </section>
+      {/* AI-Generated Opportunities + Portfolio Notes */}
+      <LiveInsights slug={slug} locale={locale} labels={insightsLabels} />
 
-        {/* 5. News + AI Analysis -- NEWS-01 through NEWS-04 */}
-        <section className="mb-8">
-          <NewsFeed slug={slug} locale={locale} labels={newsLabels} />
-        </section>
-
-        {/* 6. AI-Generated Opportunities + Portfolio Notes */}
-        <LiveInsights slug={slug} locale={locale} labels={insightsLabels} />
-
-        {/* 8. Disclaimer */}
-        <p className="text-xs text-text-muted text-center py-4 border-t border-border">
-          {t('fundDetail.labels.disclaimer')}
-        </p>
-      </div>
-    </SwipeNavigator>
+      {/* Disclaimer */}
+      <p className="text-xs text-text-muted text-center py-4 border-t border-border">
+        {t('fundDetail.labels.disclaimer')}
+      </p>
+    </div>
   );
 }
