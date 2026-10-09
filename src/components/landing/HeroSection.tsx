@@ -26,6 +26,7 @@ interface HeroSectionProps {
     subtagline: string;
     profileLabel: string;
     dailyChangeLabel: string;
+    fundsLabel: string;
   };
 }
 
@@ -87,6 +88,7 @@ export default function HeroSection({ profiles, strategies, labels }: HeroSectio
           labels={{
             profileLabel: labels.profileLabel,
             dailyChangeLabel: labels.dailyChangeLabel,
+            fundsLabel: labels.fundsLabel,
           }}
         />
       </div>

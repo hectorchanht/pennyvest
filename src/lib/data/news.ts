@@ -121,12 +121,24 @@ export async function getNewsForStrategy(
     .map((a) => a.ticker);
 
   const allArticles: NewsArticle[] = [];
-  for (const ticker of topTickers) {
+  if (topTickers.length === 0) {
+    // All-crypto strategy (e.g. the Crypto fund) has no equity tickers for
+    // company-news lookup — fall back to crypto market news instead of
+    // returning nothing.
     try {
-      const articles = await fetchCompanyNews(ticker, 7);
+      const articles = await fetchMarketNews('crypto');
       allArticles.push(...articles);
     } catch (e) {
-      console.error(`[news] fetchCompanyNews(${ticker}) failed:`, e);
+      console.error('[news] fetchMarketNews(crypto) failed:', e);
+    }
+  } else {
+    for (const ticker of topTickers) {
+      try {
+        const articles = await fetchCompanyNews(ticker, 7);
+        allArticles.push(...articles);
+      } catch (e) {
+        console.error(`[news] fetchCompanyNews(${ticker}) failed:`, e);
+      }
     }
   }
 

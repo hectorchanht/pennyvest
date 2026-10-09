@@ -124,7 +124,7 @@ export default async function FundPage({ params }: Props) {
         <h3 className="text-sm font-medium text-text-primary mb-3 self-start">
           {t('charts.allocationTitle')}
         </h3>
-        <AllocationDonutClient segments={donutSegments} />
+        <AllocationDonutClient segments={donutSegments} fundsLabel={t('navigation.funds')} />
         <div className="flex flex-wrap justify-center gap-3 mt-4">
           {strategy.allocations.map((a, i) => (
             <div key={a.ticker} className="flex items-center gap-1.5 text-xs text-text-secondary">

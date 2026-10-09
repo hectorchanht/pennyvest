@@ -23,6 +23,7 @@ interface ProfileSelectorProps {
   labels: {
     profileLabel: string;
     dailyChangeLabel: string;
+    fundsLabel: string;
   };
 }
 
@@ -76,6 +77,7 @@ export default function ProfileSelector({
           segments={donutSegments}
           activeSlug={hoveredStrategy}
           onHover={setHoveredStrategy}
+          fundsLabel={labels.fundsLabel}
         />
         {/* Mobile: legend */}
         <div className="flex flex-wrap justify-center gap-3 mb-2">
@@ -152,6 +154,7 @@ export default function ProfileSelector({
             segments={donutSegments}
             activeSlug={hoveredStrategy}
             onHover={setHoveredStrategy}
+            fundsLabel={labels.fundsLabel}
           />
           {/* Legend below donut */}
           <div className="flex flex-wrap justify-center gap-3">

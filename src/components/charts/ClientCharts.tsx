@@ -25,6 +25,7 @@ interface AllocationDonutClientProps {
   segments: DonutSegment[];
   activeSlug?: string | null;
   onHover?: (slug: string | null) => void;
+  fundsLabel?: string;
 }
 
 export function AllocationDonutClient(props: AllocationDonutClientProps) {

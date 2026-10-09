@@ -11,6 +11,7 @@ interface AllocationDonutProps {
   segments: DonutSegment[];
   activeSlug?: string | null;
   onHover?: (slug: string | null) => void;
+  fundsLabel?: string;
 }
 
 const STRATEGY_COLORS: Record<string, string> = {
@@ -28,6 +29,7 @@ export default function AllocationDonut({
   segments,
   activeSlug,
   onHover,
+  fundsLabel = 'Funds',
 }: AllocationDonutProps) {
   const size = 220;
   const cx = size / 2;
@@ -149,7 +151,7 @@ export default function AllocationDonut({
           fill="var(--color-text-secondary)"
           fontSize="10"
         >
-          Funds
+          {fundsLabel}
         </text>
       </svg>
     </div>

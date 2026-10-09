@@ -39,6 +39,7 @@ export default async function HomePage({ params }: Props) {
       subtagline: t('landing.hero.subtagline'),
       profileLabel: t('landing.profileSelector.label'),
       dailyChangeLabel: t('landing.dailyChange'),
+      fundsLabel: t('navigation.funds'),
     },
   };
 
