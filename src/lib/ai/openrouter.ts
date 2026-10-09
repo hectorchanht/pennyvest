@@ -1,6 +1,6 @@
 import 'server-only';
 import { createOpenAI } from '@ai-sdk/openai';
-import { generateText as aiGenerateText } from 'ai';
+import { generateText as aiGenerateText, Output } from 'ai';
 
 const openrouter = createOpenAI({
   baseURL: 'https://openrouter.ai/api/v1',
@@ -19,14 +19,19 @@ export const FREE_MODELS = [
   'meta-llama/llama-3.3-70b-instruct:free',
 ] as const;
 
-type GenerateArgs = Omit<Parameters<typeof aiGenerateText>[0], 'model'>;
+type FailoverArgs = {
+  prompt: string;
+  system?: string;
+  maxOutputTokens?: number;
+  output?: ReturnType<typeof Output.object>;
+};
 
 /**
  * generateText with free-model failover: if a `:free` model errors
  * (retired 404, saturated 429, 402/403), retry with the next one.
  * Throws only if every model fails — callers degrade gracefully.
  */
-export async function generateTextWithFailover(args: GenerateArgs) {
+export async function generateTextWithFailover(args: FailoverArgs) {
   let lastError: unknown = null;
   for (const id of FREE_MODELS) {
     try {
