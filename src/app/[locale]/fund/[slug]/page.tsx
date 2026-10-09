@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { getAllStrategies, getStrategyConfig } from '@/lib/strategies';
 import { notFound } from 'next/navigation';
@@ -14,6 +15,18 @@ type Props = {
 
 export function generateStaticParams() {
   return getAllStrategies().map((s) => ({ slug: s.slug }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const strategy = getStrategyConfig(slug);
+  const t = await getTranslations({ locale });
+  const fundName = strategy ? t(strategy.nameKey) : slug;
+  const tagline = strategy ? t(strategy.nameKey.replace('.name', '.tagline')) : '';
+  return {
+    title: `${fundName} | Pennyvest`,
+    description: tagline || t('metadata.description'),
+  };
 }
 
 export default async function FundPage({ params }: Props) {
@@ -55,6 +68,11 @@ export default async function FundPage({ params }: Props) {
     staleWarning: t('common.staleWarning'),
     noArticles: t('news.noArticles'),
     source: t('news.source'),
+    impact: {
+      bullish: t('news.impact.bullish'),
+      neutral: t('news.impact.neutral'),
+      bearish: t('news.impact.bearish'),
+    },
   };
 
   const pricesSectionLabels = {

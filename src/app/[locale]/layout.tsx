@@ -20,9 +20,29 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'metadata' });
+  const baseUrl = 'https://pennyvest.space';
+  const title = t('title');
+  const description = t('description');
   return {
-    title: t('title'),
-    description: t('description'),
+    title,
+    description,
+    metadataBase: new URL(baseUrl),
+    alternates: {
+      canonical: `${baseUrl}/${locale === 'zh-HK' ? 'zh' : 'en'}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: baseUrl,
+      siteName: 'Pennyvest',
+      locale: locale === 'zh-HK' ? 'zh_HK' : 'en_US',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary',
+      title,
+      description,
+    },
   };
 }
 

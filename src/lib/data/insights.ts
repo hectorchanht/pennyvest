@@ -1,6 +1,5 @@
 import 'server-only';
-import { generateText } from 'ai';
-import { model } from '@/lib/ai/openrouter';
+import { generateTextWithFailover } from '@/lib/ai/openrouter';
 import { buildInsightsPrompt } from '@/lib/ai/insights-prompt';
 import { withCache } from './cache';
 import { getRecommendations } from './recommendations';
@@ -53,8 +52,15 @@ export async function getStrategyInsights(
   strategy: Strategy,
   locale: string
 ): Promise<{ data: StrategyInsights; cachedAt: number }> {
+  // No AI key -> serve the fallback WITHOUT caching it, so the first request
+  // after the key is configured generates real insights immediately.
+  if (!process.env.OPENROUTER_API_KEY) {
+    return { data: FALLBACK, cachedAt: Date.now() };
+  }
   return withCache<StrategyInsights>(
-    `insights:${strategy.slug}:${locale}`,
+    // v2: cache key versioned — v1 entries hold the "AI unavailable" fallback
+    // from before OPENROUTER_API_KEY was configured.
+    `insights:v2:${strategy.slug}:${locale}`,
     86400, // 24 hours
     async () => {
       try {
@@ -94,8 +100,7 @@ export async function getStrategyInsights(
           locale,
         });
 
-        const { text } = await generateText({
-          model,
+        const { text } = await generateTextWithFailover({
           prompt,
           // maxOutputTokens: 2000,
         });

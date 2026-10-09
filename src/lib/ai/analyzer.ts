@@ -1,11 +1,11 @@
 import 'server-only';
-import { generateText, Output } from 'ai';
+import { Output } from 'ai';
 import { z } from 'zod';
-import { model } from './client';
+import { generateTextWithFailover } from './openrouter';
 import { buildSystemPrompt, buildAnalysisPrompt } from './prompts';
 import { withCache, TTL } from '@/lib/data/cache';
-// Types defined locally — not currently exported from @/types/news
-interface NewsAnalysis {
+
+export interface NewsAnalysis {
   summary: string;
   impact: 'bullish' | 'neutral' | 'bearish';
   reasoning: string;
@@ -35,9 +35,12 @@ export async function analyzeNewsItem(
     `ai:${article.uuid}:${locale}`,
     TTL.aiAnalysis,
     async () => {
+      if (!process.env.OPENROUTER_API_KEY) {
+        console.warn('[analyzer] OPENROUTER_API_KEY not set, skipping AI analysis');
+        return null;
+      }
       try {
-        const result = await generateText({
-          model,
+        const result = await generateTextWithFailover({
           output: Output.object({ schema: NewsAnalysisSchema }),
           system: buildSystemPrompt(locale),
           prompt: buildAnalysisPrompt(article, strategyContext),

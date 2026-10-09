@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
-import type { NewsArticle, NewsResponse } from '@/types/news';
+import type { NewsArticle, NewsResponse, NewsImpact, NewsImpactResponse } from '@/types/news';
 
 interface NewsFeedProps {
   slug: string;
@@ -18,8 +18,19 @@ interface NewsFeedProps {
     staleWarning: string;
     noArticles: string;
     source: string;
+    impact: {
+      bullish: string;
+      neutral: string;
+      bearish: string;
+    };
   };
 }
+
+const IMPACT_STYLES: Record<NewsImpact, string> = {
+  bullish: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20',
+  neutral: 'text-zinc-400 bg-zinc-500/10 border-zinc-500/20',
+  bearish: 'text-rose-400 bg-rose-500/10 border-rose-500/20',
+};
 
 const STALE_TTL_MS = 600_000; // 10 minutes
 
@@ -41,6 +52,7 @@ function parsePublishedAt(publishedAt: string): string {
 
 export default function NewsFeed({ slug, locale, labels }: NewsFeedProps) {
   const [articles, setArticles] = useState<NewsArticle[]>([]);
+  const [impacts, setImpacts] = useState<Record<string, { impact: NewsImpact; reasoning: string }>>({});
   const [cachedAt, setCachedAt] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -64,6 +76,19 @@ export default function NewsFeed({ slug, locale, labels }: NewsFeedProps) {
   useEffect(() => {
     fetchNews();
   }, [fetchNews]);
+
+  // AI impact analysis loads progressively after the headlines — never blocks news.
+  useEffect(() => {
+    if (articles.length === 0) return;
+    fetch(`/api/news/${slug}/impact?locale=${locale}`)
+      .then((res) => (res.ok ? (res.json() as Promise<NewsImpactResponse>) : null))
+      .then((json) => {
+        if (json?.impacts) setImpacts(json.impacts);
+      })
+      .catch(() => {
+        // Impact badges simply don't render — news stays usable.
+      });
+  }, [articles, slug, locale]);
 
   return (
     <section>
@@ -117,6 +142,14 @@ export default function NewsFeed({ slug, locale, labels }: NewsFeedProps) {
                 <p className="text-xs text-text-muted mt-1">
                   {labels.source}: {article.source} &middot; {parsePublishedAt(article.publishedAt)}
                 </p>
+                {impacts[article.id] && (
+                  <span
+                    title={impacts[article.id]!.reasoning}
+                    className={`inline-flex items-center gap-1 text-[11px] font-medium px-2 py-0.5 rounded-full border mt-1.5 ${IMPACT_STYLES[impacts[article.id]!.impact]}`}
+                  >
+                    <span aria-hidden>✦</span> AI · {labels.impact[impacts[article.id]!.impact]}
+                  </span>
+                )}
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-text-secondary">{article.summary}</p>
