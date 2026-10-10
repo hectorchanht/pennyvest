@@ -2,26 +2,38 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { SPONSORED_STORAGE_KEY, TIP_LICENSE_STORAGE_KEY } from '@/lib/sponsored';
+import {
+  SPONSORED_STORAGE_KEY,
+  SUPPORTER_STORAGE_KEY,
+  TIP_LICENSE_STORAGE_KEY,
+} from '@/lib/sponsored';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 
 type Status = 'idle' | 'verifying' | 'error';
 
 /**
- * "Sponsored strip" settings section — lets tippers hide the sponsored strip
- * by verifying the Gumroad license key from their purchase receipt email.
+ * "Supporter" settings section — tippers verify the Gumroad license key from
+ * their purchase receipt email.
  *
- * Verified → localStorage dawn_sponsored_hidden=1 → SponsoredStrip renders
- * nothing. The key itself is also persisted (dawn_tip_license_key) so the
- * input comes pre-filled on return visits — including after "Show again",
- * which clears only the hidden flag — and the copy button lets the user reuse
- * the key on another device or app. The stored key is only ever sent to
- * /api/verify-tip on an explicit Verify click, never auto-submitted on load.
+ * Successful verification stores:
+ *   - dawn_supporter=1      (supporter status for future feature unlocks)
+ *   - dawn_tip_license_key  (the key itself, for pre-fill + copy)
+ * The sponsored strip is NOT auto-hidden on verify. Supporters get a choice:
+ * a "Hide sponsored strip" toggle (default OFF) sets/clears
+ * dawn_sponsored_hidden=1, and SponsoredStrip renders nothing while it is set.
+ *
+ * The stored key is only ever sent to /api/verify-tip on an explicit Verify
+ * click, never auto-submitted on load.
+ *
+ * Back-compat: verifications from the old auto-hide model set only
+ * dawn_sponsored_hidden=1 — on first load we backfill dawn_supporter=1 so
+ * those users keep supporter status and their existing hidden preference.
  */
 export default function SponsoredVerifySection() {
   const t = useTranslations('sponsored');
   const [verified, setVerified] = useState(false);
+  const [hideStrip, setHideStrip] = useState(false);
   const [licenseKey, setLicenseKey] = useState('');
   const [status, setStatus] = useState<Status>('idle');
   const [copied, setCopied] = useState(false);
@@ -29,10 +41,20 @@ export default function SponsoredVerifySection() {
 
   useEffect(() => {
     try {
-      if (window.localStorage.getItem(SPONSORED_STORAGE_KEY) === '1') {
+      const ls = window.localStorage;
+      if (
+        ls.getItem(SPONSORED_STORAGE_KEY) === '1' &&
+        ls.getItem(SUPPORTER_STORAGE_KEY) !== '1'
+      ) {
+        ls.setItem(SUPPORTER_STORAGE_KEY, '1');
+      }
+      if (ls.getItem(SUPPORTER_STORAGE_KEY) === '1') {
         setVerified(true);
       }
-      const storedKey = window.localStorage.getItem(TIP_LICENSE_STORAGE_KEY);
+      if (ls.getItem(SPONSORED_STORAGE_KEY) === '1') {
+        setHideStrip(true);
+      }
+      const storedKey = ls.getItem(TIP_LICENSE_STORAGE_KEY);
       if (storedKey) {
         setLicenseKey(storedKey);
       }
@@ -60,7 +82,10 @@ export default function SponsoredVerifySection() {
       const data = (await res.json()) as { ok?: boolean };
       if (data?.ok === true) {
         try {
-          window.localStorage.setItem(SPONSORED_STORAGE_KEY, '1');
+          // Choice model: verification marks the user as a supporter and
+          // persists the key. It does NOT auto-hide the strip — the user
+          // opts into hiding via the toggle (default OFF).
+          window.localStorage.setItem(SUPPORTER_STORAGE_KEY, '1');
           window.localStorage.setItem(TIP_LICENSE_STORAGE_KEY, key);
         } catch {
           // Storage unavailable — still show verified for this session.
@@ -76,15 +101,17 @@ export default function SponsoredVerifySection() {
     }
   };
 
-  const showAgain = () => {
-    // Clears only the hidden flag — the stored key stays for pre-fill/copy.
+  const setStripHidden = (hidden: boolean) => {
     try {
-      window.localStorage.removeItem(SPONSORED_STORAGE_KEY);
+      if (hidden) {
+        window.localStorage.setItem(SPONSORED_STORAGE_KEY, '1');
+      } else {
+        window.localStorage.removeItem(SPONSORED_STORAGE_KEY);
+      }
     } catch {
-      // ignore
+      // Storage unavailable — the toggle only applies to this session.
     }
-    setVerified(false);
-    setStatus('idle');
+    setHideStrip(hidden);
   };
 
   const copyKey = async () => {
@@ -130,14 +157,33 @@ export default function SponsoredVerifySection() {
       <CardContent className="space-y-3">
         {verified ? (
           <div className="space-y-3">
-            <p className="text-sm text-text-secondary">{t('verifiedThanks')}</p>
-            <button
-              type="button"
-              onClick={showAgain}
-              className="text-sm font-medium text-brand-green hover:underline"
-            >
-              {t('showAgain')}
-            </button>
+            <p className="text-sm font-medium text-text-primary">
+              {t('verifiedThanks')}
+            </p>
+            <div className="flex items-center justify-between gap-3 rounded-lg border border-border px-3 py-2.5">
+              <div>
+                <span className="text-sm text-text-primary">
+                  {t('hideStripLabel')}
+                </span>
+                <p className="text-xs text-text-muted">{t('hideStripNote')}</p>
+              </div>
+              <button
+                type="button"
+                role="switch"
+                aria-checked={hideStrip}
+                aria-label={t('hideStripLabel')}
+                onClick={() => setStripHidden(!hideStrip)}
+                className={`relative h-6 w-11 shrink-0 rounded-full transition-colors ${
+                  hideStrip ? 'bg-brand-green' : 'bg-border'
+                }`}
+              >
+                <span
+                  className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-all ${
+                    hideStrip ? 'left-[22px]' : 'left-0.5'
+                  }`}
+                />
+              </button>
+            </div>
           </div>
         ) : (
           <p className="text-sm text-text-secondary">{t('verifyPrompt')}</p>

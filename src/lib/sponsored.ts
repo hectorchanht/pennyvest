@@ -8,6 +8,9 @@
 
 export const SPONSORED_STORAGE_KEY = 'dawn_sponsored_hidden';
 
+/** localStorage flag set on successful tip verification — marks the user as a supporter for future feature unlocks. */
+export const SUPPORTER_STORAGE_KEY = 'dawn_supporter';
+
 /** localStorage key holding the user's own verified license key (for pre-fill + copy). */
 export const TIP_LICENSE_STORAGE_KEY = 'dawn_tip_license_key';
 
@@ -72,4 +75,18 @@ export function getActiveReferralLinks(): SponsoredLink[] {
   return (Object.keys(LINKS) as SponsoredKey[])
     .map(getSponsoredLink)
     .filter((l): l is SponsoredLink => l !== null);
+}
+
+/**
+ * True when this device belongs to a verified tipper (a supporter).
+ * SSR-safe: false on the server and whenever storage is unavailable.
+ * Nothing is gated on this yet — it exists for future feature unlocks.
+ */
+export function isSupporter(): boolean {
+  try {
+    if (typeof window === 'undefined' || !window.localStorage) return false;
+    return window.localStorage.getItem(SUPPORTER_STORAGE_KEY) === '1';
+  } catch {
+    return false;
+  }
 }

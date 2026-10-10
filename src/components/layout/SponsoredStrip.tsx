@@ -15,9 +15,10 @@ const PILL =
 /**
  * Slim sponsored strip — the first content block under the header.
  *
- * Tippers can hide it permanently: Settings → "Sponsored strip" → enter the
- * Gumroad license key from the purchase receipt. A verified key stores
- * `dawn_sponsored_hidden=1` in localStorage, and the strip renders nothing.
+ * Supporters (verified tippers, localStorage dawn_supporter=1) can hide it
+ * via the "Hide sponsored strip" toggle in their profile, which stores
+ * dawn_sponsored_hidden=1 in localStorage. The strip renders nothing only
+ * while that flag is set — supporter status alone does not hide it.
  */
 export default function SponsoredStrip() {
   const t = useTranslations('sponsored');
