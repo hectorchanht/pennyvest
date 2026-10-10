@@ -256,7 +256,8 @@
   },
   "footer": {
     "tagline": "投資教育，非理財建議。",
-    "copyright": "Pennyvest {year}"
+    "copyright": "Pennyvest {year}",
+    "tipJar": "☕ Tip jar"
   },
   "fundDetail": {
     "labels": {

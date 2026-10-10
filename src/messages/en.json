@@ -256,7 +256,8 @@
   },
   "footer": {
     "tagline": "Investment education, not financial advice.",
-    "copyright": "Pennyvest {year}"
+    "copyright": "Pennyvest {year}",
+    "tipJar": "☕ Tip jar"
   },
   "fundDetail": {
     "labels": {
