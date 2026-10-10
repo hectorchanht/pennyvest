@@ -152,7 +152,14 @@ export default function SponsoredVerifySection() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-base">{t('sectionTitle')}</CardTitle>
+        <CardTitle className="text-base flex items-center gap-2">
+          {t('sectionTitle')}
+          {verified && (
+            <span className="inline-flex shrink-0 items-center rounded-full bg-[#F0A832]/15 px-2 py-0.5 text-[11px] font-semibold text-[#F0A832]">
+              ☕ {t('supporterBadge')}
+            </span>
+          )}
+        </CardTitle>
       </CardHeader>
       <CardContent className="space-y-3">
         {verified ? (

@@ -274,6 +274,7 @@
     "verify": "Verify",
     "verifying": "Verifying…",
     "verifiedThanks": "☕ You're a supporter — thanks for tipping!",
+    "supporterBadge": "Supporter",
     "hideStripLabel": "Hide sponsored strip",
     "hideStripNote": "Supporters can hide the strip anytime.",
     "verifyError": "That key didn't verify — check the license key in your Gumroad receipt email.",

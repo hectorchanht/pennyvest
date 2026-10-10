@@ -274,6 +274,7 @@
     "verify": "驗證",
     "verifying": "驗證中…",
     "verifiedThanks": "☕ 你已成為支持者——多謝你的打賞！",
+    "supporterBadge": "支持者",
     "hideStripLabel": "隱藏贊助列",
     "hideStripNote": "支持者可以隨時隱藏贊助列。",
     "verifyError": "授權碼驗證失敗——請檢查 Gumroad 收據電郵中的授權碼。",
