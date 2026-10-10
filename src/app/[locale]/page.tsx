@@ -3,6 +3,7 @@ import { getAllStrategies } from '@/lib/strategies';
 import { getAllProfiles } from '@/lib/strategies/profiles';
 import HeroSection from '@/components/landing/HeroSection';
 import NewsDigest from '@/components/landing/NewsDigest';
+import SponsoredStrip from '@/components/layout/SponsoredStrip';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -45,6 +46,7 @@ export default async function HomePage({ params }: Props) {
 
   return (
     <div className="-mt-16">
+      <SponsoredStrip />
       <HeroSection {...heroProps} />
       <div className="max-w-6xl mx-auto px-4 pb-16">
         <NewsDigest

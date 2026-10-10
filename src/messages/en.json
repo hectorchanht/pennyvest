@@ -259,6 +259,17 @@
     "copyright": "Pennyvest {year}",
     "tipJar": "☕ Tip jar"
   },
+  "sponsored": {
+    "disclosure": "Sponsored",
+    "tipJar": "☕ Tip jar",
+    "wise": "Wise",
+    "coinbase": "Coinbase",
+    "binance": "Binance",
+    "airalo": "Airalo",
+    "koinly": "Koinly",
+    "airwallex": "Airwallex",
+    "dismissTitle": "Tipped? Hide the sponsored strip"
+  },
   "fundDetail": {
     "labels": {
       "dailyGain": "Daily Gain",

@@ -259,6 +259,17 @@
     "copyright": "Pennyvest {year}",
     "tipJar": "☕ Tip jar"
   },
+  "sponsored": {
+    "disclosure": "贊助",
+    "tipJar": "☕ 打賞",
+    "wise": "Wise",
+    "coinbase": "Coinbase",
+    "binance": "幣安",
+    "airalo": "Airalo",
+    "koinly": "Koinly",
+    "airwallex": "Airwallex",
+    "dismissTitle": "已打賞？隱藏贊助列"
+  },
   "fundDetail": {
     "labels": {
       "dailyGain": "日收益",
