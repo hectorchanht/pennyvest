@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "pennyvest",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-07-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+  "assets": {
+    "binding": "ASSETS",
+    "directory": ".open-next/assets",
+    "not_found_handling": "none"
+  },
+  // Plain-text vars MUST live here: `wrangler deploy` wipes dashboard
+  // variables that aren't declared in this file (secrets survive).
+  "vars": {
+    "NEXT_PUBLIC_APP_URL": "https://pennyvest.space"
+  }
+  // Secrets (set once via `wrangler secret put`, NOT in this file):
+  //   DATABASE_URL, NEON_AUTH_BASE_URL, NEON_AUTH_COOKIE_SECRET,
+  //   OPENROUTER_API_KEY, FINNHUB_API_KEY, COINGECKO_API_KEY
+  // No D1/KV/R2 bindings — data lives in Neon Postgres.
+}
