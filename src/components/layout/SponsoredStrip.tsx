@@ -15,37 +15,29 @@ const PILL =
 /**
  * Slim sponsored strip — the first content block under the header.
  *
- * Honor-system dismiss: tippers can hide it with the × button, which stores
- * `dawn_sponsored_hidden=1` in localStorage. No license verification.
+ * Tippers can hide it permanently: Settings → "Sponsored strip" → enter the
+ * Gumroad license key from the purchase receipt. A verified key stores
+ * `dawn_sponsored_hidden=1` in localStorage, and the strip renders nothing.
  */
 export default function SponsoredStrip() {
   const t = useTranslations('sponsored');
-  const [dismissed, setDismissed] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
   // Hydration-safe: the server and the first client render both show the
   // strip, so the HTML matches. The stored preference applies in an effect.
   useEffect(() => {
     try {
       if (window.localStorage.getItem(SPONSORED_STORAGE_KEY) === '1') {
-        setDismissed(true);
+        setHidden(true);
       }
     } catch {
       // Storage unavailable — keep the strip visible.
     }
   }, []);
 
-  if (dismissed) return null;
+  if (hidden) return null;
 
   const links = getActiveReferralLinks();
-
-  const dismiss = () => {
-    try {
-      window.localStorage.setItem(SPONSORED_STORAGE_KEY, '1');
-    } catch {
-      // Storage unavailable — still hide for this session.
-    }
-    setDismissed(true);
-  };
 
   return (
     <div className="pt-16">
@@ -76,15 +68,6 @@ export default function SponsoredStrip() {
                 {t(link.key)}
               </a>
             ))}
-            <button
-              type="button"
-              onClick={dismiss}
-              title={t('dismissTitle')}
-              aria-label={t('dismissTitle')}
-              className="ml-auto shrink-0 px-1 text-sm leading-none text-text-muted opacity-40 transition-opacity hover:opacity-100"
-            >
-              ×
-            </button>
           </div>
         </div>
       </div>

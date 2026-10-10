@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { User } from 'lucide-react';
 import ReviewCard from '@/components/questionnaire/ReviewCard';
+import SponsoredVerifySection from '@/components/profile/SponsoredVerifySection';
 
 export default function ProfilePage() {
   const t = useTranslations('userProfile');
@@ -86,6 +87,9 @@ export default function ProfilePage() {
               {t('signInButton')}
             </Button>
           </Link>
+          <div className="pt-2 text-left">
+            <SponsoredVerifySection />
+          </div>
         </div>
       </div>
     );
@@ -138,6 +142,9 @@ export default function ProfilePage() {
           )}
         </CardContent>
       </Card>
+
+      {/* Sponsored strip — tip verification to hide it */}
+      <SponsoredVerifySection />
 
       {/* Risk Profile — full questionnaire review or CTA */}
       <Card>

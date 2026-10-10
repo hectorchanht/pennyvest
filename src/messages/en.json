@@ -268,7 +268,16 @@
     "airalo": "Airalo",
     "koinly": "Koinly",
     "airwallex": "Airwallex",
-    "dismissTitle": "Tipped? Hide the sponsored strip"
+    "sectionTitle": "Sponsored strip",
+    "verifyPrompt": "Tipped us on Gumroad? Enter the license key from your purchase receipt email to hide the sponsored strip.",
+    "licensePlaceholder": "License key from your receipt email",
+    "verify": "Verify",
+    "verifying": "Verifying…",
+    "verifiedThanks": "☕ Thanks for tipping — the sponsored strip is hidden.",
+    "showAgain": "Show again",
+    "verifyError": "That key didn't verify — check the license key in your Gumroad receipt email.",
+    "copyKey": "Copy key",
+    "copied": "Copied"
   },
   "fundDetail": {
     "labels": {

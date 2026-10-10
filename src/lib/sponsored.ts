@@ -8,6 +8,9 @@
 
 export const SPONSORED_STORAGE_KEY = 'dawn_sponsored_hidden';
 
+/** localStorage key holding the user's own verified license key (for pre-fill + copy). */
+export const TIP_LICENSE_STORAGE_KEY = 'dawn_tip_license_key';
+
 export const TIP_JAR_URL = 'https://dawnlimited.gumroad.com/l/pennyvest-tip';
 
 export type SponsoredKey =
