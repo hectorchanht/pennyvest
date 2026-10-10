@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
 import { authClient } from '@/lib/auth/client';
+import { track } from '@/lib/analytics';
 import { sections, calculateResult } from '@/lib/questionnaire/questions';
 import type { QuestionnaireResult } from '@/lib/questionnaire/types';
 import { Button } from '@/components/ui/button';
@@ -97,6 +98,10 @@ export default function QuestionnaireFlow() {
       const calcResult = calculateResult(answers);
       setResult(calcResult);
       saveToDb(answers);
+      track('questionnaire_completed', {
+        profile: calcResult.profileSlug,
+        score: Math.round(calcResult.overallScore),
+      });
       setFlowState('review');
     }
   }

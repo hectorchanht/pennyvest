@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { track } from '@/lib/analytics';
 import {
   SPONSORED_STORAGE_KEY,
   SUPPORTER_STORAGE_KEY,
@@ -93,10 +94,14 @@ export default function SponsoredVerifySection() {
         setLicenseKey(key);
         setVerified(true);
         setStatus('idle');
+        track('tip_verified', { success: true });
+        track('supporter_status_changed', { is_supporter: true });
       } else {
+        track('tip_verified', { success: false });
         setStatus('error');
       }
     } catch {
+      track('tip_verified', { success: false });
       setStatus('error');
     }
   };

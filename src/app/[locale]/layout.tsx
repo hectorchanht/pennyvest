@@ -7,6 +7,7 @@ import { routing } from '@/i18n/routing';
 import Header from '@/components/layout/Header';
 import MobileTabBar from '@/components/layout/MobileTabBar';
 import Footer from '@/components/layout/Footer';
+import PostHogProvider from '@/components/analytics/PostHogProvider';
 
 type Props = {
   children: React.ReactNode;
@@ -57,10 +58,12 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <NextIntlClientProvider>
-      <Header />
-      <main className="min-h-screen pt-16">{children}</main>
-      <Footer />
-      <MobileTabBar />
+      <PostHogProvider locale={locale}>
+        <Header />
+        <main className="min-h-screen pt-16">{children}</main>
+        <Footer />
+        <MobileTabBar />
+      </PostHogProvider>
     </NextIntlClientProvider>
   );
 }

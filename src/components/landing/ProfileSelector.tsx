@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { track } from '@/lib/analytics';
 import StrategyCard from './StrategyCard';
 import AllocationDonut, { getStrategyColor } from './AllocationDonut';
 import type { RiskLevel } from '@/lib/strategies/types';
@@ -61,7 +62,10 @@ export default function ProfileSelector({
         {profiles.map((profile) => (
           <button
             key={profile.slug}
-            onClick={() => setSelectedProfile(profile.slug)}
+            onClick={() => {
+              setSelectedProfile(profile.slug);
+              track('risk_profile_selected', { profile: profile.slug });
+            }}
             data-active={selectedProfile === profile.slug}
             className="profile-btn-glow px-6 py-2.5 rounded-full text-sm font-medium text-text-primary transition-all duration-300 cursor-pointer"
           >

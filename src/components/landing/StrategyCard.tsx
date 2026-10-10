@@ -1,4 +1,5 @@
 import { Link } from '@/i18n/navigation';
+import { track } from '@/lib/analytics';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import type { RiskLevel } from '@/lib/strategies/types';
@@ -51,7 +52,11 @@ export default function StrategyCard({
       : null;
 
   return (
-    <Link href={`/fund/${slug}`} className="block">
+    <Link
+      href={`/fund/${slug}`}
+      className="block"
+      onClick={() => track('fund_card_clicked', { fund: slug })}
+    >
       <Card
         className="relative h-full cursor-pointer transition-all duration-300 hover:bg-surface-hover hover:scale-[1.02] hover:shadow-lg p-5"
         style={{

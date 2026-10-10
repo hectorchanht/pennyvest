@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { track } from '@/lib/analytics';
 import {
   TIP_JAR_URL,
   SPONSORED_STORAGE_KEY,
@@ -54,6 +55,7 @@ export default function SponsoredStrip() {
               rel="noopener"
               className={PILL}
               style={{ backgroundColor: '#F0A832', color: '#000000' }}
+              onClick={() => track('tip_jar_opened', { location: 'sponsored_strip' })}
             >
               {t('tipJar')}
             </a>
