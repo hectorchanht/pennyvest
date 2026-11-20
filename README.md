@@ -101,3 +101,9 @@ src/
 ## License
 
 Private — all rights reserved.
+
+## Licence
+
+This software is licensed under the PolyForm Noncommercial License 1.0.0 - see [LICENSE](LICENSE).
+
+Commercial or business use of this software requires the prior written acknowledgement of Dawn Studio.
