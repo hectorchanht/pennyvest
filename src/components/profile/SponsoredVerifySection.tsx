@@ -8,6 +8,7 @@ import {
   SUPPORTER_STORAGE_KEY,
   TIP_LICENSE_STORAGE_KEY,
 } from '@/lib/sponsored';
+import { Check, Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 
@@ -217,11 +218,14 @@ export default function SponsoredVerifySection() {
           <Button
             type="button"
             variant="outline"
+            size="icon"
+            className="size-9 shrink-0 self-center"
             onClick={copyKey}
             disabled={!licenseKey.trim() || status === 'verifying'}
-            aria-label={t('copyKey')}
+            aria-label={copied ? t('copied') : t('copyKey')}
+            title={copied ? t('copied') : t('copyKey')}
           >
-            {copied ? t('copied') : t('copyKey')}
+            {copied ? <Check className="size-4" /> : <Copy className="size-4" />}
           </Button>
         </div>
         {status === 'error' && (

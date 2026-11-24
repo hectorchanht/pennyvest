@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
+import { Bitcoin, ClipboardList, Cpu, Factory, Gem, LogIn, LogOut, Users } from 'lucide-react';
 import { authClient } from '@/lib/auth/client';
 import LanguageSwitcher from './LanguageSwitcher';
 import ThemeToggle from './ThemeToggle';
@@ -46,43 +47,34 @@ export default function Header() {
             Pennyvest
           </Link>
 
-          {/* Desktop nav — hidden on mobile */}
-          <nav className="hidden md:flex items-center gap-6">
-            <Link
-              href="/fund/future-tech"
-              className="text-sm text-text-secondary hover:text-text-primary transition-colors"
-            >
-              {t('futureTech')}
-            </Link>
-            <Link
-              href="/fund/traditional"
-              className="text-sm text-text-secondary hover:text-text-primary transition-colors"
-            >
-              {t('traditional')}
-            </Link>
-            <Link
-              href="/fund/commodities"
-              className="text-sm text-text-secondary hover:text-text-primary transition-colors"
-            >
-              {t('commodities')}
-            </Link>
-            <Link
-              href="/fund/crypto"
-              className="text-sm text-text-secondary hover:text-text-primary transition-colors"
-            >
-              {t('crypto')}
-            </Link>
-            <Link
-              href="/profiles"
-              className="text-sm text-text-secondary hover:text-text-primary transition-colors"
-            >
-              {t('profiles')}
-            </Link>
+          {/* Desktop nav — hidden on mobile; icon-only, names via aria-label/title */}
+          <nav className="hidden md:flex items-center gap-1">
+            {(
+              [
+                { href: '/fund/future-tech', label: t('futureTech'), Icon: Cpu },
+                { href: '/fund/traditional', label: t('traditional'), Icon: Factory },
+                { href: '/fund/commodities', label: t('commodities'), Icon: Gem },
+                { href: '/fund/crypto', label: t('crypto'), Icon: Bitcoin },
+                { href: '/profiles', label: t('profiles'), Icon: Users },
+              ] as const
+            ).map(({ href, label, Icon }) => (
+              <Link
+                key={href}
+                href={href}
+                aria-label={label}
+                title={label}
+                className="flex size-10 items-center justify-center rounded-md text-text-secondary hover:text-text-primary hover:bg-surface transition-colors"
+              >
+                <Icon className="size-5" />
+              </Link>
+            ))}
             <Link
               href="/questionnaire"
-              className="text-sm font-medium text-brand-green hover:text-brand-green/80 transition-colors"
+              aria-label={t('questionnaire')}
+              title={t('questionnaire')}
+              className="flex size-10 items-center justify-center rounded-md text-brand-green hover:text-brand-green/80 hover:bg-surface transition-colors"
             >
-              {t('questionnaire')}
+              <ClipboardList className="size-5" />
             </Link>
           </nav>
 
@@ -98,17 +90,21 @@ export default function Header() {
                     await authClient.signOut();
                     window.location.href = '/';
                   }}
-                  className="text-sm text-text-secondary hover:text-text-primary transition-colors"
+                  aria-label={tAuth('signOut')}
+                  title={tAuth('signOut')}
+                  className="flex size-9 items-center justify-center rounded-md text-text-secondary hover:text-text-primary hover:bg-surface transition-colors"
                 >
-                  {tAuth('signOut')}
+                  <LogOut className="size-4" />
                 </button>
               </div>
             ) : (
               <Link
                 href="/auth/sign-in"
-                className="text-sm font-medium text-brand-green hover:text-brand-green/80 transition-colors"
+                aria-label={tAuth('signIn')}
+                title={tAuth('signIn')}
+                className="flex size-9 items-center justify-center rounded-md text-brand-green hover:text-brand-green/80 hover:bg-surface transition-colors"
               >
-                {tAuth('signIn')}
+                <LogIn className="size-4" />
               </Link>
             )}
             <ThemeToggle />

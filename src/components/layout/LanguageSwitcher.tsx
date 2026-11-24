@@ -24,15 +24,13 @@ export default function LanguageSwitcher() {
     <DropdownMenu>
       <DropdownMenuTrigger
         className={cn(
-          'flex items-center gap-1.5 rounded-md px-2 py-1.5 text-sm transition-colors',
+          'flex size-9 items-center justify-center rounded-md transition-colors',
           'hover:bg-surface text-text-secondary hover:text-text-primary'
         )}
         aria-label="Switch language"
+        title="Switch language"
       >
         <Globe className="size-4" />
-        <span className="hidden sm:inline">
-          {locale === 'en' ? 'EN' : '中文'}
-        </span>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" side="bottom" sideOffset={8}>
         <DropdownMenuItem

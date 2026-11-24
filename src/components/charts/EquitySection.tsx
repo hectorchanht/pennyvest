@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import dynamic from 'next/dynamic';
+import { RotateCcw } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Card, CardContent } from '@/components/ui/card';
 import type { EquityResponse } from '@/types/prices';
@@ -69,8 +70,9 @@ export default function EquitySection({ slug, labels, staleTtlMs }: EquitySectio
           <p className="text-sm text-text-secondary mb-3">{labels.error}</p>
           <button
             onClick={fetchData}
-            className="text-sm text-primary underline hover:no-underline"
+            className="inline-flex items-center gap-1.5 text-sm text-primary underline hover:no-underline"
           >
+            <RotateCcw className="size-3.5" />
             {labels.retry}
           </button>
         </CardContent>

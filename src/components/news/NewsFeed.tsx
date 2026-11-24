@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { RotateCcw } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import type { NewsArticle, NewsResponse, NewsImpact, NewsImpactResponse } from '@/types/news';
 
@@ -112,8 +113,9 @@ export default function NewsFeed({ slug, locale, labels }: NewsFeedProps) {
             <p className="text-sm text-text-secondary mb-3">{labels.error}</p>
             <button
               onClick={fetchNews}
-              className="text-sm text-primary underline hover:no-underline"
+              className="inline-flex items-center gap-1.5 text-sm text-primary underline hover:no-underline"
             >
+              <RotateCcw className="size-3.5" />
               {labels.retry}
             </button>
           </CardContent>

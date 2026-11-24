@@ -33,20 +33,23 @@ export default function MobileTabBar() {
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = pathname === tab.match || pathname.startsWith(tab.match + '/');
+          const label = t(tab.labelKey as Parameters<typeof t>[0]);
 
           return (
             <Link
               key={tab.href}
               href={tab.href}
+              aria-label={label}
+              title={label}
+              aria-current={isActive ? 'page' : undefined}
               className={cn(
-                'flex flex-1 flex-col items-center justify-center gap-0.5 py-2 text-xs transition-colors',
+                'flex h-12 flex-1 items-center justify-center transition-colors',
                 isActive
                   ? 'text-brand-green'
                   : 'text-text-muted hover:text-text-secondary'
               )}
             >
               <Icon className="size-5" />
-              <span className="truncate max-w-full px-1">{t(tab.labelKey as Parameters<typeof t>[0])}</span>
             </Link>
           );
         })}

@@ -8,7 +8,7 @@ import { calculateResult } from '@/lib/questionnaire/questions';
 import type { QuestionnaireResult } from '@/lib/questionnaire/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { User } from 'lucide-react';
+import { ClipboardList, LogIn, LogOut, User } from 'lucide-react';
 import ReviewCard from '@/components/questionnaire/ReviewCard';
 import SponsoredVerifySection from '@/components/profile/SponsoredVerifySection';
 
@@ -84,6 +84,7 @@ export default function ProfilePage() {
               className="w-full bg-brand-green text-black hover:bg-brand-green/90"
               size="lg"
             >
+              <LogIn className="size-4" />
               {t('signInButton')}
             </Button>
           </Link>
@@ -176,6 +177,7 @@ export default function ProfilePage() {
                   className="w-full bg-brand-green text-black hover:bg-brand-green/90"
                   size="lg"
                 >
+                  <ClipboardList className="size-4" />
                   {t('takeQuiz')}
                 </Button>
               </Link>
@@ -194,6 +196,7 @@ export default function ProfilePage() {
           window.location.href = '/';
         }}
       >
+        <LogOut className="size-4" />
         {tAuth('signOut')}
       </Button>
     </div>

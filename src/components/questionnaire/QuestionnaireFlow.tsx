@@ -7,6 +7,7 @@ import { authClient } from '@/lib/auth/client';
 import { track } from '@/lib/analytics';
 import { sections, calculateResult } from '@/lib/questionnaire/questions';
 import type { QuestionnaireResult } from '@/lib/questionnaire/types';
+import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import QuestionCard from './QuestionCard';
 import ReviewCard from './ReviewCard';
@@ -193,17 +194,30 @@ export default function QuestionnaireFlow() {
           <div className="mt-8 flex justify-between gap-4">
             <Button
               variant="outline"
+              size="icon"
               onClick={handleBack}
               disabled={step === 0}
+              aria-label={t('back')}
+              title={t('back')}
             >
-              {t('back')}
+              <ChevronLeft className="size-5" />
             </Button>
             <Button
               className="bg-brand-green text-black hover:bg-brand-green/90"
               onClick={handleNext}
               disabled={!hasAnswer}
             >
-              {step === totalQuestions - 1 ? t('seeResults') : t('next')}
+              {step === totalQuestions - 1 ? (
+                <>
+                  <Sparkles className="size-4" />
+                  {t('seeResults')}
+                </>
+              ) : (
+                <>
+                  {t('next')}
+                  <ChevronRight className="size-4" />
+                </>
+              )}
             </Button>
           </div>
         </>
