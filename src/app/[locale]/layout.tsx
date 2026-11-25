@@ -21,7 +21,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'metadata' });
-  const baseUrl = 'https://pennyvest.space';
+  const baseUrl = 'https://pennyvest.dawnstudio.app';
   const title = t('title');
   const description = t('description');
   return {
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description,
       url: baseUrl,
-      siteName: 'Pennyvest',
+      siteName: 'PennyVest',
       locale: locale === 'zh-HK' ? 'zh_HK' : 'en_US',
       type: 'website',
       images: [
@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           url: '/og.png',
           width: 1200,
           height: 630,
-          alt: 'Pennyvest — clearly explained investment strategies with real-time news context',
+          alt: 'PennyVest — clearly explained investment strategies with real-time news context',
         },
       ],
     },
