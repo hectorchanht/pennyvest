@@ -38,11 +38,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: 'Pennyvest',
       locale: locale === 'zh-HK' ? 'zh_HK' : 'en_US',
       type: 'website',
+      images: [
+        {
+          url: '/og.png',
+          width: 1200,
+          height: 630,
+          alt: 'Pennyvest — clearly explained investment strategies with real-time news context',
+        },
+      ],
     },
     twitter: {
-      card: 'summary',
+      card: 'summary_large_image',
       title,
       description,
+      images: ['/og.png'],
     },
   };
 }
